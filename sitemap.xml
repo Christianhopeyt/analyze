@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Main / Home -->
+    <url>
+        <loc>https://analyzer.norcanto.com/</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <!-- Calculator -->
+    <url>
+        <loc>https://analyzer.norcanto.com/calculator</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <!-- Comparator -->
+    <url>
+        <loc>https://analyzer.norcanto.com/comparator</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <!-- Resource Hub -->
+    <url>
+        <loc>https://analyzer.norcanto.com/blog</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <!-- Blog Post 1 -->
+    <url>
+        <loc>https://analyzer.norcanto.com/blog/science-of-rpm</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Blog Post 2 -->
+    <url>
+        <loc>https://analyzer.norcanto.com/blog/shorts-code</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- Blog Post 3 -->
+    <url>
+        <loc>https://analyzer.norcanto.com/blog/ai-for-creators</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <!-- About Page -->
+    <url>
+        <loc>https://analyzer.norcanto.com/about</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <!-- Privacy Policy -->
+    <url>
+        <loc>https://analyzer.norcanto.com/privacy</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <!-- Terms of Use -->
+    <url>
+        <loc>https://analyzer.norcanto.com/terms</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <!-- Contact Page -->
+    <url>
+        <loc>https://analyzer.norcanto.com/contact</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <!-- Cookies Notice -->
+    <url>
+        <loc>https://analyzer.norcanto.com/cookies-notice</loc>
+        <lastmod>2026-06-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+</urlset>
