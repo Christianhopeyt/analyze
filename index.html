@@ -973,7 +973,9 @@
             submitBtn.disabled = true;
 
             // Call your Netlify serverless proxy
-            fetch(`/api/analyze?q=${encodeURIComponent(inputVal)}`)
+            // Remplacez la ligne du fetch par celle-ci (appel direct sans passer par /api/)
+            fetch(`/.netlify/functions/analyze?q=${encodeURIComponent(inputVal)}`)
+
                 .then(res => {
                     if (!res.ok) throw new Error("API call failed");
                     return res.json();
