@@ -1,7 +1,14 @@
 [build]
   functions = "netlify/functions"
 
+# 1. CETTE RÈGLE DOIT ABSOLUMENT ÊTRE LA PREMIÈRE
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
+  status = 200
+
+# 2. Vos autres règles (comme la redirection SPA) se placent UNIQUEMENT en dessous
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
   status = 200
