@@ -86,14 +86,14 @@
         <a href="https://converter.norcanto.com" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-90">QuickDocs Converter</a>
     </div>
 
-    <!-- HEADER -->
+     <!-- HEADER RESPONSIVE -->
     <header class="sticky top-0 z-50 glassmorphism border-b border-slate-200 dark:border-white/5 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex justify-between items-center">
             
-            <!-- Logo -->
+            <!-- Logo (Reste identique) -->
             <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('/')">
                 <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-neutral-900 to-black dark:from-neutral-800 dark:to-neutral-950 p-1.5 shadow-md border border-neutral-700/50 flex items-center justify-center">
-                    <svg class="w-full h-full text-white" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-full h-full text-white" viewBox="0 0 512 512" fill="none" xmlns="http://w3.org">
                         <path d="M128 416V96H216L320 288V96H384V416H304L192 216V416H128Z" fill="currentColor" />
                     </svg>
                 </div>
@@ -103,32 +103,41 @@
                 </div>
             </div>
 
-            <!-- Navigation Links -->
+            <!-- Liens de Navigation Bureau (Cachés sur Mobile) -->
             <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 font-medium text-sm">
-                <button onclick="navigateTo('/')" id="nav-home" class="transition hover:text-ytred text-ytred font-semibold">Channel Analysis</button>
-                <button onclick="navigateTo('/calculator')" id="nav-calc" class="transition hover:text-ytred text-slate-600 dark:text-slate-300">Calculator</button>
-                <button onclick="navigateTo('/comparator')" id="nav-comp" class="transition hover:text-ytred text-slate-600 dark:text-slate-300">Comparator</button>
-                <button onclick="navigateTo('/blog')" id="nav-blog" class="transition hover:text-ytred text-slate-600 dark:text-slate-300">Blog</button>
-                <button onclick="navigateTo('/about')" id="nav-about" class="transition hover:text-ytred text-slate-600 dark:text-slate-300">About</button>
+                <button onclick="navigateTo('/')" class="transition hover:text-ytred font-semibold">Channel Analysis</button>
+                <button onclick="navigateTo('/calculator')" class="transition hover:text-ytred text-slate-600 dark:text-slate-300">Calculator</button>
+                <button onclick="navigateTo('/comparator')" class="transition hover:text-ytred text-slate-600 dark:text-slate-300">Comparator</button>
+                <button onclick="navigateTo('/blog')" class="transition hover:text-ytred text-slate-600 dark:text-slate-300">Blog</button>
             </nav>
 
-            <!-- Toolbar Utilities -->
+            <!-- Boutons d'utilitaires à droite -->
             <div class="flex items-center space-x-2 sm:space-x-3">
                 <button onclick="toggleLanguage()" class="px-2.5 py-1 text-xs font-bold rounded-lg border border-slate-300 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/5 transition uppercase" id="lang-btn">FR</button>
                 
                 <button onclick="toggleTheme()" class="p-2 rounded-lg border border-slate-300 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/5 transition text-slate-700 dark:text-slate-300" aria-label="Toggle Theme">
-                    <svg id="theme-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m12.728 0l-.707.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
                     </svg>
                 </button>
 
-                <a href="https://norcanto.com" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1 bg-gradient-to-r from-neutral-900 to-neutral-800 hover:from-black hover:to-neutral-900 text-white dark:from-white dark:to-slate-100 dark:text-neutral-900 dark:hover:bg-slate-200 text-xs px-4 py-2 rounded-lg font-bold shadow-md transition-all scale-100 hover:scale-[1.02]" id="header-cta">
-                    Discover Norcanto AI
-                </a>
+                <!-- BOUTON BURGER MOBILE (Visible uniquement sur mobile) -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg border border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-300 focus:outline-none" aria-label="Toggle Menu">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
         </div>
-    </header>
 
+        <!-- MENU DÉROULANT MOBILE (Masqué par défaut via CSS hidden) -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-white/5 bg-white/95 dark:bg-premiumBlack/95 backdrop-blur-lg px-4 py-4 space-y-3 shadow-inner">
+            <button onclick="navigateTo('/'); toggleMobileMenu();" class="block w-full text-left font-medium text-sm py-2 hover:text-ytred">Channel Analysis</button>
+            <button onclick="navigateTo('/calculator'); toggleMobileMenu();" class="block w-full text-left font-medium text-sm py-2 hover:text-ytred text-slate-600 dark:text-slate-300">Calculator</button>
+            <button onclick="navigateTo('/comparator'); toggleMobileMenu();" class="block w-full text-left font-medium text-sm py-2 hover:text-ytred text-slate-600 dark:text-slate-300">Comparator</button>
+            <button onclick="navigateTo('/blog'); toggleMobileMenu();" class="block w-full text-left font-medium text-sm py-2 hover:text-ytred text-slate-600 dark:text-slate-300">Blog</button>
+        </div>
+    </header>
     <!-- CONTENT DISPLAY MOUNT POINT -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full min-h-[60vh]">
         
@@ -884,6 +893,14 @@
             applyTranslations();
             renderRouteView();
         }
+
+        // Fonction pour ouvrir/fermer le menu sur smartphone
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) {
+        menu.classList.toggle('hidden');
+    }
+}
 
         function applyTranslations() {
             const t = DICTIONARY[state.lang];
