@@ -1,7 +1,7 @@
 // netlify/functions/analyze.js
 
 exports.handler = async function (event, context) {
-  // Enable CORS
+  // Activation des CORS pour l'accès depuis le Front-End
   const headers = {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Headers": "Content-Type",
@@ -35,13 +35,12 @@ exports.handler = async function (event, context) {
     let apiParam = "";
     let cleanQuery = query.trim();
 
-    // 1. Identify input type (ID, Username, or Handle)
+    // 1. Identification du type d'entrée (ID, Nom d'utilisateur ou Handle @)
     if (cleanQuery.startsWith("UC") && cleanQuery.length === 24) {
       apiParam = `id=${cleanQuery}`;
     } else if (cleanQuery.startsWith("@")) {
       apiParam = `forHandle=${encodeURIComponent(cleanQuery)}`;
     } else {
-      // If the user pasted a full URL, attempt to parse handles or IDs
       const handleMatch = cleanQuery.match(/youtube\.com\/(@[a-zA-Z0-9_\-\.]+)/);
       const idMatch = cleanQuery.match(/youtube\.com\/channel\/(UC[a-zA-Z0-9_\-]{22})/);
 
@@ -50,13 +49,12 @@ exports.handler = async function (event, context) {
       } else if (handleMatch) {
         apiParam = `forHandle=${encodeURIComponent(handleMatch[1])}`;
       } else {
-        // Fallback fallback: search for it as a username
         apiParam = `forUsername=${encodeURIComponent(cleanQuery)}`;
       }
     }
 
-    // 2. Fetch data from YouTube Data API v3
-    const url = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics,brandingSettings&${apiParam}&key=${apiKey}`;
+    // 2. Requête vers l'API officielle YouTube Data v3
+    const url = `https://googleapis.com{apiParam}&key=${apiKey}`;
     const response = await fetch(url);
     const data = await response.json();
 
@@ -69,25 +67,47 @@ exports.handler = async function (event, context) {
     }
 
     const item = data.items[0];
+    const countryCode = item.snippet.country || "US";
 
-    // 3. Format the response data to match the UI state expectations
+    // 3. Calculs algorithmiques dynamiques du potentiel business
+    const detectedNiche = determineNiche(item.snippet.title, item.snippet.description);
+    // AJUSTEMENT AUTOMATIQUE ICI : Envoi du pays détecté à l'algorithme RPM
+    const calculatedRPM = determineRPM(item.snippet.title, item.snippet.description, countryCode);
+
+    const subscriberCount = parseInt(item.statistics.subscriberCount) || 0;
+    const viewCount = parseInt(item.statistics.viewCount) || 0;
+    const videoCount = parseInt(item.statistics.videoCount) || 1;
+
+    // Estimation brute basée sur la moyenne historique d'activité
+    const avgMonthlyRevenue = (viewCount / videoCount * 0.1) * calculatedRPM;
+
+    let dynamicScore = "Medium Potential";
+    if (avgMonthlyRevenue > 50000 || subscriberCount > 5000000) {
+      dynamicScore = "Premium Tier";
+    } else if (avgMonthlyRevenue > 10000 || subscriberCount > 100000) {
+      dynamicScore = "High Potential";
+    } else if (subscriberCount < 10000) {
+      dynamicScore = "Low Potential";
+    }
+
+    // 4. Formatage de la réponse propre et dynamique pour l'interface
     const formattedChannel = {
       name: item.snippet.title,
       handle: item.snippet.customUrl || query,
       avatar: item.snippet.thumbnails?.medium?.url || item.snippet.thumbnails?.default?.url,
-      banner: item.brandingSettings?.image?.bannerExternalUrl || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-      subscribers: parseInt(item.statistics.subscriberCount) || 0,
-      totalViews: parseInt(item.statistics.viewCount) || 0,
-      videoCount: parseInt(item.statistics.videoCount) || 0,
+      banner: item.brandingSettings?.image?.bannerExternalUrl || "https://unsplash.com",
+      subscribers: subscriberCount,
+      totalViews: viewCount,
+      videoCount: videoCount,
       creationDate: item.snippet.publishedAt ? item.snippet.publishedAt.split('T')[0] : "2020-01-01",
-      niche: determineNiche(item.snippet.title, item.snippet.description),
+      niche: detectedNiche,
       language: item.snippet.defaultLanguage || "English",
-      country: item.snippet.country || "United States",
-      rpm: determineRPM(item.snippet.title, item.snippet.description),
-      score: "High",
-      sponsors: "High",
-      affiliate: "Medium",
-      growth: "Stable"
+      country: countryCode,
+      rpm: calculatedRPM,
+      score: dynamicScore,
+      sponsors: subscriberCount > 500000 ? "High" : "Medium",
+      affiliate: calculatedRPM > 5 ? "High" : "Medium",
+      growth: viewCount > 100000000 ? "Exponential" : "Stable"
     };
 
     return {
@@ -105,25 +125,46 @@ exports.handler = async function (event, context) {
   }
 };
 
-// Helper algorithms to predict parameters based on text keywords
+// Algorithme de détection sémantique amélioré
 function determineNiche(title, desc) {
   const combined = (title + " " + (desc || "")).toLowerCase();
-  if (combined.includes("finance") || combined.includes("crypto") || combined.includes("invest") || combined.includes("money")) {
+  
+  if (/\b(finance|crypto|invest|money|trading|bourse|riche|business|marketing|saas)\b/.test(combined)) {
     return "Finance & Business";
   }
-  if (combined.includes("tech") || combined.includes("review") || combined.includes("gadget") || combined.includes("coding")) {
+  if (/\b(tech|review|gadget|coding|code|dev|ai|intelligence artificielle|smartphone|hardware)\b/.test(combined)) {
     return "Technology & Software";
   }
-  if (combined.includes("game") || combined.includes("play") || combined.includes("xbox") || combined.includes("gaming")) {
+  if (/\b(game|play|xbox|gaming|playstation|stream|nintendo|pc|fortnite|minecraft)\b/.test(combined)) {
     return "Gaming";
+  }
+  if (/\b(cook|recipe|cuisine|food|restaurant|manger|voyage|travel|vlog|lifestyle)\b/.test(combined)) {
+    return "Lifestyle & Travel";
   }
   return "Entertainment / Vlogs";
 }
 
-function determineRPM(title, desc) {
+// Algorithme de calcul du RPM basé sur la Niche et le Pays
+function determineRPM(title, desc, country) {
   const niche = determineNiche(title, desc);
-  if (niche === "Finance & Business") return 8.50;
-  if (niche === "Technology & Software") return 6.80;
-  if (niche === "Gaming") return 1.80;
-  return 3.50;
+  let baseRPM = 3.50;
+
+  if (niche === "Finance & Business") baseRPM = 9.50;
+  else if (niche === "Technology & Software") baseRPM = 7.20;
+  else if (niche === "Gaming") baseRPM = 1.40;
+  else if (niche === "Lifestyle & Travel") baseRPM = 4.20;
+  else if (niche === "Entertainment / Vlogs") baseRPM = 2.50;
+
+  const tier1Countries = ["US", "CA", "GB", "AU", "DE", "FR", "NL"];
+  const tier2Countries = ["BR", "MX", "IN", "PH", "ID", "ZA"];
+  
+  const upperCountry = (country || "").toUpperCase();
+
+  if (tier1Countries.includes(upperCountry)) {
+    baseRPM *= 1.3; // +30% pour les zones géographiques à fort pouvoir d'achat publicitaire
+  } else if (tier2Countries.includes(upperCountry)) {
+    baseRPM *= 0.6; // -40% pour les marchés émergents
+  }
+
+  return parseFloat(baseRPM.toFixed(2));
 }

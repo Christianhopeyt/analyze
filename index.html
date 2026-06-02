@@ -194,6 +194,7 @@
                                 <option value="US">United States (High CPM)</option>
                                 <option value="FR">France / Europe (Med CPM)</option>
                                 <option value="IN">India / Asia (Low CPM)</option>
+                                <option value="africa">Africa (Emerging/Low CPM)</option>
                             </select>
                         </div>
                         <div class="space-y-1">
@@ -248,22 +249,30 @@
         <!-- SECTION: COMPARATOR -->
         <div id="page-comparator" class="hidden space-y-10 max-w-4xl mx-auto">
             <div class="text-center space-y-3">
-                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight" id="comp-title">Compare YouTube Channels</h2>
-                <p class="text-sm sm:text-base text-slate-400" id="comp-subtitle">Compare performance, subscribers, and dynamic revenue estimates.</p>
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Compare YouTube Channels</h2>
+                <p class="text-sm sm:text-base text-slate-400">Compare performance, subscribers, and dynamic revenue estimates.</p>
             </div>
 
             <div class="glassmorphism p-6 rounded-2xl border shadow-md">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                    <select id="comp-select-1" class="p-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-semibold focus:outline-none dark:text-white">
-                        <option value="mrbeast">MrBeast</option>
-                        <option value="pewdiepie">PewDiePie</option>
-                        <option value="mkbhd">Marques Brownlee</option>
-                    </select>
-                    <select id="comp-select-2" class="p-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-semibold focus:outline-none dark:text-white">
-                        <option value="pewdiepie">PewDiePie</option>
-                        <option value="mrbeast">MrBeast</option>
-                        <option value="mkbhd">Marques Brownlee</option>
-                    </select>
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-400">First Channel</label>
+                        <input 
+                            type="text" 
+                            id="comp-select-1"
+                            placeholder="e.g., @mrbeast or URL" 
+                            class="p-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-medium focus:outline-none dark:text-white text-sm"
+                        />
+                    </div>
+                    <div class="flex flex-col gap-1.5">
+                        <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Second Channel</label>
+                        <input 
+                            type="text" 
+                            id="comp-select-2"
+                            placeholder="e.g., @pewdiepie or URL" 
+                            class="p-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-medium focus:outline-none dark:text-white text-sm"
+                        />
+                    </div>
                 </div>
                 <button onclick="executeComparison()" class="w-full bg-ytred hover:bg-[#D60000] text-white py-3.5 rounded-xl font-bold text-sm transition" id="comp-btn">Compare Channels</button>
             </div>
@@ -1214,71 +1223,135 @@
         }
 
         function updateManualCalculator() {
-            const views = parseInt(document.getElementById('calc-range-views').value);
-            const country = document.getElementById('calc-country').value;
-            const niche = document.getElementById('calc-niche').value;
+    const views = parseInt(document.getElementById('calc-range-views').value);
+    const country = document.getElementById('calc-country').value;
+    const niche = document.getElementById('calc-niche').value;
 
-            document.getElementById('calc-views-display').innerText = views.toLocaleString();
+    document.getElementById('calc-views-display').innerText = views.toLocaleString();
 
-            let baseRPM = 3.00;
-            if (niche === 'finance') baseRPM = 8.50;
-            else if (niche === 'tech') baseRPM = 6.80;
-            else if (niche === 'gaming') baseRPM = 1.80;
-            else if (niche === 'lifestyle') baseRPM = 4.20;
+    let baseRPM = 3.00;
+    if (niche === 'finance') baseRPM = 8.50;
+    else if (niche === 'tech') baseRPM = 6.80;
+    else if (niche === 'gaming') baseRPM = 1.80;
+    else if (niche === 'lifestyle') baseRPM = 4.20;
 
-            let countryMultiplier = 1.0;
-            if (country === 'US') countryMultiplier = 1.45;
-            else if (country === 'FR') countryMultiplier = 1.10;
-            else if (country === 'IN') countryMultiplier = 0.45;
+    let countryMultiplier = 1.0;
+    if (country === 'US') countryMultiplier = 1.45;
+    else if (country === 'FR') countryMultiplier = 1.10;
+    else if (country === 'IN') countryMultiplier = 0.45;
+    // AJUSTEMENT POUR L'AFRIQUE (Ajustement du coefficient publicitaire local)
+    else if (country === 'AF') countryMultiplier = 0.25;
 
-            let formatMultiplier = state.calcType === 'shorts' ? 0.08 : 1.0;
+    let formatMultiplier = state.calcType === 'shorts' ? 0.08 : 1.0;
 
-            const finalRPM = baseRPM * countryMultiplier * formatMultiplier;
-            const avgEarnings = (views / 1000) * finalRPM;
-            const minEarnings = avgEarnings * 0.75;
-            const maxEarnings = avgEarnings * 1.35;
+    const finalRPM = baseRPM * countryMultiplier * formatMultiplier;
+    const avgEarnings = (views / 1000) * finalRPM;
+    const minEarnings = avgEarnings * 0.75;
+    const maxEarnings = avgEarnings * 1.35;
 
-            document.getElementById('calc-result-min').innerText = formatCash(minEarnings);
-            document.getElementById('calc-result-avg').innerText = formatCash(avgEarnings);
-            document.getElementById('calc-result-max').innerText = formatCash(maxEarnings);
-            document.getElementById('calc-rpm-display').innerText = `${formatCash(finalRPM)} ${state.lang === 'en' ? 'per 1,000 views' : 'par 1 000 vues'}`;
+    document.getElementById('calc-result-min').innerText = formatCash(minEarnings);
+    document.getElementById('calc-result-avg').innerText = formatCash(avgEarnings);
+    document.getElementById('calc-result-max').innerText = formatCash(maxEarnings);
+    
+    // Fermeture propre de la ligne qui était coupée dans votre code
+    document.getElementById('calc-rpm-display').innerText = `${formatCash(finalRPM)} per 1,000 views`;
+}
+
+                // Direct Channel comparison Executor (Fully dynamic with live API data)
+        async function executeComparison() {
+            const container = document.getElementById('comp-results-container');
+            const query1 = document.getElementById('comp-select-1').value.trim();
+            const query2 = document.getElementById('comp-select-2').value.trim();
+
+            const t = DICTIONARY[state.lang] || DICTIONARY.en;
+
+            if (!query1 || !query2) {
+                container.innerHTML = `<div class="col-span-2 text-center text-xs text-amber-500 font-semibold p-4 bg-amber-500/10 rounded-xl">
+                    ${state.lang === 'en' ? "Please provide handles or URLs for both fields." : "Veuillez remplir les deux champs avec des identifiants valides."}
+                </div>`;
+                return;
+            }
+
+            container.innerHTML = `<div class="col-span-2 text-center text-sm font-medium p-8">${t.analyzing || "Fetching real-time comparisons..."}</div>`;
+
+            try {
+                // Requêtes simultanées vers votre API Netlify
+                const [res1, res2] = await Promise.all([
+                    fetch(`/.netlify/functions/analyze?q=${encodeURIComponent(query1)}`),
+                    fetch(`/.netlify/functions/analyze?q=${encodeURIComponent(query2)}`)
+                ]);
+
+                if (!res1.ok || !res2.ok) {
+                    throw new Error("One or both channels could not be fetched by the API.");
+                }
+
+                const ch1 = await res1.json();
+                const ch2 = await res2.json();
+
+                // Génération de l'affichage HTML avec les vraies données
+                container.innerHTML = [ch1, ch2].map(ch => `
+                    <div class="glassmorphism-card p-4 sm:p-6 rounded-2xl border shadow-md space-y-4 animate-fade-in">
+                        <div class="flex flex-col items-center text-center gap-2">
+                            <img src="${ch.avatar}" class="w-16 h-16 rounded-full object-cover border border-slate-300 dark:border-neutral-700 shadow-sm" onerror="this.src='https://unsplash.com'"/>
+                            <h4 class="font-extrabold text-sm sm:text-lg">${ch.name}</h4>
+                            <span class="text-xs text-slate-400">${ch.handle}</span>
+                        </div>
+                        <div class="space-y-2 border-t border-slate-200 dark:border-white/5 pt-3 text-xs sm:text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400 font-medium">${t.subs || "Subscribers"}</span>
+                                <span class="font-extrabold text-revenueGreen">${ch.subscribers.toLocaleString()}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400 font-medium">${t.views || "Total Views"}</span>
+                                <span class="font-extrabold">${ch.totalViews.toLocaleString()}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400 font-medium">${t.niche || "Content Niche"}</span>
+                                <span class="font-extrabold text-slate-700 dark:text-slate-300">${ch.niche}</span>
+                            </div>
+                            <div class="flex justify-between border-t border-dashed border-slate-200 dark:border-white/10 pt-2 mt-2">
+                                <span class="text-slate-400 font-semibold">RPM / 1K Views</span>
+                                <span class="font-extrabold text-ytred">$${ch.rpm.toFixed(2)}</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400 font-medium">Business Tier</span>
+                                <span class="font-extrabold text-blue-500">${ch.score}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+            } catch (err) {
+                console.error("Comparator connection failed:", err);
+                container.innerHTML = `<div class="col-span-2 text-center text-xs text-red-500 font-semibold p-4 bg-red-500/10 rounded-xl">
+                    ${state.lang === 'en' ? "Error loading live data. Please check channel spelling." : "Erreur de chargement en direct. Vérifiez l'orthographe des chaînes."}
+                </div>`;
+            }
         }
 
-        // Direct Channel comparison Executor
-        function executeComparison() {
-            const container = document.getElementById('comp-results-container');
-            const key1 = document.getElementById('comp-select-1').value;
-            const key2 = document.getElementById('comp-select-2').value;
-
-            const ch1 = SAMPLE_CHANNELS[key1] || SAMPLE_CHANNELS.mrbeast;
-            const ch2 = SAMPLE_CHANNELS[key2] || SAMPLE_CHANNELS.pewdiepie;
-
-            const t = DICTIONARY[state.lang];
-
-            container.innerHTML = [ch1, ch2].map(ch => `
-                <div class="glassmorphism-card p-4 sm:p-6 rounded-2xl border shadow-md space-y-4 animate-fade-in">
-                    <div class="flex flex-col items-center text-center gap-2">
-                        <img src="${ch.avatar}" class="w-16 h-16 rounded-full object-cover border border-slate-300 dark:border-neutral-700 shadow-sm" />
-                        <h4 class="font-extrabold text-sm sm:text-lg">${ch.name}</h4>
-                        <span class="text-xs text-slate-400">${ch.handle}</span>
+        // Render index blog resource center
+        function renderBlogIndex() {
+            const container = document.getElementById('blog-grid-container');
+            if (!container) return; // Sécurité si l'élément n'est pas monté
+            
+            const list = BLOG_POSTS[state.lang] || BLOG_POSTS.en;
+            container.innerHTML = list.map(post => `
+                <div class="glassmorphism-card rounded-2xl overflow-hidden border shadow-sm flex flex-col justify-between hover:scale-[1.01] transition duration-200 animate-fade-in">
+                    <div class="p-6 space-y-3">
+                        <span class="text-[10px] uppercase font-bold text-ytred tracking-wider">${post.category}</span>
+                        <h3 class="text-lg font-extrabold leading-snug">${post.title}</h3>
+                        <p class="text-xs text-slate-400 line-clamp-3">${post.desc}</p>
                     </div>
-                    <div class="space-y-2 border-t border-slate-200 dark:border-white/5 pt-3 text-xs sm:text-sm">
-                        <div class="flex justify-between">
-                            <span class="text-slate-400 font-medium">${t.subs}</span>
-                            <span class="font-extrabold">${ch.subscribers.toLocaleString()}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-slate-400 font-medium">${t.views}</span>
-                            <span class="font-extrabold">${ch.totalViews.toLocaleString()}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-slate-400 font-medium">${t.niche}</span>
-                            <span class="font-extrabold">${ch.niche}</span>
-                        </div>
+                    <div class="p-6 border-t border-slate-200 dark:border-white/5 flex justify-between items-center">
+                        <span class="text-xs text-slate-500 font-semibold">${post.date}</span>
+                        <button onclick="navigateTo('/blog/${post.id}')" class="text-xs font-bold text-ytred hover:underline">
+                            ${state.lang === 'en' ? "Read post" : "Lire l'article"} &rarr;
+                        </button>
                     </div>
                 </div>
             `).join('');
         }
+
 
         // Render index blog resource center
         function renderBlogIndex() {
