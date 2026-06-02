@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /channel/
 
-Sitemap: https://analyzer.norcanto.com/sitemap.xml
+Sitemap: https://yt.norcanto.com/sitemap.xml
