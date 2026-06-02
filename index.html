@@ -1,1590 +1,684 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Dynamic SEO Tags (Controlled via JavaScript) -->
-    <title id="seo-title">YouTube Analyzer by Norcanto – Analyze YouTube Channel Revenue</title>
-    <meta id="seo-desc" name="description" content="Discover estimated earnings, statistics, and performance metrics for any YouTube channel with YouTube Analyzer by Norcanto.">
-    
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta id="og-title" property="og:title" content="YouTube Analyzer by Norcanto">
-    <meta id="og-desc" property="og:description" content="Discover estimated earnings and statistics for any YouTube channel.">
-    <meta property="og:image" content="https://analyzer.norcanto.com/og-image.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Analyzer by Norcanto – Analyze YouTube Channel Revenue</title>
+  <meta name="description" content="Discover estimated earnings, statistics, and performance metrics for any YouTube channel with YouTube Analyzer by Norcanto." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://yt.norcanto.com/" />
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        ytred: '#FF0000',
-                        premiumBlack: '#0A0A0B',
-                        premiumGray: '#161618',
-                        revenueGreen: '#10B981',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yt.norcanto.com/" />
+  <meta property="og:title" content="YouTube Analyzer by Norcanto – Analyze YouTube Channel Revenue" />
+  <meta property="og:description" content="Discover estimated earnings, statistics, and performance metrics for any YouTube channel." />
+  <meta property="og:image" content="https://yt.norcanto.com/images/og-image.png" />
 
-    <!-- LIGNE À AJOUTER : Le Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="YouTube Analyzer by Norcanto" />
+  <meta name="twitter:description" content="Analyze any YouTube channel revenue, statistics and performance." />
+  <meta name="twitter:image" content="https://yt.norcanto.com/images/og-image.png" />
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "YouTube Analyzer by Norcanto",
+    "url": "https://yt.norcanto.com",
+    "description": "Analyze any YouTube channel revenue, growth potential, and performance metrics.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "creator": { "@type": "Organization", "name": "Norcanto", "url": "https://norcanto.com" }
+  }
+  </script>
 
-    <!-- Schema Markup Injection Element -->
-    <script type="application/ld+json" id="structured-schema"></script>
-
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .glassmorphism {
-            background: rgba(255, 255, 255, 0.45);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-        }
-        .dark .glassmorphism {
-            background: rgba(22, 22, 24, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .glassmorphism-card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .dark .glassmorphism-card {
-            background: rgba(30, 30, 35, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-        }
-    </style>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" type="image/png" href="images/norcanto-logo.png" />
 </head>
-<body class="h-full bg-slate-50 text-slate-900 dark:bg-premiumBlack dark:text-slate-100 transition-colors duration-300">
+<body>
 
-    <!-- TOP PROMOTIONAL STRIP -->
-    <div class="bg-gradient-to-r from-[#FF0000] to-indigo-900 text-white text-xs py-2.5 px-4 font-semibold text-center flex justify-center items-center gap-2">
-        <span id="promo-lead">🔥 Leverage your assets:</span>
-        <a href="https://norcanto.com" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-90" id="promo-link-1">Discover Norcanto AI</a>
-        <span class="opacity-50">|</span>
-        <a href="https://converter.norcanto.com" target="_blank" rel="noopener noreferrer" class="underline hover:opacity-90">QuickDocs Converter</a>
+<!-- ======================== HEADER ======================== -->
+<header id="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="header-logo">
+        <img src="images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" />
+        YouTube Analyzer <span>by Norcanto</span>
+      </a>
+
+      <nav class="header-nav">
+        <a href="#analyzer" class="active">Channel Analysis</a>
+        <a href="#calculator">Calculator</a>
+        <a href="blog/index.html">Blog</a>
+        <a href="about/index.html">About</a>
+      </nav>
+
+      <div class="header-controls">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="EN">EN</button>
+          <button class="lang-btn" data-lang="FR">FR</button>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="https://norcanto.com" target="_blank" rel="noopener" class="btn btn-primary header-cta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Discover Norcanto AI
+        </a>
+      </div>
+
+      <button class="hamburger" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<nav class="mobile-menu">
+  <a href="#analyzer">Channel Analysis</a>
+  <a href="#calculator">Calculator</a>
+  <a href="blog/index.html">Blog</a>
+  <a href="about/index.html">About</a>
+  <a href="https://norcanto.com" target="_blank" rel="noopener" style="color:var(--yt-red);font-weight:600;">Discover Norcanto AI</a>
+</nav>
+
+<!-- ======================== HERO ======================== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34l-.04-8.37a8.2 8.2 0 0 0 4.8 1.53V5.02a4.85 4.85 0 0 1-1-.33z"/></svg>
+        Free YouTube Channel Analyzer
+      </div>
+      <h1 class="hero-title" id="hero-title">
+        Discover How Much a <span class="accent">YouTube Channel</span> Can Earn
+      </h1>
+      <p class="hero-subtitle" id="hero-subtitle">
+        Analyze any YouTube channel and get a detailed estimate of its revenue, growth potential, and performance.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">500K+</div>
+          <div class="hero-stat-label">Channels Analyzed</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">98%</div>
+          <div class="hero-stat-label">Estimation Accuracy</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">15+</div>
+          <div class="hero-stat-label">Niche Categories</div>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">Free</div>
+          <div class="hero-stat-label">No Account Needed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== ANALYZER ======================== -->
+<section id="analyzer" style="padding:0 0 80px;">
+  <div class="container">
+    <div class="analyzer-card reveal">
+      <div class="analyzer-label" id="analyzer-label">YouTube Channel Analysis</div>
+      <div id="analyzer-input-group">
+        <div class="analyzer-input-group">
+          <div class="analyzer-input-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input
+              type="url"
+              id="channel-input"
+              class="analyzer-input"
+              placeholder="Paste a YouTube channel URL..."
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <button id="analyze-btn" class="analyze-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span id="analyze-btn-text">Analyze Now</span>
+          </button>
+        </div>
+        <div class="analyzer-hints">
+          <span class="hint-tag">youtube.com/@channel</span>
+          <span class="hint-tag">youtube.com/channel/UC...</span>
+          <span class="hint-tag">youtube.com/c/name</span>
+        </div>
+      </div>
+      <div class="spinner-overlay" id="analyzer-spinner">
+        <div class="spinner"></div>
+        <div class="spinner-text">Analyzing channel data...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== RESULTS ======================== -->
+<section id="results">
+  <div class="container">
+    <!-- Banner -->
+    <img id="res-banner" src="" alt="Channel Banner" class="channel-banner" style="display:none;" />
+
+    <!-- Channel Header -->
+    <div class="results-header reveal">
+      <img id="res-avatar" src="" alt="Channel" class="channel-avatar" />
+      <div class="channel-info">
+        <div class="channel-name" id="res-name"></div>
+        <div class="channel-handle" id="res-handle"></div>
+        <div class="channel-meta-tags">
+          <span class="badge badge-red" id="res-niche"></span>
+          <span class="badge badge-gray" id="res-language"></span>
+          <span class="badge badge-gray" id="res-country"></span>
+        </div>
+      </div>
     </div>
 
-     <!-- HEADER RESPONSIVE -->
-    <header class="sticky top-0 z-50 glassmorphism border-b border-slate-200 dark:border-white/5 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex justify-between items-center">
-            
-            <!-- Logo (Reste identique) -->
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('/')">
-                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-neutral-900 to-black dark:from-neutral-800 dark:to-neutral-950 p-1.5 shadow-md border border-neutral-700/50 flex items-center justify-center">
-                    <svg class="w-full h-full text-white" viewBox="0 0 512 512" fill="none" xmlns="http://w3.org">
-                        <path d="M128 416V96H216L320 288V96H384V416H304L192 216V416H128Z" fill="currentColor" />
-                    </svg>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-extrabold text-sm sm:text-lg tracking-tight leading-tight">YouTube Analyzer</span>
-                    <span class="text-[10px] uppercase tracking-widest text-ytred font-semibold">by Norcanto</span>
-                </div>
-            </div>
-
-            <!-- Liens de Navigation Bureau (Cachés sur Mobile) -->
-            <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 font-medium text-sm">
-                <button onclick="navigateTo('/')" class="transition hover:text-ytred font-semibold">Channel Analysis</button>
-                <button onclick="navigateTo('/calculator')" class="transition hover:text-ytred text-slate-600 dark:text-slate-300">Calculator</button>
-                <button onclick="navigateTo('/comparator')" class="transition hover:text-ytred text-slate-600 dark:text-slate-300">Comparator</button>
-                <button onclick="navigateTo('/blog')" class="transition hover:text-ytred text-slate-600 dark:text-slate-300">Blog</button>
-            </nav>
-
-            <!-- Boutons d'utilitaires à droite -->
-            <div class="flex items-center space-x-2 sm:space-x-3">
-                <button onclick="toggleLanguage()" class="px-2.5 py-1 text-xs font-bold rounded-lg border border-slate-300 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/5 transition uppercase" id="lang-btn">FR</button>
-                
-                <button onclick="toggleTheme()" class="p-2 rounded-lg border border-slate-300 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/5 transition text-slate-700 dark:text-slate-300" aria-label="Toggle Theme">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m12.728 0l-.707.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>
-                    </svg>
-                </button>
-
-                <!-- BOUTON BURGER MOBILE (Visible uniquement sur mobile) -->
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg border border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-300 focus:outline-none" aria-label="Toggle Menu">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
+    <!-- Stats Grid -->
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <div class="stat-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-
-        <!-- MENU DÉROULANT MOBILE (Masqué par défaut via CSS hidden) -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-white/5 bg-white/95 dark:bg-premiumBlack/95 backdrop-blur-lg px-4 py-4 space-y-3 shadow-inner">
-            <button onclick="navigateTo('/'); toggleMobileMenu();" class="block w-full text-left font-medium text-sm py-2 hover:text-ytred">Channel Analysis</button>
-            <button onclick="navigateTo('/calculator'); toggleMobileMenu();" class="block w-full text-left font-medium text-sm py-2 hover:text-ytred text-slate-600 dark:text-slate-300">Calculator</button>
-            <button onclick="navigateTo('/comparator'); toggleMobileMenu();" class="block w-full text-left font-medium text-sm py-2 hover:text-ytred text-slate-600 dark:text-slate-300">Comparator</button>
-            <button onclick="navigateTo('/blog'); toggleMobileMenu();" class="block w-full text-left font-medium text-sm py-2 hover:text-ytred text-slate-600 dark:text-slate-300">Blog</button>
+        <div class="stat-card-value" id="res-subs">—</div>
+        <div class="stat-card-label">Subscribers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-    </header>
-    <!-- CONTENT DISPLAY MOUNT POINT -->
-    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 w-full min-h-[60vh]">
-        
-        <!-- SECTION: INDEX / CHANNEL ANALYSIS -->
-        <div id="page-home" class="hidden space-y-12 sm:space-y-16">
-            <section class="text-center max-w-3xl mx-auto space-y-4 sm:space-y-6">
-                <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-slate-900 via-slate-800 to-slate-700 dark:from-white dark:via-slate-100 dark:to-slate-400 bg-clip-text text-transparent leading-tight" id="hero-title">
-                    Discover How Much a YouTube Channel Can Earn
-                </h1>
-                <p class="text-sm sm:text-lg text-slate-500 dark:text-slate-400 font-medium" id="hero-subtitle">
-                    Analyze any YouTube channel and get a detailed estimate of its revenue, growth potential, and performance metrics instantly.
-                </p>
-            </section>
-
-            <section class="max-w-2xl mx-auto">
-                <div class="glassmorphism p-3 sm:p-4 rounded-2xl shadow-xl border border-slate-200 dark:border-white/10">
-                    <form onsubmit="handleAnalyzeSubmit(event)" class="flex flex-col sm:flex-row gap-3">
-                        <div class="relative flex-grow">
-                            <input 
-                                type="text" 
-                                id="search-input"
-                                placeholder="Paste a YouTube channel URL or handle (e.g., @mrbeast)..." 
-                                class="w-full pl-4 pr-10 py-3 sm:py-4 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-ytred text-sm transition text-slate-900 dark:text-white"
-                            />
-                        </div>
-                        <button type="submit" id="submit-btn" class="bg-ytred hover:bg-[#D60000] text-white px-6 py-3 sm:py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition duration-200 hover:scale-[1.02]">
-                            <span id="btn-text">Analyze Now</span>
-                        </button>
-                    </form>
-                    <div class="mt-4 flex flex-wrap gap-2 items-center text-xs justify-center">
-                        <span class="text-slate-400 dark:text-slate-500 font-bold" id="popular-lbl">Popular searches:</span>
-                        <button onclick="selectQuickSample('mrbeast')" class="px-2.5 py-1 rounded-full bg-slate-200/50 dark:bg-white/5 hover:bg-slate-300 dark:hover:bg-white/10 transition border border-slate-300 dark:border-white/5 font-semibold">MrBeast</button>
-                        <button onclick="selectQuickSample('pewdiepie')" class="px-2.5 py-1 rounded-full bg-slate-200/50 dark:bg-white/5 hover:bg-slate-300 dark:hover:bg-white/10 transition border border-slate-300 dark:border-white/5 font-semibold">PewDiePie</button>
-                        <button onclick="selectQuickSample('mkbhd')" class="px-2.5 py-1 rounded-full bg-slate-200/50 dark:bg-white/5 hover:bg-slate-300 dark:hover:bg-white/10 transition border border-slate-300 dark:border-white/5 font-semibold">Marques Brownlee</button>
-                    </div>
-                </div>
-            </section>
-
-            <div id="analytics-result-container" class="space-y-8"></div>
+        <div class="stat-card-value" id="res-views">—</div>
+        <div class="stat-card-label">Total Views</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
         </div>
-
-        <!-- SECTION: REVENUE CALCULATOR -->
-        <div id="page-calculator" class="hidden space-y-10 max-w-4xl mx-auto">
-            <div class="text-center space-y-3">
-                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight" id="calc-title">Make a Manual Estimate</h2>
-                <p class="text-sm sm:text-base text-slate-400" id="calc-subtitle">Adjust values in real-time to compute custom potential payouts.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="md:col-span-2 glassmorphism-card p-6 rounded-2xl border shadow-md space-y-6">
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center">
-                            <label class="text-xs sm:text-sm font-bold text-slate-400" id="calc-views-lbl">Monthly Views Target</label>
-                            <span class="text-base sm:text-lg font-extrabold text-ytred" id="calc-views-display">500,000</span>
-                        </div>
-                        <input type="range" id="calc-range-views" min="10000" max="10000000" step="50000" value="500000" oninput="updateManualCalculator()" class="w-full h-2 bg-slate-200 dark:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-ytred" />
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-400" id="calc-audience-lbl">Target Audience Location</label>
-                            <select id="calc-country" onchange="updateManualCalculator()" class="w-full p-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-medium text-sm focus:outline-none dark:text-white">
-                                <option value="US">United States (High CPM)</option>
-                                <option value="FR">France / Europe (Med CPM)</option>
-                                <option value="IN">India / Asia (Low CPM)</option>
-                                <option value="africa">Africa (Emerging/Low CPM)</option>
-                            </select>
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-xs font-bold text-slate-400" id="calc-niche-lbl">Content Niche / Category</label>
-                            <select id="calc-niche" onchange="updateManualCalculator()" class="w-full p-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-medium text-sm focus:outline-none dark:text-white">
-                                <option value="finance">Finance / Tech / B2B</option>
-                                <option value="tech">Science / Gadget Reviews</option>
-                                <option value="lifestyle">Lifestyle / Travel</option>
-                                <option value="gaming">Gaming / Entertainment</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="space-y-2">
-                        <label class="text-xs font-bold text-slate-400" id="calc-format-lbl">Format Focus</label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <button id="calc-type-long" onclick="setCalcType('long')" class="py-3 rounded-xl font-bold border text-sm transition bg-ytred text-white border-transparent">Long-form Videos</button>
-                            <button id="calc-type-shorts" onclick="setCalcType('shorts')" class="py-3 rounded-xl font-bold border text-sm transition bg-slate-100 dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300">YouTube Shorts</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-b from-neutral-900 via-neutral-950 to-black text-white p-6 sm:p-8 rounded-2xl border border-neutral-800 shadow-xl flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="border-b border-white/10 pb-4">
-                            <span class="text-[10px] uppercase tracking-widest text-ytred font-bold" id="forecast-header">Calculated Revenue Range</span>
-                            <h4 class="text-lg font-extrabold mt-1" id="forecast-sub">Revenue Forecast</h4>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs text-neutral-400" id="calc-min-lbl">Minimum</span>
-                                <span class="font-bold text-slate-300" id="calc-result-min">$0</span>
-                            </div>
-                            <div class="flex justify-between items-center text-lg font-extrabold">
-                                <span id="calc-avg-lbl">Average</span>
-                                <span class="text-revenueGreen" id="calc-result-avg">$0</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs text-neutral-400" id="calc-max-lbl">Maximum</span>
-                                <span class="font-bold text-slate-300" id="calc-result-max">$0</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="border-t border-white/10 pt-4 mt-6 space-y-1">
-                        <span class="text-[10px] text-neutral-500 font-bold block" id="calc-rpm-header">Estimated RPM Value</span>
-                        <span class="text-sm font-bold text-white" id="calc-rpm-display">$5.20 per 1,000 views</span>
-                    </div>
-                </div>
-            </div>
+        <div class="stat-card-value" id="res-videos">—</div>
+        <div class="stat-card-label">Videos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
-
-        <!-- SECTION: COMPARATOR -->
-        <div id="page-comparator" class="hidden space-y-10 max-w-4xl mx-auto">
-            <div class="text-center space-y-3">
-                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Compare YouTube Channels</h2>
-                <p class="text-sm sm:text-base text-slate-400">Compare performance, subscribers, and dynamic revenue estimates.</p>
-            </div>
-
-            <div class="glassmorphism p-6 rounded-2xl border shadow-md">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                    <div class="flex flex-col gap-1.5">
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-400">First Channel</label>
-                        <input 
-                            type="text" 
-                            id="comp-select-1"
-                            placeholder="e.g., @mrbeast or URL" 
-                            class="p-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-medium focus:outline-none dark:text-white text-sm"
-                        />
-                    </div>
-                    <div class="flex flex-col gap-1.5">
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-400">Second Channel</label>
-                        <input 
-                            type="text" 
-                            id="comp-select-2"
-                            placeholder="e.g., @pewdiepie or URL" 
-                            class="p-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-medium focus:outline-none dark:text-white text-sm"
-                        />
-                    </div>
-                </div>
-                <button onclick="executeComparison()" class="w-full bg-ytred hover:bg-[#D60000] text-white py-3.5 rounded-xl font-bold text-sm transition" id="comp-btn">Compare Channels</button>
-            </div>
-
-            <div id="comp-results-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"></div>
-        </div>
-
-        <!-- SECTION: RESOURCE BLOG -->
-        <div id="page-blog" class="hidden space-y-10 max-w-4xl mx-auto">
-            <div class="text-center space-y-3">
-                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight" id="blog-title">Integrated Resource Center</h2>
-                <p class="text-sm sm:text-base text-slate-400" id="blog-subtitle">Expert digital advice & revenue development frameworks</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="blog-grid-container"></div>
-        </div>
-
-        <!-- SECTION: SINGLE BLOG POST EXPANDED -->
-        <div id="page-blog-post" class="hidden max-w-3xl mx-auto glassmorphism p-6 sm:p-10 rounded-2xl border shadow-xl space-y-6">
-            <div id="blog-post-content"></div>
-        </div>
-
-        <!-- SECTION: ABOUT US -->
-        <div id="page-about" class="hidden max-w-3xl mx-auto glassmorphism p-6 sm:p-10 rounded-2xl border shadow-xl space-y-6">
-            <div id="about-content"></div>
-        </div>
-
-        <!-- SECTION: PRIVACY POLICY -->
-        <div id="page-privacy" class="hidden max-w-3xl mx-auto glassmorphism p-6 sm:p-10 rounded-2xl border shadow-xl space-y-6">
-            <div id="privacy-content"></div>
-        </div>
-
-        <!-- SECTION: TERMS OF USE -->
-        <div id="page-terms" class="hidden max-w-3xl mx-auto glassmorphism p-6 sm:p-10 rounded-2xl border shadow-xl space-y-6">
-            <div id="terms-content"></div>
-        </div>
-
-        <!-- SECTION: CONTACT US -->
-        <div id="page-contact" class="hidden max-w-3xl mx-auto glassmorphism p-6 sm:p-10 rounded-2xl border shadow-xl space-y-6">
-            <div id="contact-content"></div>
-        </div>
-
-        <!-- SECTION: COOKIES NOTICE -->
-        <div id="page-cookies-notice" class="hidden max-w-3xl mx-auto glassmorphism p-6 sm:p-10 rounded-2xl border shadow-xl space-y-6">
-            <div id="cookies-notice-content"></div>
-        </div>
-
-        <!-- SYSTEM-WIDE PROMOTE BLOCKS -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-12">
-            <div class="glassmorphism p-6 sm:p-8 rounded-2xl border shadow-lg flex flex-col justify-between space-y-6">
-                <div class="space-y-2">
-                    <span class="text-[10px] uppercase tracking-wider text-ytred font-bold">Norcanto AI Platform</span>
-                    <h3 class="text-xl sm:text-2xl font-extrabold tracking-tight" id="cross-norcanto-title">Need to Work Smarter with Your Documents?</h3>
-                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed" id="cross-norcanto-desc">Use Norcanto AI to analyze, summarize, translate, and leverage your documents with enterprise-grade artificial intelligence.</p>
-                </div>
-                <a href="https://norcanto.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 font-bold px-5 py-3 rounded-xl hover:opacity-90 transition text-sm">
-                    <span id="cross-norcanto-btn">Discover Norcanto AI</span>
-                </a>
-            </div>
-
-            <div class="glassmorphism p-6 sm:p-8 rounded-2xl border shadow-lg flex flex-col justify-between space-y-6">
-                <div class="space-y-2">
-                    <span class="text-[10px] uppercase tracking-wider text-ytred font-bold">QuickDocs Suite</span>
-                    <h3 class="text-xl sm:text-2xl font-extrabold tracking-tight" id="cross-qd-title">Convert Your Documents in Seconds</h3>
-                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed" id="cross-qd-desc">QuickDocs Converter allows you to quickly convert PDF, DOCX, PPTX, XLSX files and much more without strict formatting limitations.</p>
-                </div>
-                <a href="https://converter.norcanto.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 bg-neutral-950 dark:bg-white text-white dark:text-neutral-950 font-bold px-5 py-3 rounded-xl hover:opacity-90 transition text-sm">
-                    <span id="cross-qd-btn">Use QuickDocs Converter</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- FAQ ACCORDION -->
-        <section class="pt-16 max-w-4xl mx-auto space-y-8">
-            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-center" id="faq-section-title">Frequently Asked Questions</h2>
-            <div class="space-y-4" id="faq-list-container"></div>
-        </section>
-
-    </main>
-
-    <!-- PREMIUM HIGH-VISIBILITY COOKIE CONSENT MODAL -->
-    <div id="cookie-banner" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4 animate-fade-in">
-        <div class="w-full max-w-md bg-white dark:bg-premiumGray border border-slate-200 dark:border-white/10 p-6 sm:p-8 rounded-3xl shadow-2xl space-y-6 text-center transform scale-100 transition-transform">
-            <div class="mx-auto w-16 h-16 rounded-full bg-ytred/10 flex items-center justify-center text-ytred">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-            </div>
-            <div class="space-y-2">
-                <h3 class="text-xl font-extrabold tracking-tight" id="cookie-title">Cookie Consent Notice</h3>
-                <p class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed" id="cookie-notice-text">
-                    We use cookies to enhance your experience, maintain security limits, and serve relevant, non-intrusive programmatic advertisements. By clicking Accept, you agree to our policies.
-                </p>
-            </div>
-            <div class="flex flex-col sm:flex-row gap-3 pt-2">
-                <button onclick="dismissCookies(false)" class="w-full sm:w-1/2 py-3 rounded-xl font-bold border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-white/5 transition text-sm text-slate-500 dark:text-slate-300" id="cookie-decline">
-                    Decline
-                </button>
-                <button onclick="dismissCookies(true)" class="w-full sm:w-1/2 py-3 rounded-xl font-bold bg-ytred text-white hover:bg-[#D60000] transition text-sm shadow-lg shadow-ytred/20" id="cookie-accept">
-                    Accept All
-                </button>
-            </div>
-        </div>
+        <div class="stat-card-value" id="res-created">—</div>
+        <div class="stat-card-label">Channel Created</div>
+      </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer class="bg-slate-100 dark:bg-[#060607] border-t border-slate-200 dark:border-white/5 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="space-y-4 md:col-span-2">
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-neutral-900 to-black dark:from-neutral-800 dark:to-neutral-950 p-1 shadow-md flex items-center justify-center">
-                        <svg class="w-full h-full text-white" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M128 416V96H216L320 288V96H384V416H304L192 216V416H128Z" fill="currentColor" />
-                        </svg>
-                    </div>
-                    <span class="font-extrabold text-sm sm:text-base">YouTube Analyzer</span>
-                </div>
-                <p class="text-xs text-slate-400 max-w-sm leading-relaxed" id="footer-bio-text">
-                    A professional high-performance algorithmic analytical engine optimized to model content creator metrics and digital real-estate valuation indicators.
-                </p>
-            </div>
-
-            <div class="space-y-3">
-                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Products</h4>
-                <ul class="text-xs space-y-2 font-semibold">
-                    <li><a href="https://norcanto.com" target="_blank" rel="noopener noreferrer" class="hover:text-ytred transition">Norcanto AI Platform</a></li>
-                    <li><a href="https://converter.norcanto.com" target="_blank" rel="noopener noreferrer" class="hover:text-ytred transition">QuickDocs Converter</a></li>
-                </ul>
-            </div>
-
-            <div class="space-y-3">
-                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Legal & Support</h4>
-                <ul class="text-xs space-y-2 font-semibold">
-                    <li><button onclick="navigateTo('/privacy')" class="hover:text-ytred transition" id="footer-privacy">Privacy Policy</button></li>
-                    <li><button onclick="navigateTo('/terms')" class="hover:text-ytred transition" id="footer-terms">Terms of Use</button></li>
-                    <li><button onclick="navigateTo('/contact')" class="hover:text-ytred transition" id="footer-contact">Contact Us</button></li>
-                    <li><button onclick="navigateTo('/cookies-notice')" class="hover:text-ytred transition" id="footer-cookies-notice">Cookies Notice</button></li>
-                </ul>
-            </div>
+    <!-- Revenue Cards -->
+    <div class="revenue-section reveal reveal-delay-1">
+      <h3 style="margin-bottom:20px; font-family:var(--font-display);">Estimated Revenue</h3>
+      <div class="revenue-grid">
+        <div class="revenue-card">
+          <div class="revenue-card-period">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Monthly Revenue
+          </div>
+          <div class="revenue-row">
+            <span class="revenue-row-label">Minimum</span>
+            <span class="revenue-row-value" id="res-month-min">—</span>
+          </div>
+          <div class="revenue-row avg">
+            <span class="revenue-row-label">Average</span>
+            <span class="revenue-row-value" id="res-month-avg">—</span>
+          </div>
+          <div class="revenue-row max">
+            <span class="revenue-row-label">Maximum</span>
+            <span class="revenue-row-value" id="res-month-max">—</span>
+          </div>
         </div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-200 dark:border-white/5 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400 font-medium">
-            <span id="footer-copy">© 2026 YouTube Analyzer by Norcanto. All rights reserved.</span>
-            <span class="text-[10px] tracking-wider uppercase text-ytred font-bold">Powered by Norcanto Core Infrastructure</span>
+        <div class="revenue-card featured">
+          <div class="revenue-card-period">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            Annual Revenue
+          </div>
+          <div class="revenue-row">
+            <span class="revenue-row-label">Minimum</span>
+            <span class="revenue-row-value" id="res-year-min">—</span>
+          </div>
+          <div class="revenue-row avg">
+            <span class="revenue-row-label">Average</span>
+            <span class="revenue-row-value" id="res-year-avg">—</span>
+          </div>
+          <div class="revenue-row max">
+            <span class="revenue-row-label">Maximum</span>
+            <span class="revenue-row-value" id="res-year-max">—</span>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
 
-    <!-- LOGIC APPLICATION CONTROL -->
-    <script>
+    <!-- Chart -->
+    <div class="chart-section reveal reveal-delay-2">
+      <div class="chart-container">
+        <div class="chart-title">Monthly Revenue Projection</div>
+        <div class="revenue-chart" id="revenue-chart"></div>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--gray-300)"></div>Minimum</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Average</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--yt-red)"></div>Maximum</div>
+        </div>
+      </div>
+    </div>
 
-        // Paste the block here:
-        const adsenseConfig = {
-            adsenseClient: "ca-pub-8121112277976862", // Your actual publisher ID (replace with yours)
-            active: true // Switch to true to activate AdSense layout containers
-        };
+    <!-- Business Score -->
+    <div class="score-card reveal reveal-delay-3">
+      <div class="score-header">
+        <div>
+          <div class="score-title">Business Potential Score</div>
+          <div style="font-size:0.82rem;color:var(--text-3);margin-top:4px;">Composite monetization potential</div>
+        </div>
+        <div class="score-display">
+          <div>
+            <span class="score-num" id="res-score-num">0</span>
+            <span class="score-max">/100</span>
+          </div>
+          <div class="score-level" id="res-score-level">—</div>
+        </div>
+      </div>
+      <div class="score-bar-wrap">
+        <div class="score-bar" id="res-score-bar" style="width:0%"></div>
+      </div>
+      <div class="score-grid">
+        <div class="score-metric">
+          <div class="score-metric-label">RPM Potential</div>
+          <div class="score-metric-bar-wrap"><div class="score-metric-bar rpm" id="res-rpm-bar" style="width:0%"></div></div>
+          <div class="score-metric-val" id="res-rpm-val">—</div>
+        </div>
+        <div class="score-metric">
+          <div class="score-metric-label">Sponsorship Potential</div>
+          <div class="score-metric-bar-wrap"><div class="score-metric-bar sponsor" id="res-sponsor-bar" style="width:0%"></div></div>
+          <div class="score-metric-val" id="res-sponsor-val">—</div>
+        </div>
+        <div class="score-metric">
+          <div class="score-metric-label">Affiliate Potential</div>
+          <div class="score-metric-bar-wrap"><div class="score-metric-bar affiliate" id="res-affiliate-bar" style="width:0%"></div></div>
+          <div class="score-metric-val" id="res-affiliate-val">—</div>
+        </div>
+        <div class="score-metric">
+          <div class="score-metric-label">Growth Potential</div>
+          <div class="score-metric-bar-wrap"><div class="score-metric-bar growth" id="res-growth-bar" style="width:0%"></div></div>
+          <div class="score-metric-val" id="res-growth-val">—</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        const state = {
-            lang: 'en',
-            theme: 'dark',
-            route: '/',
-            calcType: 'long',
-            cookiesAccepted: localStorage.getItem('norcanto_cookies')
-        };
+<!-- ======================== HOW IT WORKS ======================== -->
+<section class="section" id="features" style="background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-divider"></div>
+      <h2>How It Works</h2>
+      <p>Three steps to a complete YouTube channel analysis</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="feature-title">Paste the Channel URL</div>
+        <div class="feature-desc">Simply paste any YouTube channel URL — handles, custom URLs, and channel IDs are all supported.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="feature-title">AI-Powered Analysis</div>
+        <div class="feature-desc">Our algorithm detects the niche, language, and audience to calculate the most accurate RPM-based revenue estimate.</div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="feature-title">Get Your Revenue Report</div>
+        <div class="feature-desc">Receive a detailed breakdown of monthly and annual earnings, business score, and growth potential — all in seconds.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        const SAMPLE_CHANNELS = {
-            "mrbeast": {
-                name: "MrBeast",
-                handle: "@mrbeast",
-                avatar: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80",
-                banner: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-                subscribers: 342000000,
-                totalViews: 64500000000,
-                videoCount: 820,
-                creationDate: "2012-02-20",
-                niche: "Entertainment & Philanthropy",
-                language: "English",
-                country: "United States",
-                rpm: 4.50,
-                score: "Premium",
-                sponsors: "Ultra High",
-                affiliate: "High",
-                growth: "Explosive"
-            },
-            "pewdiepie": {
-                name: "PewDiePie",
-                handle: "@pewdiepie",
-                avatar: "https://images.unsplash.com/photo-1560169897-fc0cdbdfa4d5?auto=format&fit=crop&w=150&q=80",
-                banner: "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=80",
-                subscribers: 111000000,
-                totalViews: 29300000000,
-                videoCount: 4750,
-                creationDate: "2010-04-29",
-                niche: "Gaming & Comedy",
-                language: "English",
-                country: "Sweden",
-                rpm: 2.80,
-                score: "High",
-                sponsors: "Medium",
-                affiliate: "High",
-                growth: "Stable"
-            },
-            "mkbhd": {
-                name: "Marques Brownlee",
-                handle: "@mkbhd",
-                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
-                banner: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&w=1200&q=80",
-                subscribers: 19400000,
-                totalViews: 4300000000,
-                videoCount: 1600,
-                creationDate: "2008-01-01",
-                niche: "Tech & Consumer Electronics",
-                language: "English",
-                country: "United States",
-                rpm: 6.50,
-                score: "Premium",
-                sponsors: "Ultra High",
-                affiliate: "Very High",
-                growth: "Steady"
-            }
-        };
+<!-- ======================== MANUAL CALCULATOR ======================== -->
+<section class="section" id="calculator">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-divider"></div>
+      <h2 id="calc-title">Make a Manual Estimate</h2>
+      <p>Enter your own numbers to calculate estimated YouTube revenue</p>
+    </div>
+    <div class="calculator-card reveal">
+      <div class="calc-grid">
+        <div class="form-group">
+          <label class="form-label" for="calc-views">Number of Monthly Views</label>
+          <input type="number" id="calc-views" class="form-input" value="100000" min="0" placeholder="e.g. 100000" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="calc-country">Primary Country</label>
+          <select id="calc-country" class="form-select">
+            <option value="US">United States</option>
+            <option value="GB">United Kingdom</option>
+            <option value="CA">Canada</option>
+            <option value="AU">Australia</option>
+            <option value="DE">Germany</option>
+            <option value="FR">France</option>
+            <option value="NL">Netherlands</option>
+            <option value="SE">Sweden</option>
+            <option value="NO">Norway</option>
+            <option value="JP">Japan</option>
+            <option value="KR">South Korea</option>
+            <option value="BR">Brazil</option>
+            <option value="IN">India</option>
+            <option value="MX">Mexico</option>
+            <option value="ID">Indonesia</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="calc-niche">Content Niche</label>
+          <select id="calc-niche" class="form-select">
+            <option value="finance">Finance & Investing</option>
+            <option value="business">Business</option>
+            <option value="tech">Technology</option>
+            <option value="auto">Automotive</option>
+            <option value="education">Education</option>
+            <option value="news">News & Politics</option>
+            <option value="health">Health & Fitness</option>
+            <option value="beauty">Beauty & Fashion</option>
+            <option value="travel">Travel</option>
+            <option value="food">Food & Cooking</option>
+            <option value="lifestyle">Lifestyle & Vlogs</option>
+            <option value="gaming">Gaming</option>
+            <option value="sports">Sports</option>
+            <option value="music">Music</option>
+            <option value="entertainment" selected>Entertainment</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Content Type</label>
+          <div class="content-type-toggle">
+            <button class="type-btn active" data-type="long">Long-form Videos</button>
+            <button class="type-btn" data-type="shorts">Shorts</button>
+          </div>
+        </div>
+      </div>
+      <div class="calc-result-row">
+        <div class="calc-result-item">
+          <div class="calc-result-label">Minimum</div>
+          <div class="calc-result-value" id="calc-min">$0</div>
+        </div>
+        <div class="calc-result-item featured">
+          <div class="calc-result-label">Average</div>
+          <div class="calc-result-value" id="calc-avg">$0</div>
+        </div>
+        <div class="calc-result-item">
+          <div class="calc-result-label">Maximum</div>
+          <div class="calc-result-value" id="calc-max">$0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        const DICTIONARY = {
-            en: {
-                navHome: "Channel Analysis",
-                navCalc: "Calculator",
-                navComp: "Comparator",
-                navBlog: "Blog",
-                discoverNorcanto: "Discover Norcanto AI",
-                heroTitle: "Discover How Much a YouTube Channel Can Earn",
-                heroSubtitle: "Analyze any YouTube channel and get a detailed estimate of its revenue, growth potential, and performance metrics instantly.",
-                inputPlaceholder: "Paste a YouTube channel URL or handle (e.g., @mrbeast)...",
-                btnAnalyze: "Analyze Now",
-                analyzing: "Analyzing metrics...",
-                statsTitle: "Channel Performance Statistics",
-                subs: "Subscribers",
-                views: "Total Views",
-                videos: "Videos Published",
-                created: "Channel Created",
-                niche: "Niche",
-                language: "Language",
-                country: "Country",
-                estMonthly: "Estimated Monthly Revenue",
-                estAnnual: "Estimated Annual Revenue",
-                min: "Minimum",
-                avg: "Average",
-                max: "Maximum",
-                bizScore: "Business Potential Score",
-                scoreLow: "Low Potential",
-                scoreMed: "Medium Potential",
-                scoreHigh: "High Potential",
-                scorePremium: "Premium Tier",
-                rpmPotential: "RPM Potential",
-                sponsorPotential: "Sponsorship Potential",
-                affPotential: "Affiliate Potential",
-                growthPotential: "Growth Potential",
-                manualTitle: "Make a Manual Estimate",
-                manualSubtitle: "Adjust values in real-time to compute custom potential payouts.",
-                viewsLabel: "Monthly Views Target",
-                countryLabel: "Target Audience Location",
-                nicheLabel: "Content Niche / Category",
-                contentTypeLabel: "Format Focus",
-                shorts: "YouTube Shorts",
-                longForm: "Long-form Videos",
-                calculatedResult: "Calculated Revenue Range",
-                norcantoTitle: "Need to Work Smarter with Your Documents?",
-                norcantoDesc: "Use Norcanto AI to analyze, summarize, translate, and leverage your documents with enterprise-grade artificial intelligence.",
-                norcantoBtn: "Discover Norcanto AI",
-                qdTitle: "Convert Your Documents in Seconds",
-                qdDesc: "QuickDocs Converter allows you to quickly convert PDF, DOCX, PPTX, XLSX files and much more without strict formatting limitations.",
-                qdBtn: "Use QuickDocs Converter",
-                faqTitle: "Frequently Asked Questions",
-                cookieText: "We use cookies to enhance your experience, maintain security limits, and serve relevant, non-intrusive programmatic advertisements. By clicking Accept, you agree to our policies.",
-                cookieAccept: "Accept All",
-                cookieDecline: "Decline",
-                footerRights: "© 2026 YouTube Analyzer by Norcanto. All rights reserved.",
-                privacy: "Privacy Policy",
-                terms: "Terms of Use",
-                contact: "Contact Us"
-            },
-            fr: {
-                navHome: "Analyse de Chaîne",
-                navCalc: "Calculateur",
-                navComp: "Comparateur",
-                navBlog: "Blog",
-                discoverNorcanto: "Découvrir Norcanto AI",
-                heroTitle: "Découvrez Combien une Chaîne YouTube peut Gagner",
-                heroSubtitle: "Analysez n'importe quelle chaîne YouTube et obtenez une estimation détaillée de ses revenus, de son potentiel de croissance et de ses performances.",
-                inputPlaceholder: "Collez l'URL ou le pseudo d'une chaîne YouTube (ex: @mrbeast)...",
-                btnAnalyze: "Analyser Maintenant",
-                analyzing: "Analyse des données...",
-                statsTitle: "Statistiques de Performance de la Chaîne",
-                subs: "Abonnés",
-                views: "Vues Totales",
-                videos: "Vidéos Publiées",
-                created: "Chaîne Créée",
-                niche: "Niche / Catégorie",
-                language: "Langue",
-                country: "Pays Estimé",
-                estMonthly: "Revenus Mensuels Estimés",
-                estAnnual: "Revenus Annuels Estimés",
-                min: "Minimum",
-                avg: "Moyen",
-                max: "Maximum",
-                bizScore: "Score de Potentiel Commercial",
-                scoreLow: "Potentiel Faible",
-                scoreMed: "Potentiel Moyen",
-                scoreHigh: "Potentiel Élevé",
-                scorePremium: "Classe Premium",
-                rpmPotential: "Potentiel du RPM",
-                sponsorPotential: "Potentiel de Sponsoring",
-                affPotential: "Ventes d'Affiliation",
-                growthPotential: "Dynamique de Croissance",
-                manualTitle: "Faire une Estimation Manuelle",
-                manualSubtitle: "Ajustez les valeurs en temps réel pour calculer les gains potentiels de votre projet.",
-                viewsLabel: "Objectif de Vues Mensuelles",
-                countryLabel: "Localisation de l'Audience",
-                nicheLabel: "Thématique / Niche",
-                contentTypeLabel: "Format Principal",
-                shorts: "Shorts YouTube",
-                longForm: "Vidéos Longues",
-                calculatedResult: "Fourchette de Revenus Estimés",
-                norcantoTitle: "Besoin de travailler plus intelligemment avec vos documents ?",
-                norcantoDesc: "Utilisez Norcanto AI pour analyser, résumer, traduire et exploiter vos documents grâce à une intelligence artificielle sécurisée.",
-                norcantoBtn: "Découvrir Norcanto AI",
-                qdTitle: "Convertissez vos documents en quelques secondes",
-                qdDesc: "QuickDocs Converter vous permet de convertir rapidement vos fichiers PDF, DOCX, PPTX, XLSX et bien plus encore.",
-                qdBtn: "Utiliser QuickDocs Converter",
-                faqTitle: "Foire Aux Questions",
-                cookieText: "Nous utilisons des cookies pour améliorer votre expérience, assurer la sécurité de navigation et diffuser des annonces publicitaires adaptées. En acceptant, vous confirmez votre accord.",
-                cookieAccept: "Accepter Tout",
-                cookieDecline: "Refuser",
-                footerRights: "© 2026 YouTube Analyzer par Norcanto. Tous droits réservés.",
-                privacy: "Politique de Confidentialité",
-                terms: "Conditions d'Utilisation",
-                contact: "Contactez-nous"
-            }
-        };
+<!-- ======================== NORCANTO PROMO ======================== -->
+<section class="section" style="background:var(--bg-2);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="promo-section norcanto reveal">
+      <div class="promo-content">
+        <div class="promo-badge">Norcanto AI</div>
+        <h2 class="promo-title">Need to Work Smarter with Your Documents?</h2>
+        <p class="promo-text">Use Norcanto AI to analyze, summarize, translate, and leverage your documents with artificial intelligence. Trusted by thousands of professionals.</p>
+        <a href="https://norcanto.com" target="_blank" rel="noopener" class="btn btn-lg" style="background:#fff;color:#0A0A0B;font-weight:700;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Discover Norcanto AI
+        </a>
+      </div>
+      <div class="promo-visual">
+        <div class="promo-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+      </div>
+    </div>
 
-        const BLOG_POSTS = {
-            en: [
-                {
-                    id: "science-of-rpm",
-                    category: "YouTube Revenue",
-                    title: "The Science of RPM: Maximizing YouTube Ad Earnings in 2026",
-                    desc: "An exhaustive breakdown of programmatic ad yields, structural demographic CPM tiers, and creator monetization formulas.",
-                    date: "May 24, 2026",
-                    content: `
-                        <p class="mb-4">To understand monetization on YouTube, one must go beyond simple view counts. The real metric of success for a sustainable creator business is <strong>RPM</strong> (Revenue Per Mille), representing the net earnings generated per 1,000 video views after YouTube takes its platform cut.</p>
-                        
-                        <h4 class="text-lg font-bold mt-6 mb-2">The Shift From CPM to RPM</h4>
-                        <p class="mb-4">While CPM (Cost Per Mille) represents what advertisers pay to run ads on your videos, RPM is the absolute number that lands in your bank account. In 2026, the global programmatic landscape has evolved significantly. High-paying niches such as financial technology, business software solutions, real estate modeling, and corporate investing yield top-tier CPM payouts. Advertisers are willing to pay a premium because a viewer watching a business software evaluation has higher transaction intent than someone watching standard entertainment.</p>
+    <div style="margin-top:24px;">
+      <div class="promo-section quickdocs reveal">
+        <div class="promo-content">
+          <div class="promo-badge">QuickDocs</div>
+          <h2 class="promo-title">Convert Your Documents in Seconds</h2>
+          <p class="promo-text">QuickDocs Converter allows you to quickly convert PDF, DOCX, PPTX, XLSX files and much more. Fast, secure, and free to use.</p>
+          <a href="https://converter.norcanto.com" target="_blank" rel="noopener" class="btn btn-lg" style="background:rgba(33,150,243,0.9);color:#fff;font-weight:700;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+            Use QuickDocs Converter
+          </a>
+        </div>
+        <div class="promo-visual">
+          <div class="promo-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                        <h4 class="text-lg font-bold mt-6 mb-2">Demographic Tiering and Audiences</h4>
-                        <p class="mb-4">Geographical location remains a major factor in RPM calculations. Advertisers partition budgets into distinct regional groups:</p>
-                        <ul class="list-disc pl-6 mb-4 space-y-2">
-                            <li><strong>Tier 1 (US, UK, CA, AU, DE):</strong> High purchasing power metrics allow RPM yields to range between $6.00 and $18.00 depending on the category.</li>
-                            <li><strong>Tier 2 (FR, ES, IT, JP):</strong> Moderate commercial conversions, pulling steady RPM ranges of $3.50 to $7.00.</li>
-                            <li><strong>Tier 3 (IN, BR, MX, SE Asia):</strong> Highly energetic volume regions, though yielding lower RPM scales from $0.50 to $2.20 due to lower local purchasing power indexes.</li>
-                        </ul>
+<!-- ======================== FAQ ======================== -->
+<section class="section" id="faq" style="border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-divider"></div>
+      <h2 id="faq-title">Frequently Asked Questions</h2>
+      <p>Everything you need to know about YouTube revenue estimation</p>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question">
+          How are YouTube earnings estimated?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>We use RPM (Revenue Per Mille) data based on the channel's detected niche, geographic audience, content type, and engagement metrics. These figures are derived from industry-standard benchmarks used by advertising platforms globally.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Are the statistics official YouTube data?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>Channel statistics (subscribers, views, videos) are retrieved from the YouTube Data API v3, which is the official public data source. Revenue estimates are our proprietary calculations — they are not provided directly by YouTube.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          How accurate are the revenue estimates?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>Our estimates fall within a plausible range based on real market RPM data. Actual earnings vary based on advertiser demand, seasonal trends, individual channel contracts, and the portion of views that are monetized. We provide minimum, average, and maximum ranges to reflect this variability.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          How does RPM work?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>RPM (Revenue Per Mille) is the amount a creator earns per 1,000 video views. It varies widely — finance and business channels can earn $10–25 RPM, while gaming or entertainment channels typically see $2–5 RPM. Geography also plays a major role: US and UK audiences carry the highest RPM globally.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          How can I increase my YouTube revenue?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>Focus on higher-RPM niches, target English-speaking audiences, create longer videos to increase ad placements, publish consistently, and diversify revenue streams through sponsorships, memberships, and affiliate marketing. Growing subscribers also improves your negotiating power for brand deals.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Do YouTube Shorts generate income?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>Yes, but significantly less than long-form videos. YouTube Shorts RPM is typically 92–95% lower than standard video RPM due to the ad model differences. Shorts are valuable for audience growth but should be supplemented with long-form content for meaningful ad revenue.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Can I analyze any YouTube channel?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>Yes, you can analyze any public YouTube channel. Channels that have hidden their subscriber counts will show limited statistics, but our revenue estimation is still performed based on available view data and engagement metrics.</p></div>
+      </div>
+    </div>
 
-                        <h4 class="text-lg font-bold mt-6 mb-2">Optimizing Your Channel Strategy</h4>
-                        <p class="mb-4">To grow your RPM, align your publishing output toward topics with direct commercial interest. Structure your metadata, including video descriptions, tags, and chapter markers, with clear terms that advertisers bid on. Incorporate contextual affiliate offers and direct sponsorships to offset programmatic drops during low advertising seasons.</p>
-                    `
-                },
-                {
-                    id: "shorts-code",
-                    category: "YouTube Shorts",
-                    title: "Cracking the Shorts Code: How to Convert Viral Views into Real Capital",
-                    desc: "An in-depth guide to short-form algorithms, programmatic revenue structures, and strategic hybrid audience funnels.",
-                    date: "April 18, 2026",
-                    content: `
-                        <p class="mb-4">The rise of YouTube Shorts has changed how audiences consume video. While the format offers unparalleled organic discoverability, it presents a major financial challenge: <strong>remarkably low RPM values</strong>, often ranging between $0.02 and $0.15 per 1,000 views. Building a full-time creator business solely on the Shorts Creator Fund is rarely sustainable. Successful creators must view short-form content as the top of a hybrid business funnel.</p>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">The Programmatic Reality of Short-Form Video</h4>
-                        <p class="mb-4">Short-form ads are served between videos in a continuous feed. This pooled ad revenue model is shared across creators based on their proportion of overall platform views. This setup means individual creators make less per view than they would with traditional pre-roll and mid-roll ads. To generate significant revenue, creators must use Shorts as an audience acquisition engine to drive viewers to higher-margin destinations.</p>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">The Hybrid Funnel Strategy</h4>
-                        <p class="mb-4">To turn viral views into steady income, structure your content around these three steps:</p>
-                        <ol class="list-decimal pl-6 mb-4 space-y-2">
-                            <li><strong>Audience Acquisition (Shorts):</strong> Create engaging, broad-appeal short videos designed to hook viewers within the first 3 seconds and gain subscribers.</li>
-                            <li><strong>Nurturing (Long-form & Community Hubs):</strong> Direct your Shorts audience to deep-dive long-form videos, detailed tutorials, and community tabs to build trust.</li>
-                            <li><strong>Monetization (Products, Memberships, & Tools):</strong> Introduce targeted sponsorships, premium merchandise, or custom digital tools like those developed by Norcanto to provide value and secure direct revenue.</li>
-                        </ol>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">Maximizing In-Feed CTR</h4>
-                        <p class="mb-4">Make sure your pinned comments contain clear, single-destination call-to-actions (CTAs). Directing viewers to a simple newsletter signup page or a helpful digital tool is far more effective than cluttering comments with multiple competing links.</p>
-                    `
-                },
-                {
-                    id: "ai-for-creators",
-                    category: "AI for Creators",
-                    title: "AI for Creators: Automating Production Workflows with Norcanto AI",
-                    desc: "Discover how advanced generative technologies, document intelligence, and automated research systems scale creative output.",
-                    date: "March 11, 2026",
-                    content: `
-                        <p class="mb-4">Content creation in 2026 is faster than ever. As platforms demand consistent publishing schedules across formats, creators face a common hurdle: production burnout. Scaling your output without losing quality requires integrating intelligent automation into your research, scripting, and post-production workflows.</p>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">Automating the Research Phase</h4>
-                        <p class="mb-4">The most time-consuming part of scripting technical or educational videos is the research phase. Reading through long transcripts, white papers, and historical documents can take hours. Using advanced tools like <strong>Norcanto AI</strong> allows creators to upload large volumes of documents and extract key summaries, structured outlines, and translated insights instantly.</p>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">Scripting with Intelligent Structures</h4>
-                        <p class="mb-4">To keep viewers engaged, scripts must be structured to maximize retention within the first 15 seconds. Generative AI tools can analyze top-performing script frameworks to help you craft compelling hooks and smooth pacing. However, keep your unique human voice at the center of your videos. Use AI to build the structural skeleton, then overlay your personal anecdotes, style, and presentation.</p>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">Streamlining Translation and Localization</h4>
-                        <p class="mb-4">With platforms like YouTube rolling out multi-language audio tracks, reaching a global audience is easier than ever. You can use AI to translate and dub your video scripts into multiple languages automatically, helping you reach new regional markets and grow your overall ad yields with minimal extra effort.</p>
-                    `
-                }
-            ],
-            fr: [
-                {
-                    id: "science-of-rpm",
-                    category: "YouTube Revenue",
-                    title: "La Science du RPM : Maximiser vos Gains YouTube en 2026",
-                    desc: "Une analyse complète des rendements publicitaires programmatiques, des paliers de CPM démographiques et des formules d'optimisation.",
-                    date: "24 Mai 2026",
-                    content: `
-                        <p class="mb-4">Pour comprendre la monétisation sur YouTube, il faut aller au-delà du simple nombre de vues. Le véritable indicateur de succès pour un modèle d'affaires durable est le <strong>RPM</strong> (Revenu Pour Mille), représentant les gains nets générés pour 1 000 vues de vidéo après la commission de la plateforme.</p>
-                        
-                        <h4 class="text-lg font-bold mt-6 mb-2">Le Passage du CPM au RPM</h4>
-                        <p class="mb-4">Alors que le CPM (Coût Pour Mille) représente ce que les annonceurs paient pour diffuser des publicités sur vos vidéos, le RPM est le montant réel qui arrive sur votre compte bancaire. En 2026, l'écosystème publicitaire mondial a fortement évolué. Les thématiques à forte valeur ajoutée, comme la finance, la technologie d'entreprise, l'investissement immobilier et les solutions logicielles professionnelles, affichent des CPM très élevés.</p>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">Les Paliers Démographiques et Géographiques</h4>
-                        <p class="mb-4">La répartition géographique de l'audience reste un facteur clé dans le calcul du RPM :</p>
-                        <ul class="list-disc pl-6 mb-4 space-y-2">
-                            <li><strong>Tier 1 (US, UK, CA, AU, DE) :</strong> Pouvoir d'achat élevé, avec des rendements RPM allant de 6,00 $ à 18,00 $ selon la thématique.</li>
-                            <li><strong>Tier 2 (FR, ES, IT, JP) :</strong> Conversions commerciales stables, avec des RPM compris entre 3,50 $ et 7,00 $.</li>
-                            <li><strong>Tier 3 (IN, BR, MX) :</strong> Volumes d'audience très importants, mais rendements RPM plus faibles de 0,50 $ à 2,20 $ en raison du pouvoir d'achat local.</li>
-                        </ul>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">Optimiser la Stratégie de sa Chaîne</h4>
-                        <p class="mb-4">Pour augmenter votre RPM, orientez votre ligne éditoriale vers des sujets ayant un intérêt commercial direct. Structurez vos métadonnées (descriptions, tags, chapitres) avec des termes recherchés par les annonceurs, et intégrez des offres d'affiliation pour stabiliser vos revenus tout au long de l'année.</p>
-                    `
-                },
-                {
-                    id: "shorts-code",
-                    category: "YouTube Shorts",
-                    title: "Le Guide Ultime des Shorts : Convertir les Vues Virales en Revenus Réels",
-                    desc: "Guide complet sur l'algorithme des Shorts, la monétisation programmatique et la création de tunnels d'audience hybrides.",
-                    date: "18 Avril 2026",
-                    content: `
-                        <p class="mb-4">L'essor des YouTube Shorts a transformé la consommation de vidéos. Si ce format offre une excellente visibilité organique, il présente un défi de taille : un <strong>RPM très faible</strong>, souvent compris entre 0,02 $ et 0,15 $ pour 1 000 vues. Pour bâtir une activité pérenne, il faut utiliser les Shorts comme un levier d'acquisition d'audience pour votre écosystème global.</p>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">La Réalité de la Monétisation des Formats Courts</h4>
-                        <p class="mb-4">Les publicités pour Shorts sont diffusées entre les vidéos dans un flux continu. Les revenus publicitaires sont regroupés et partagés entre les créateurs en fonction de leur part du nombre total de vues sur la plateforme. Pour générer des revenus significatifs, il faut donc rediriger cette audience vers des produits ou services à forte valeur ajoutée.</p>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">La Stratégie du Tunnel d'Audience Hybride</h4>
-                        <p class="mb-4">Pour rentabiliser vos vues virales, structurez votre écosystème autour de ces trois étapes :</p>
-                        <ol class="list-decimal pl-6 mb-4 space-y-2">
-                            <li><strong>Acquisition (Shorts) :</strong> Créez des vidéos courtes et dynamiques pour capter l'attention dès les premières secondes et gagner des abonnés.</li>
-                            <li><strong>Engagement (Vidéos Longues) :</strong> Redirigez votre audience vers des tutoriels détaillés et des formats longs pour instaurer une relation de confiance.</li>
-                            <li><strong>Monetisation (Offres & Outils) :</strong> Proposez des partenariats ciblés, des produits numériques ou des outils pratiques comme ceux développés par Norcanto pour générer des revenus directs.</li>
-                        </ol>
-                    `
-                },
-                {
-                    id: "ai-for-content-creators",
-                    category: "AI for Creators",
-                    title: "Créateurs de Contenu & IA : Automatiser sa Production avec Norcanto AI",
-                    desc: "Découvrez comment l'intelligence artificielle et l'analyse de documents permettent d'accélérer la création de vidéos.",
-                    date: "11 Mars 2026",
-                    content: `
-                        <p class="mb-4">Produire du contenu régulièrement sur différentes plateformes demande beaucoup d'énergie. Pour maintenir un rythme soutenu sans faire de compromis sur la qualité, l'intégration de l'intelligence artificielle dans vos phases de recherche et d'écriture est un atout majeur.</p>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">Accélérer la Phase de Recherche</h4>
-                        <p class="mb-4">Faire des recherches approfondies pour rédiger des scripts de vidéos éducatives ou techniques prend du temps. L'utilisation d'outils performants comme <strong>Norcanto AI</strong> permet d'analyser de gros volumes de documents pour en extraire des résumés clairs, des plans structurés et des données clés en un instant.</p>
-
-                        <h4 class="text-lg font-bold mt-6 mb-2">Structurer vos Scripts</h4>
-                        <p class="mb-4">Pour retenir l'attention de l'audience, un script doit être parfaitement rythmé dès les premières secondes. L'IA peut vous aider à optimiser l'accroche et la structure de vos vidéos. Utilisez l'IA pour bâtir le squelette de votre script, puis ajoutez votre propre style, vos anecdotes et votre voix unique pour conserver toute l'authenticité de votre contenu.</p>
-                    `
-                }
-            ]
-        };
-
-        const FAQS = {
-            en: [
-                { q: "How are YouTube earnings estimated?", a: "Earnings are calculated using an advanced predictive algorithm taking into account niche standard RPM metrics, user geolocated audience indicators, viewer demographics, and format selection." },
-                { q: "Are the calculated insights official YouTube statistics?", a: "These metrics provide a calculated approximation. Accurate data can only be shared inside a creator's personal Google AdSense dashboard." },
-                { q: "How does RPM differ from CPM?", a: "CPM represents what advertisers pay to show 1,000 ads, whereas RPM indicates what a creator actually earns per 1,000 views after YouTube's platform commission cuts." }
-            ],
-            fr: [
-                { q: "Comment sont calculés les gains YouTube ?", a: "Les revenus sont calculés à l'aide d'un algorithme de modélisation prenant en compte les valeurs standards de RPM par thématique, la répartition démographique de l'audience et le format des vidéos." },
-                { q: "Les données affichées proviennent-elles officiellement de YouTube ?", a: "Ces indicateurs sont des projections estimées. Seul le tableau de bord Google AdSense personnel du créateur contient les chiffres officiels considées." },
-                { q: "Quelle est la différence entre RPM et CPM ?", a: "Le CPM correspond au tarif payé par les annonceurs pour 1 000 diffusions d'annonces, tandis que le RPM représente le revenu net encaissé par le créateur pour 1 000 vues après commission YouTube." }
-            ]
-        };
-
-        // Smart Hybrid Router
-        function navigateTo(routePath) {
-            state.route = routePath;
-            
-            // Sync browser Address bar
-            const isLocal = window.location.protocol === 'file:';
-            if (isLocal) {
-                window.location.hash = routePath;
-            } else {
-                window.history.pushState(null, '', routePath);
-            }
-
-            renderRouteView();
-        }
-
-        // Parse Route and Render View
-        function renderRouteView() {
-            // Determine active route path
-            const isLocal = window.location.protocol === 'file:';
-            let path = isLocal ? (window.location.hash.replace('#', '') || '/') : window.location.pathname;
-            
-            // Clean paths
-            if (!path.startsWith('/')) path = '/' + path;
-
-            // Hide all pages
-            const pages = ['home', 'calculator', 'comparator', 'blog', 'blog-post', 'about', 'privacy', 'terms', 'contact', 'cookies-notice'];
-            pages.forEach(p => {
-                const el = document.getElementById(`page-${p}`);
-                if (el) el.classList.add('hidden');
-            });
-
-            // Handle Dynamic Routing
-            if (path === '/' || path === '/home') {
-                document.getElementById('page-home').classList.remove('hidden');
-                updateSEO(
-                    state.lang === 'en' ? "YouTube Analyzer by Norcanto – Analyze YouTube Channel Revenue" : "Analyseur YouTube Norcanto – Estimation des Gains Publicitaires",
-                    state.lang === 'en' ? "Discover estimated earnings, statistics, and performance metrics for any YouTube channel with YouTube Analyzer by Norcanto." : "Découvrez les estimations de revenus, statistiques et métriques de n'importe quelle chaîne YouTube."
-                );
-                renderAnalysis();
-            } else if (path === '/calculator') {
-                document.getElementById('page-calculator').classList.remove('hidden');
-                updateSEO(
-                    state.lang === 'en' ? "Manual Earnings Calculator – YouTube Analyzer" : "Calculateur Manuel de Gains – YouTube Analyzer",
-                    "Calculate your estimated YouTube earnings based on customized monthly views, region, and content niche parameters."
-                );
-                updateManualCalculator();
-            } else if (path === '/comparator') {
-                document.getElementById('page-comparator').classList.remove('hidden');
-                updateSEO(
-                    state.lang === 'en' ? "Compare YouTube Channels – YouTube Analyzer" : "Comparateur de Chaînes YouTube – YouTube Analyzer",
-                    "Directly compare audience metrics, subscribers, views, and structural monetization models between two channels."
-                );
-                executeComparison();
-            } else if (path === '/blog') {
-                document.getElementById('page-blog').classList.remove('hidden');
-                updateSEO(
-                    state.lang === 'en' ? "Resource Hub & Guides – YouTube Analyzer" : "Centre de Ressources & Guides – YouTube Analyzer",
-                    "Access premium strategies, in-depth breakdowns, and algorithmic guides to scale your content monetization."
-                );
-                renderBlogIndex();
-            } else if (path.startsWith('/blog/')) {
-                const postId = path.replace('/blog/', '');
-                document.getElementById('page-blog-post').classList.remove('hidden');
-                renderBlogPost(postId);
-            } else if (path === '/about') {
-                document.getElementById('page-about').classList.remove('hidden');
-                renderAboutPage();
-            } else if (path === '/privacy') {
-                document.getElementById('page-privacy').classList.remove('hidden');
-                renderPrivacyPage();
-            } else if (path === '/terms') {
-                document.getElementById('page-terms').classList.remove('hidden');
-                renderTermsPage();
-            } else if (path === '/contact') {
-                document.getElementById('page-contact').classList.remove('hidden');
-                renderContactPage();
-            } else if (path === '/cookies-notice') {
-                document.getElementById('page-cookies-notice').classList.remove('hidden');
-                renderCookiesNoticePage();
-            }
-
-            // Sync Nav highlights
-            const navIds = { '/': 'nav-home', '/calculator': 'nav-calc', '/comparator': 'nav-comp', '/blog': 'nav-blog', '/about': 'nav-about' };
-            Object.values(navIds).forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.className = "transition hover:text-ytred text-slate-600 dark:text-slate-300";
-            });
-            const activeNav = navIds[path];
-            if (activeNav) {
-                document.getElementById(activeNav).className = "transition hover:text-ytred text-ytred font-semibold";
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Dynamic SEO Update Engine
-        function updateSEO(title, description) {
-            document.getElementById('seo-title').innerText = title;
-            document.getElementById('seo-desc').setAttribute('content', description);
-            document.getElementById('og-title').setAttribute('content', title);
-            document.getElementById('og-desc').setAttribute('content', description);
-
-            // Inject Schema Markup
-            const schemaObj = {
-                "@context": "https://schema.org",
-                "@type": "WebApplication",
-                "name": "YouTube Analyzer by Norcanto",
-                "url": "https://analyzer.norcanto.com",
-                "description": description,
-                "applicationCategory": "BusinessApplication",
-                "operatingSystem": "All"
-            };
-            document.getElementById('structured-schema').innerText = JSON.stringify(schemaObj);
-        }
-
-        // Handle Popstate (Browser back/forward buttons)
-        window.addEventListener('popstate', renderRouteView);
-        window.addEventListener('hashchange', renderRouteView);
-
-        // Language toggle
-        function toggleLanguage() {
-            state.lang = state.lang === 'en' ? 'fr' : 'en';
-            document.getElementById('lang-btn').innerText = state.lang === 'en' ? 'FR' : 'EN';
-            applyTranslations();
-            renderRouteView();
-        }
-
-        // Fonction pour ouvrir/fermer le menu sur smartphone
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    if (menu) {
-        menu.classList.toggle('hidden');
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"How are YouTube earnings estimated?","acceptedAnswer":{"@type":"Answer","text":"We use RPM data based on the channel's detected niche, geographic audience, content type, and engagement metrics."}},
+        {"@type":"Question","name":"How accurate are the revenue estimates?","acceptedAnswer":{"@type":"Answer","text":"Our estimates fall within a plausible range based on real market RPM data. Actual earnings vary based on advertiser demand, seasonal trends, and monetized view ratio."}},
+        {"@type":"Question","name":"How does RPM work?","acceptedAnswer":{"@type":"Answer","text":"RPM is the amount a creator earns per 1,000 video views. It varies by niche and geography."}},
+        {"@type":"Question","name":"Do YouTube Shorts generate income?","acceptedAnswer":{"@type":"Answer","text":"Yes, but significantly less than long-form videos. Shorts RPM is typically 92–95% lower."}},
+        {"@type":"Question","name":"Can I analyze any YouTube channel?","acceptedAnswer":{"@type":"Answer","text":"Yes, any public YouTube channel can be analyzed."}}
+      ]
     }
-}
-
-        function applyTranslations() {
-            const t = DICTIONARY[state.lang];
-            
-            // Sync generic nav strings
-            document.getElementById('nav-home').innerText = t.navHome;
-            document.getElementById('nav-calc').innerText = t.navCalc;
-            document.getElementById('nav-comp').innerText = t.navComp;
-            document.getElementById('nav-blog').innerText = t.navBlog;
-            document.getElementById('nav-about').innerText = state.lang === 'en' ? "About" : "À Propos";
-            document.getElementById('header-cta').innerText = t.discoverNorcanto;
-
-            // Home Page Labels
-            document.getElementById('hero-title').innerText = t.heroTitle;
-            document.getElementById('hero-subtitle').innerText = t.heroSubtitle;
-            document.getElementById('search-input').placeholder = t.inputPlaceholder;
-            document.getElementById('btn-text').innerText = t.btnAnalyze;
-            document.getElementById('popular-lbl').innerText = state.lang === 'en' ? 'Popular searches:' : 'Recherches populaires :';
-
-            // Calculator Labels
-            document.getElementById('calc-title').innerText = t.manualTitle;
-            document.getElementById('calc-subtitle').innerText = t.manualSubtitle;
-            document.getElementById('calc-views-lbl').innerText = t.viewsLabel;
-            document.getElementById('calc-audience-lbl').innerText = t.countryLabel;
-            document.getElementById('calc-niche-lbl').innerText = t.nicheLabel;
-            document.getElementById('calc-format-lbl').innerText = t.contentTypeLabel;
-            document.getElementById('calc-type-long').innerText = t.longForm;
-            document.getElementById('calc-type-shorts').innerText = t.shorts;
-            document.getElementById('forecast-header').innerText = t.calculatedResult;
-            document.getElementById('forecast-sub').innerText = state.lang === 'en' ? "Revenue Forecast" : "Prévisions Financières";
-            document.getElementById('calc-min-lbl').innerText = t.min;
-            document.getElementById('calc-avg-lbl').innerText = t.avg;
-            document.getElementById('calc-max-lbl').innerText = t.max;
-            document.getElementById('calc-rpm-header').innerText = t.rpmPotential;
-
-            // Comparator Labels
-
-const compTitle = document.getElementById('comp-title');
-if (compTitle) compTitle.innerText = t.comparatorTitle;
-
-const compSubtitle = document.getElementById('comp-subtitle');
-if (compSubtitle) compSubtitle.innerText = t.comparatorSubtitle;
-
-const compBtn = document.getElementById('comp-btn');
-if (compBtn) compBtn.innerText = t.compareBtn;
-
-const blogTitle = document.getElementById('blog-title');
-if (blogTitle) blogTitle.innerText = t.navBlog;
-
-
-            // Promos & Ad cross sells
-            document.getElementById('promo-lead').innerText = state.lang === 'en' ? "🔥 Leverage your assets:" : "🔥 Exploitez vos documents :";
-            document.getElementById('promo-link-1').innerText = t.discoverNorcanto;
-            document.getElementById('cross-norcanto-title').innerText = t.norcantoTitle;
-            document.getElementById('cross-norcanto-desc').innerText = t.norcantoDesc;
-            document.getElementById('cross-norcanto-btn').innerText = t.norcantoBtn;
-            document.getElementById('cross-qd-title').innerText = t.qdTitle;
-            document.getElementById('cross-qd-desc').innerText = t.qdDesc;
-            document.getElementById('cross-qd-btn').innerText = t.qdBtn;
-
-            // Cookie banner
-            document.getElementById('cookie-title').innerText = state.lang === 'en' ? "Cookie Consent Notice" : "Gestion des Cookies";
-            document.getElementById('cookie-notice-text').innerText = t.cookieText;
-            document.getElementById('cookie-decline').innerText = t.cookieDecline;
-            document.getElementById('cookie-accept').innerText = t.cookieAccept;
-
-            // Footer
-            document.getElementById('footer-bio-text').innerText = state.lang === 'en' ? "A professional high-performance algorithmic analytical engine optimized to model content creator metrics and digital real-estate valuation indicators." : "Un moteur d'analyse algorithmique de haute performance pour modéliser l'audience et estimer la valeur publicitaire.";
-            document.getElementById('footer-privacy').innerText = t.privacy;
-            document.getElementById('footer-terms').innerText = t.terms;
-            document.getElementById('footer-contact').innerText = t.contact;
-            document.getElementById('footer-cookies-notice').innerText = state.lang === 'en' ? "Cookies Notice" : "Gestion des Cookies";
-            document.getElementById('footer-copy').innerText = t.footerRights;
-
-            // FAQ accordion Title
-            document.getElementById('faq-section-title').innerText = t.faqTitle;
-
-            renderFAQs();
-        }
-
-        // Active Theme Class Toggle
-        function toggleTheme() {
-            state.theme = state.theme === 'dark' ? 'light' : 'dark';
-            const iconSvg = document.getElementById('theme-icon');
-            if (state.theme === 'dark') {
-                document.documentElement.classList.add('dark');
-                iconSvg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707-.707m12.728 0l-.707.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path>`;
-            } else {
-                document.documentElement.classList.remove('dark');
-                iconSvg.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>`;
-            }
-        }
-
-        // Analysis Execution Controller
-        let activeAnalysisResult = SAMPLE_CHANNELS.mrbeast;
-
-        function handleAnalyzeSubmit(e) {
-            e.preventDefault();
-            const inputVal = document.getElementById('search-input').value.trim();
-            if (!inputVal) return;
-
-            const btnText = document.getElementById('btn-text');
-            const submitBtn = document.getElementById('submit-btn');
-
-            btnText.innerHTML = `<span class="flex items-center gap-2"><span class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>${DICTIONARY[state.lang].analyzing}</span>`;
-            submitBtn.disabled = true;
-
-            // Call your Netlify serverless proxy
-            // Remplacez la ligne du fetch par celle-ci (appel direct sans passer par /api/)
-            fetch(`/.netlify/functions/analyze?q=${encodeURIComponent(inputVal)}`)
-
-                .then(res => {
-                    if (!res.ok) throw new Error("API call failed");
-                    return res.json();
-                })
-                .then(data => {
-                    activeAnalysisResult = data;
-                    renderAnalysis();
-                })
-                .catch(err => {
-                    console.warn("Real-time API error, falling back to static model predictions.", err);
-                    // Fallback mock algorithm for safety if the API fails or quota is exhausted
-                    const cleanHandle = inputVal.startsWith('@') ? inputVal : `@${inputVal.toLowerCase().replace(/\s+/g, '')}`;
-                    activeAnalysisResult = {
-                        name: inputVal.replace(/https:\/\/www.youtube.com\/|@/g, '').trim() || "Custom Creator",
-                        handle: cleanHandle,
-                        avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=150&q=80",
-                        banner: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-                        subscribers: Math.floor(Math.random() * 250000) + 15000,
-                        totalViews: Math.floor(Math.random() * 4500000) + 200000,
-                        videoCount: Math.floor(Math.random() * 150) + 12,
-                        creationDate: "2021-03-14",
-                        niche: "Education & Learning",
-                        language: state.lang === 'en' ? "English" : "Français",
-                        country: "United States",
-                        rpm: 4.20,
-                        score: "High",
-                        sponsors: "Medium",
-                        affiliate: "Medium",
-                        growth: "Stable"
-                    };
-                    renderAnalysis();
-                })
-                .finally(() => {
-                    btnText.innerText = DICTIONARY[state.lang].btnAnalyze;
-                    submitBtn.disabled = false;
-                });
-        }
-
-        function selectQuickSample(key) {
-            activeAnalysisResult = SAMPLE_CHANNELS[key];
-            document.getElementById('search-input').value = activeAnalysisResult.handle;
-            renderAnalysis();
-        }
-
-        function renderAnalysis() {
-            const container = document.getElementById('analytics-result-container');
-            if (!activeAnalysisResult) {
-                container.innerHTML = '';
-                return;
-            }
-
-            const t = DICTIONARY[state.lang];
-            const estMonthlyViews = activeAnalysisResult.totalViews / (2026 - parseInt(activeAnalysisResult.creationDate.split('-')[0]) || 1) / 12;
-            const mAvg = (estMonthlyViews / 1000) * activeAnalysisResult.rpm;
-            const mMin = mAvg * 0.55;
-            const mMax = mAvg * 1.85;
-
-            const yMin = mMin * 12;
-            const yAvg = mAvg * 12;
-            const yMax = mMax * 12;
-
-            container.innerHTML = `
-                <div class="relative rounded-2xl overflow-hidden border border-slate-200 dark:border-white/5 shadow-2xl animate-fade-in">
-                    <div class="h-36 sm:h-56 bg-cover bg-center" style="background-image: url('${activeAnalysisResult.banner}')">
-                        <div class="w-full h-full bg-black/40 backdrop-blur-xs"></div>
-                    </div>
-                    <div class="p-6 sm:p-8 bg-white dark:bg-premiumGray flex flex-col md:flex-row md:items-end md:justify-between gap-6 -mt-12 sm:-mt-16 relative z-10">
-                        <div class="flex flex-col sm:flex-row items-center sm:items-end gap-4 text-center sm:text-left">
-                            <img src="${activeAnalysisResult.avatar}" alt="${activeAnalysisResult.name}" class="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl border-4 border-white dark:border-premiumGray shadow-xl object-cover" />
-                            <div class="space-y-1">
-                                <div class="flex items-center gap-2 justify-center sm:justify-start">
-                                    <h2 class="text-xl sm:text-3xl font-extrabold tracking-tight">${activeAnalysisResult.name}</h2>
-                                    <span class="text-blue-500">✔</span>
-                                </div>
-                                <p class="text-slate-400 text-sm font-medium">${activeAnalysisResult.handle}</p>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap justify-center gap-2 text-xs">
-                            <span class="px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-bold">${activeAnalysisResult.niche}</span>
-                            <span class="px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-bold">${activeAnalysisResult.language}</span>
-                            <span class="px-3 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 font-bold">🇺🇸 ${activeAnalysisResult.country}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                    <div class="glassmorphism-card p-4 sm:p-6 rounded-2xl border shadow-sm">
-                        <span class="text-xs sm:text-sm text-slate-400 font-bold block mb-2">${t.subs}</span>
-                        <span class="text-lg sm:text-2xl font-extrabold tracking-tight">${activeAnalysisResult.subscribers.toLocaleString()}</span>
-                    </div>
-                    <div class="glassmorphism-card p-4 sm:p-6 rounded-2xl border shadow-sm">
-                        <span class="text-xs sm:text-sm text-slate-400 font-bold block mb-2">${t.views}</span>
-                        <span class="text-lg sm:text-2xl font-extrabold tracking-tight">${activeAnalysisResult.totalViews.toLocaleString()}</span>
-                    </div>
-                    <div class="glassmorphism-card p-4 sm:p-6 rounded-2xl border shadow-sm">
-                        <span class="text-xs sm:text-sm text-slate-400 font-bold block mb-2">${t.videos}</span>
-                        <span class="text-lg sm:text-2xl font-extrabold tracking-tight">${activeAnalysisResult.videoCount.toLocaleString()}</span>
-                    </div>
-                    <div class="glassmorphism-card p-4 sm:p-6 rounded-2xl border shadow-sm">
-                        <span class="text-xs sm:text-sm text-slate-400 font-bold block mb-2">${t.created}</span>
-                        <span class="text-lg sm:text-2xl font-extrabold tracking-tight">${new Date(activeAnalysisResult.creationDate).toLocaleDateString(state.lang === 'fr' ? 'fr-FR' : 'en-US')}</span>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="glassmorphism-card p-6 rounded-2xl border shadow-md space-y-6">
-                        <div class="flex justify-between items-center border-b border-slate-200 dark:border-white/5 pb-4">
-                            <h3 class="font-extrabold text-base sm:text-lg tracking-tight">${t.estMonthly}</h3>
-                            <span class="text-xs px-2 py-1 rounded bg-revenueGreen/10 text-revenueGreen font-bold">RPM ${formatCash(activeAnalysisResult.rpm)}</span>
-                        </div>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between text-xs sm:text-sm mb-1">
-                                    <span class="font-bold text-slate-400">${t.min}</span>
-                                    <span class="font-extrabold">${formatCash(mMin)}</span>
-                                </div>
-                                <div class="h-2.5 w-full bg-slate-200 dark:bg-neutral-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-slate-400 rounded-full w-1/3"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs sm:text-sm mb-1">
-                                    <span class="font-bold text-slate-400">${t.avg}</span>
-                                    <span class="font-extrabold text-revenueGreen">${formatCash(mAvg)}</span>
-                                </div>
-                                <div class="h-2.5 w-full bg-slate-200 dark:bg-neutral-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-revenueGreen rounded-full w-2/3"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs sm:text-sm mb-1">
-                                    <span class="font-bold text-slate-400">${t.max}</span>
-                                    <span class="font-extrabold text-ytred">${formatCash(mMax)}</span>
-                                </div>
-                                <div class="h-2.5 w-full bg-slate-200 dark:bg-neutral-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-ytred rounded-full w-full"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="glassmorphism-card p-6 rounded-2xl border shadow-md space-y-6">
-                        <div class="flex justify-between items-center border-b border-slate-200 dark:border-white/5 pb-4">
-                            <h3 class="font-extrabold text-base sm:text-lg tracking-tight">${t.estAnnual}</h3>
-                            <span class="text-xs px-2 py-1 rounded bg-indigo-500/10 text-indigo-400 font-bold">Projected</span>
-                        </div>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between text-xs sm:text-sm mb-1">
-                                    <span class="font-bold text-slate-400">${t.min}</span>
-                                    <span class="font-extrabold">${formatCash(yMin)}</span>
-                                </div>
-                                <div class="h-2.5 w-full bg-slate-200 dark:bg-neutral-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-slate-400 rounded-full w-1/3"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs sm:text-sm mb-1">
-                                    <span class="font-bold text-slate-400">${t.avg}</span>
-                                    <span class="font-extrabold text-revenueGreen">${formatCash(yAvg)}</span>
-                                </div>
-                                <div class="h-2.5 w-full bg-slate-200 dark:bg-neutral-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-revenueGreen rounded-full w-2/3"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs sm:text-sm mb-1">
-                                    <span class="font-bold text-slate-400">${t.max}</span>
-                                    <span class="font-extrabold text-ytred">${formatCash(yMax)}</span>
-                                </div>
-                                <div class="h-2.5 w-full bg-slate-200 dark:bg-neutral-800 rounded-full overflow-hidden">
-                                    <div class="h-full bg-ytred rounded-full w-full"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glassmorphism-card p-6 sm:p-8 rounded-2xl border shadow-md space-y-6">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-200 dark:border-white/5 pb-4 gap-4">
-                        <div>
-                            <h3 class="font-extrabold text-base sm:text-lg tracking-tight">${t.bizScore}</h3>
-                            <p class="text-xs text-slate-400">${state.lang === 'en' ? "Algorithmic analysis of brand monetization capability" : "Analyse de la rentabilité de la marque"}</p>
-                        </div>
-                        <span class="px-4 py-2 rounded-xl bg-ytred text-white text-sm font-extrabold uppercase shadow-md shadow-ytred/10">${activeAnalysisResult.score === 'Premium' ? t.scorePremium : t.scoreHigh}</span>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="bg-slate-50 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/5">
-                            <span class="text-xs text-slate-400 font-bold block mb-1">${t.rpmPotential}</span>
-                            <span class="text-base sm:text-lg font-extrabold block">${activeAnalysisResult.rpm} / 10</span>
-                            <div class="h-1.5 w-full bg-slate-200 dark:bg-neutral-800 rounded-full overflow-hidden mt-2">
-                                <div class="h-full bg-neutral-900 dark:bg-white rounded-full w-[70%]"></div>
-                            </div>
-                        </div>
-                        <div class="bg-slate-50 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/5">
-                            <span class="text-xs text-slate-400 font-bold block mb-1">${t.sponsorPotential}</span>
-                            <span class="text-base sm:text-lg font-extrabold block">${activeAnalysisResult.sponsors}</span>
-                            <div class="h-1.5 w-full bg-slate-200 dark:bg-neutral-800 rounded-full overflow-hidden mt-2">
-                                <div class="h-full bg-neutral-900 dark:bg-white rounded-full w-[85%]"></div>
-                            </div>
-                        </div>
-                        <div class="bg-slate-50 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/5">
-                            <span class="text-xs text-slate-400 font-bold block mb-1">${t.affPotential}</span>
-                            <span class="text-base sm:text-lg font-extrabold block">${activeAnalysisResult.affiliate}</span>
-                            <div class="h-1.5 w-full bg-slate-200 dark:bg-neutral-800 rounded-full overflow-hidden mt-2">
-                                <div class="h-full bg-neutral-900 dark:bg-white rounded-full w-[60%]"></div>
-                            </div>
-                        </div>
-                        <div class="bg-slate-50 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/5">
-                            <span class="text-xs text-slate-400 font-bold block mb-1">${t.growthPotential}</span>
-                            <span class="text-base sm:text-lg font-extrabold block">${activeAnalysisResult.growth}</span>
-                            <div class="h-1.5 w-full bg-slate-200 dark:bg-neutral-800 rounded-full overflow-hidden mt-2">
-                                <div class="h-full bg-neutral-900 dark:bg-white rounded-full w-[90%]"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Manual Calculator Payout Adjuster
-        function setCalcType(type) {
-            state.calcType = type;
-            const longBtn = document.getElementById('calc-type-long');
-            const shortsBtn = document.getElementById('calc-type-shorts');
-
-            if (type === 'long') {
-                longBtn.className = "py-3 rounded-xl font-bold border text-sm transition bg-ytred text-white border-transparent";
-                shortsBtn.className = "py-3 rounded-xl font-bold border text-sm transition bg-slate-100 dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300";
-            } else {
-                shortsBtn.className = "py-3 rounded-xl font-bold border text-sm transition bg-ytred text-white border-transparent";
-                longBtn.className = "py-3 rounded-xl font-bold border text-sm transition bg-slate-100 dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300";
-            }
-            updateManualCalculator();
-        }
-
-        function updateManualCalculator() {
-    const views = parseInt(document.getElementById('calc-range-views').value);
-    const country = document.getElementById('calc-country').value;
-    const niche = document.getElementById('calc-niche').value;
-
-    document.getElementById('calc-views-display').innerText = views.toLocaleString();
-
-    let baseRPM = 3.00;
-    if (niche === 'finance') baseRPM = 8.50;
-    else if (niche === 'tech') baseRPM = 6.80;
-    else if (niche === 'gaming') baseRPM = 1.80;
-    else if (niche === 'lifestyle') baseRPM = 4.20;
-
-    let countryMultiplier = 1.0;
-    if (country === 'US') countryMultiplier = 1.45;
-    else if (country === 'FR') countryMultiplier = 1.10;
-    else if (country === 'IN') countryMultiplier = 0.45;
-    // AJUSTEMENT POUR L'AFRIQUE (Ajustement du coefficient publicitaire local)
-    else if (country === 'AF') countryMultiplier = 0.25;
-
-    let formatMultiplier = state.calcType === 'shorts' ? 0.08 : 1.0;
-
-    const finalRPM = baseRPM * countryMultiplier * formatMultiplier;
-    const avgEarnings = (views / 1000) * finalRPM;
-    const minEarnings = avgEarnings * 0.75;
-    const maxEarnings = avgEarnings * 1.35;
-
-    document.getElementById('calc-result-min').innerText = formatCash(minEarnings);
-    document.getElementById('calc-result-avg').innerText = formatCash(avgEarnings);
-    document.getElementById('calc-result-max').innerText = formatCash(maxEarnings);
-    
-    // Fermeture propre de la ligne qui était coupée dans votre code
-    document.getElementById('calc-rpm-display').innerText = `${formatCash(finalRPM)} per 1,000 views`;
-}
-
-                // Direct Channel comparison Executor (Fully dynamic with live API data)
-        async function executeComparison() {
-            const container = document.getElementById('comp-results-container');
-            const query1 = document.getElementById('comp-select-1').value.trim();
-            const query2 = document.getElementById('comp-select-2').value.trim();
-
-            const t = DICTIONARY[state.lang] || DICTIONARY.en;
-
-            if (!query1 || !query2) {
-                container.innerHTML = `<div class="col-span-2 text-center text-xs text-amber-500 font-semibold p-4 bg-amber-500/10 rounded-xl">
-                    ${state.lang === 'en' ? "Please provide handles or URLs for both fields." : "Veuillez remplir les deux champs avec des identifiants valides."}
-                </div>`;
-                return;
-            }
-
-            container.innerHTML = `<div class="col-span-2 text-center text-sm font-medium p-8">${t.analyzing || "Fetching real-time comparisons..."}</div>`;
-
-            try {
-                // Requêtes simultanées vers votre API Netlify
-                const [res1, res2] = await Promise.all([
-                    fetch(`/.netlify/functions/analyze?q=${encodeURIComponent(query1)}`),
-                    fetch(`/.netlify/functions/analyze?q=${encodeURIComponent(query2)}`)
-                ]);
-
-                if (!res1.ok || !res2.ok) {
-                    throw new Error("One or both channels could not be fetched by the API.");
-                }
-
-                const ch1 = await res1.json();
-                const ch2 = await res2.json();
-
-                // Génération de l'affichage HTML avec les vraies données
-                container.innerHTML = [ch1, ch2].map(ch => `
-                    <div class="glassmorphism-card p-4 sm:p-6 rounded-2xl border shadow-md space-y-4 animate-fade-in">
-                        <div class="flex flex-col items-center text-center gap-2">
-                            <img src="${ch.avatar}" class="w-16 h-16 rounded-full object-cover border border-slate-300 dark:border-neutral-700 shadow-sm" onerror="this.src='https://unsplash.com'"/>
-                            <h4 class="font-extrabold text-sm sm:text-lg">${ch.name}</h4>
-                            <span class="text-xs text-slate-400">${ch.handle}</span>
-                        </div>
-                        <div class="space-y-2 border-t border-slate-200 dark:border-white/5 pt-3 text-xs sm:text-sm">
-                            <div class="flex justify-between">
-                                <span class="text-slate-400 font-medium">${t.subs || "Subscribers"}</span>
-                                <span class="font-extrabold text-revenueGreen">${ch.subscribers.toLocaleString()}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-slate-400 font-medium">${t.views || "Total Views"}</span>
-                                <span class="font-extrabold">${ch.totalViews.toLocaleString()}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-slate-400 font-medium">${t.niche || "Content Niche"}</span>
-                                <span class="font-extrabold text-slate-700 dark:text-slate-300">${ch.niche}</span>
-                            </div>
-                            <div class="flex justify-between border-t border-dashed border-slate-200 dark:border-white/10 pt-2 mt-2">
-                                <span class="text-slate-400 font-semibold">RPM / 1K Views</span>
-                                <span class="font-extrabold text-ytred">$${ch.rpm.toFixed(2)}</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-slate-400 font-medium">Business Tier</span>
-                                <span class="font-extrabold text-blue-500">${ch.score}</span>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
-
-            } catch (err) {
-                console.error("Comparator connection failed:", err);
-                container.innerHTML = `<div class="col-span-2 text-center text-xs text-red-500 font-semibold p-4 bg-red-500/10 rounded-xl">
-                    ${state.lang === 'en' ? "Error loading live data. Please check channel spelling." : "Erreur de chargement en direct. Vérifiez l'orthographe des chaînes."}
-                </div>`;
-            }
-        }
-
-        // Render index blog resource center
-        function renderBlogIndex() {
-            const container = document.getElementById('blog-grid-container');
-            if (!container) return; // Sécurité si l'élément n'est pas monté
-            
-            const list = BLOG_POSTS[state.lang] || BLOG_POSTS.en;
-            container.innerHTML = list.map(post => `
-                <div class="glassmorphism-card rounded-2xl overflow-hidden border shadow-sm flex flex-col justify-between hover:scale-[1.01] transition duration-200 animate-fade-in">
-                    <div class="p-6 space-y-3">
-                        <span class="text-[10px] uppercase font-bold text-ytred tracking-wider">${post.category}</span>
-                        <h3 class="text-lg font-extrabold leading-snug">${post.title}</h3>
-                        <p class="text-xs text-slate-400 line-clamp-3">${post.desc}</p>
-                    </div>
-                    <div class="p-6 border-t border-slate-200 dark:border-white/5 flex justify-between items-center">
-                        <span class="text-xs text-slate-500 font-semibold">${post.date}</span>
-                        <button onclick="navigateTo('/blog/${post.id}')" class="text-xs font-bold text-ytred hover:underline">
-                            ${state.lang === 'en' ? "Read post" : "Lire l'article"} &rarr;
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-
-        // Render index blog resource center
-        function renderBlogIndex() {
-            const container = document.getElementById('blog-grid-container');
-            const list = BLOG_POSTS[state.lang];
-            container.innerHTML = list.map(post => `
-                <div class="glassmorphism-card rounded-2xl overflow-hidden border shadow-sm flex flex-col justify-between hover:scale-[1.01] transition duration-200 animate-fade-in">
-                    <div class="p-6 space-y-3">
-                        <span class="text-[10px] uppercase font-bold text-ytred tracking-wider">${post.category}</span>
-                        <h3 class="text-lg font-extrabold leading-snug">${post.title}</h3>
-                        <p class="text-xs text-slate-400 line-clamp-3">${post.desc}</p>
-                    </div>
-                    <div class="p-6 border-t border-slate-200 dark:border-white/5 flex justify-between items-center">
-                        <span class="text-xs text-slate-500 font-semibold">${post.date}</span>
-                        <button onclick="navigateTo('/blog/${post.id}')" class="text-xs font-bold text-ytred hover:underline">
-                            ${state.lang === 'en' ? "Read post" : "Lire l'article"} &rarr;
-                        </button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Render individual blog post pages
-        function renderBlogPost(slug) {
-            const container = document.getElementById('blog-post-content');
-            const post = BLOG_POSTS[state.lang].find(p => p.id === slug);
-            if (!post) {
-                container.innerHTML = `<h3 class="text-2xl font-bold">Article Not Found</h3>`;
-                return;
-            }
-
-            updateSEO(post.title, post.desc);
-
-            container.innerHTML = `
-                <div class="space-y-4 border-b border-slate-200 dark:border-white/5 pb-6">
-                    <span class="text-xs uppercase font-extrabold text-ytred">${post.category}</span>
-                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight">${post.title}</h1>
-                    <p class="text-xs text-slate-400 font-semibold">${post.date}</p>
-                </div>
-                <article class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
-                    ${post.content}
-                </article>
-                <div class="pt-6 border-t border-slate-200 dark:border-white/5">
-                    <button onclick="navigateTo('/blog')" class="text-xs font-bold px-4 py-2 rounded-lg bg-slate-200 dark:bg-white/5 hover:bg-slate-300 dark:hover:bg-white/10 transition">
-                        &larr; ${state.lang === 'en' ? "Back to resources" : "Retour aux articles"}
-                    </button>
-                </div>
-            `;
-        }
-
-        // Render About Us Page
-        function renderAboutPage() {
-            const container = document.getElementById('about-content');
-            updateSEO(
-                state.lang === 'en' ? "About Us – YouTube Analyzer by Norcanto" : "À Propos de Nous – YouTube Analyzer par Norcanto",
-                "Learn about YouTube Analyzer's advanced estimation models, our operational mission, and corporate identity."
-            );
-            container.innerHTML = state.lang === 'en' ? `
-                <h1 class="text-3xl font-extrabold tracking-tight mb-4">About YouTube Analyzer</h1>
-                <p class="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
-                    YouTube Analyzer by Norcanto was built to make digital asset valuations clear and accessible for content creators, agencies, and investors.
-                </p>
-                <h4 class="text-lg font-bold mt-6 mb-2">Our Estimation Models</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                    By combining public audience statistics with real-time advertising market data, our platform provides reliable revenue estimates that help creators plan their business growth.
-                </p>
-                <h4 class="text-lg font-bold mt-6 mb-2">The Norcanto Vision</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                    We believe data transparency empowers creators. In addition to analytics, we offer integrated tools like Norcanto AI and QuickDocs Converter to help creators streamline their business operations.
-                </p>
-            ` : `
-                <h1 class="text-3xl font-extrabold tracking-tight mb-4">À Propos de YouTube Analyzer</h1>
-                <p class="text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-300">
-                    YouTube Analyzer par Norcanto a été créé pour rendre l'estimation et l'évaluation des actifs digitaux claires et accessibles aux créateurs de contenu, agences et investisseurs.
-                </p>
-                <h4 class="text-lg font-bold mt-6 mb-2">Nos Modèles d'Estimation</h4>
-                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                    En recoupant les volumes d'audiences publics avec les fluctuations du marché publicitaire par thématique, notre outil offre des estimations fiables pour aider les créateurs à planifier leur activité.
-                </p>
-            `;
-        }
-
-        // Render Privacy Page
-        function renderPrivacyPage() {
-            const container = document.getElementById('privacy-content');
-            updateSEO("Privacy Policy – YouTube Analyzer by Norcanto", "Our policies regarding your data, YouTube API, and Google Services integration.");
-            container.innerHTML = `
-                <h1 class="text-3xl font-extrabold tracking-tight mb-4">Privacy Policy</h1>
-                <p class="text-xs text-slate-400">Effective Date: June 1, 2026</p>
-                <div class="text-xs sm:text-sm space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed mt-4">
-                    <p>At YouTube Analyzer by Norcanto, we value your privacy. This policy outlines how we handle data when you use our analytics services and explains our compliance with standard Google API Services policies.</p>
-                    <h4 class="font-bold text-slate-900 dark:text-white mt-4">1. Data Collected Via Public YouTube API Services</h4>
-                    <p>Our tools query public statistics through the standard YouTube Data API v3. We do not require, collect, or store any private account credentials or personal login information at any stage of your use.</p>
-                    <h4 class="font-bold text-slate-900 dark:text-white mt-4">2. Cookies and Third-Party Advertising</h4>
-                    <p>This platform uses functional cookies and caching to speed up search results. We also integrate Google AdSense services, which may use cookies to serve relevant, non-intrusive programmatic advertisements based on user navigation interests.</p>
-                    <h4 class="font-bold text-slate-900 dark:text-white mt-4">3. Data Security and Inquiries</h4>
-                    <p>For questions regarding privacy practices or data policies, contact us at <a href="mailto:hello@norcanto.com" class="text-ytred underline">hello@norcanto.com</a>.</p>
-                </div>
-            `;
-        }
-
-        // Render Terms of Use Page
-        function renderTermsPage() {
-            const container = document.getElementById('terms-content');
-            updateSEO("Terms of Use – YouTube Analyzer by Norcanto", "The rules, rate limits, disclaimers, and terms governing your use of our service.");
-            container.innerHTML = `
-                <h1 class="text-3xl font-extrabold tracking-tight mb-4">Terms of Use</h1>
-                <p class="text-xs text-slate-400">Effective Date: June 1, 2026</p>
-                <div class="text-xs sm:text-sm space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed mt-4">
-                    <p>By using YouTube Analyzer by Norcanto, you agree to these Terms of Use and our compliance with YouTube's general terms of service.</p>
-                    <h4 class="font-bold text-slate-900 dark:text-white mt-4">1. Permitted Use & Rates</h4>
-                    <p>Users are permitted to query public channel profiles up to 20 times per day. Automated scraping, bulk queries, or systematic data extraction without permission is strictly prohibited.</p>
-                    <h4 class="font-bold text-slate-900 dark:text-white mt-4">2. Accuracy of Estimates</h4>
-                    <p>Our revenue estimates are based on programmatic models and should be treated as calculations and approximations rather than precise financial statements. YouTube Analyzer by Norcanto is not responsible for business decisions based on these projections.</p>
-                    <h4 class="font-bold text-slate-900 dark:text-white mt-4">3. Support Contact</h4>
-                    <p>For official inquiries regarding usage rules, contact us directly at <a href="mailto:hello@norcanto.com" class="text-ytred underline">hello@norcanto.com</a>.</p>
-                </div>
-            `;
-        }
-
-        // Render Contact Page
-        function renderContactPage() {
-            const container = document.getElementById('contact-content');
-            updateSEO("Contact Us – YouTube Analyzer by Norcanto", "Get in touch with our team for support, feature inquiries, or data feedback.");
-            container.innerHTML = `
-                <h1 class="text-3xl font-extrabold tracking-tight mb-4">Contact Us</h1>
-                <p class="text-sm text-slate-500 mb-6">Have questions or feedback? Fill out the form below or reach us directly at <a href="mailto:hello@norcanto.com" class="text-ytred underline font-semibold">hello@norcanto.com</a>.</p>
-                <form onsubmit="handleContactSubmit(event)" class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                        <input required type="text" placeholder="Name" class="p-3 bg-slate-100 dark:bg-white/5 rounded-lg border border-slate-300 dark:border-white/10 text-sm focus:outline-none text-slate-900 dark:text-white" />
-                        <input required type="email" placeholder="Email" class="p-3 bg-slate-100 dark:bg-white/5 rounded-lg border border-slate-300 dark:border-white/10 text-sm focus:outline-none text-slate-900 dark:text-white" />
-                    </div>
-                    <textarea required rows="4" placeholder="Your Message..." class="w-full p-3 bg-slate-100 dark:bg-white/5 rounded-lg border border-slate-300 dark:border-white/10 text-sm focus:outline-none text-slate-900 dark:text-white"></textarea>
-                    <button type="submit" class="w-full bg-ytred text-white py-3.5 rounded-xl font-bold hover:bg-[#D60000] transition text-sm">Send Message</button>
-                </form>
-            `;
-        }
-
-        function handleContactSubmit(e) {
-            e.preventDefault();
-            e.target.innerHTML = `
-                <div class="p-4 bg-revenueGreen/10 border border-revenueGreen/20 text-revenueGreen rounded-lg text-sm font-semibold">
-                    ${state.lang === 'en' ? "Message submitted successfully! We'll reply shortly via hello@norcanto.com." : "Votre message a été transmis avec succès !"}
-                </div>
-            `;
-        }
-
-        // Render Cookies Notice Page
-        function renderCookiesNoticePage() {
-            const container = document.getElementById('cookies-notice-content');
-            updateSEO("Cookies Notice – YouTube Analyzer by Norcanto", "Learn how we use cookies, tracking pixels, and local caching technologies.");
-            container.innerHTML = `
-                <h1 class="text-3xl font-extrabold tracking-tight mb-4">Cookies Notice</h1>
-                <p class="text-xs text-slate-400">Effective Date: June 1, 2026</p>
-                <div class="text-xs sm:text-sm space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed mt-4">
-                    <p>This page details how YouTube Analyzer uses cookies to analyze traffic, speed up performance, and serve relevant advertising.</p>
-                    <h4 class="font-bold text-slate-900 dark:text-white mt-4">What Are Cookies?</h4>
-                    <p>Cookies are small text files placed on your device to remember details like your preferred language theme, cached search results, and cookie consent choices.</p>
-                    <h4 class="font-bold text-slate-900 dark:text-white mt-4">Our Cookies Categorizations</h4>
-                    <ul class="list-disc pl-6 space-y-2">
-                        <li><strong>Strictly Necessary Cookies:</strong> Essential for standard page rendering, routing transitions, and saving theme choices.</li>
-                        <li><strong>Analytical Performance:</strong> Used to monitor search usage levels, rate limits, and site performance.</li>
-                        <li><strong>Advertising (AdSense):</strong> Placed by Google to deliver relevant programmatic ads based on browsing interests.</li>
-                    </ul>
-                    <h4 class="font-bold text-slate-900 dark:text-white mt-4">Managing Consent</h4>
-                    <p>You can adjust your cookie settings at any time. Clear your browser cookies or change your preferences using our popup banner to reset your choices.</p>
-                </div>
-            `;
-        }
-
-        // Accordion FAQs population
-        function renderFAQs() {
-            const container = document.getElementById('faq-list-container');
-            const items = FAQS[state.lang];
-            container.innerHTML = items.map(item => `
-                <details class="glassmorphism p-5 rounded-xl border border-slate-200 dark:border-white/5 cursor-pointer group">
-                    <summary class="font-bold text-sm sm:text-base flex justify-between items-center list-none select-none">
-                        <span>${item.q}</span>
-                        <span class="transition duration-200 group-open:rotate-180 text-ytred font-bold text-lg">+</span>
-                    </summary>
-                    <p class="mt-3 text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed cursor-default">${item.a}</p>
-                </details>
-            `).join('');
-        }
-
-        // Dismiss Cookies banner
-        function dismissCookies(accepted) {
-            localStorage.setItem('norcanto_cookies', accepted ? 'accepted' : 'declined');
-            document.getElementById('cookie-banner').classList.add('hidden');
-        }
-
-        function formatCash(num) {
-            return new Intl.NumberFormat(state.lang === 'fr' ? 'fr-FR' : 'en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(num);
-        }
-
-        // App Bootstrapper
-        window.addEventListener('DOMContentLoaded', () => {
-            document.documentElement.classList.add('dark');
-            
-            if (!state.cookiesAccepted) {
-                document.getElementById('cookie-banner').classList.remove('hidden');
-            }
-
-            applyTranslations();
-            renderRouteView();
-        });
     </script>
+  </div>
+</section>
+
+<!-- ======================== BLOG PREVIEW ======================== -->
+<section class="section" style="background:var(--bg-2);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-divider"></div>
+      <h2 id="blog-preview-title">Latest from the Blog</h2>
+      <p>Tips, guides, and strategies for YouTube creators</p>
+    </div>
+    <div class="blog-grid">
+      <a href="blog/how-much-youtube-pays-per-view.html" class="blog-card reveal">
+        <div class="blog-thumb">
+          <div class="blog-thumb-inner">
+            <div class="blog-thumb-bg"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-cat">YouTube Revenue</div>
+          <div class="blog-title">How Much Does YouTube Pay Per View in 2025?</div>
+          <div class="blog-excerpt">A complete breakdown of YouTube's CPM and RPM rates by country, niche, and content type — with real creator earnings examples.</div>
+          <div class="blog-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            January 15, 2025 · 8 min read
+          </div>
+        </div>
+      </a>
+      <a href="blog/youtube-rpm-by-niche.html" class="blog-card reveal reveal-delay-1">
+        <div class="blog-thumb">
+          <div class="blog-thumb-inner">
+            <div class="blog-thumb-bg"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-cat">YouTube Monetization</div>
+          <div class="blog-title">YouTube RPM by Niche: Which Categories Pay the Most?</div>
+          <div class="blog-excerpt">Finance pays 6x more than gaming. Discover the full RPM breakdown across 15+ YouTube niches and how to pick the most profitable one.</div>
+          <div class="blog-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            January 22, 2025 · 6 min read
+          </div>
+        </div>
+      </a>
+      <a href="blog/youtube-shorts-monetization.html" class="blog-card reveal reveal-delay-2">
+        <div class="blog-thumb">
+          <div class="blog-thumb-inner">
+            <div class="blog-thumb-bg"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-cat">YouTube Shorts</div>
+          <div class="blog-title">YouTube Shorts Monetization: Everything Creators Need to Know</div>
+          <div class="blog-excerpt">Do Shorts actually pay? We break down the Shorts Fund, RPM reality, and how to build a strategy that combines Shorts with long-form for maximum revenue.</div>
+          <div class="blog-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            February 5, 2025 · 7 min read
+          </div>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="blog/index.html" class="btn btn-secondary btn-lg">
+        View All Articles
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================== FOOTER ======================== -->
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" />
+          <div class="footer-logo-text">YouTube Analyzer</div>
+        </div>
+        <p class="footer-desc">Free YouTube channel revenue analysis and performance insights. Powered by Norcanto.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Tools</div>
+        <div class="footer-links">
+          <a href="#analyzer">Channel Analyzer</a>
+          <a href="#calculator">Revenue Calculator</a>
+          <a href="blog/index.html">Blog</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Norcanto</div>
+        <div class="footer-links">
+          <a href="https://norcanto.com" target="_blank" rel="noopener">Norcanto AI</a>
+          <a href="https://converter.norcanto.com" target="_blank" rel="noopener">QuickDocs Converter</a>
+          <a href="about/index.html">About</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <div class="footer-links">
+          <a href="privacy/index.html">Privacy Policy</a>
+          <a href="terms/index.html">Terms of Use</a>
+          <a href="contact/index.html">Contact</a>
+          <a href="cookies-notice/index.html">Cookies</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 YouTube Analyzer by Norcanto. All rights reserved.</div>
+      <div class="footer-legal">
+        <a href="privacy/index.html">Privacy</a>
+        <a href="terms/index.html">Terms</a>
+        <a href="contact/index.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================== COOKIE BANNER ======================== -->
+<div id="cookie-banner" class="hidden">
+  <div class="cookie-text">
+    We use cookies to improve your experience and analyze traffic. By clicking "Accept", you agree to our <a href="cookies-notice/index.html">Cookie Policy</a>.
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-reject" id="cookie-reject">Reject</button>
+    <button class="cookie-accept" id="cookie-accept">Accept</button>
+  </div>
+</div>
+
+<script src="js/logo.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

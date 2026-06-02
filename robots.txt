@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /api/
+Disallow: /channel/
 
-Sitemap: https://analyzer.norcanto.com/sitemap.xml
+Sitemap: https://yt.norcanto.com/sitemap.xml
