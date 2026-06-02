@@ -35,7 +35,7 @@ exports.handler = async function (event, context) {
     let apiParam = "";
     let cleanQuery = query.trim();
 
-    // 1. Identification du type d'entrée (ID, Nom d'utilisateur ou Handle @)
+    // 1. Identification du type d'entrée avec extraction d'index stricte
     if (cleanQuery.startsWith("UC") && cleanQuery.length === 24) {
       apiParam = `id=${cleanQuery}`;
     } else if (cleanQuery.startsWith("@")) {
@@ -71,7 +71,6 @@ exports.handler = async function (event, context) {
 
     // 3. Calculs algorithmiques dynamiques du potentiel business
     const detectedNiche = determineNiche(item.snippet.title, item.snippet.description);
-    // AJUSTEMENT AUTOMATIQUE ICI : Envoi du pays détecté à l'algorithme RPM
     const calculatedRPM = determineRPM(item.snippet.title, item.snippet.description, countryCode);
 
     const subscriberCount = parseInt(item.statistics.subscriberCount) || 0;
@@ -161,7 +160,7 @@ function determineRPM(title, desc, country) {
   const upperCountry = (country || "").toUpperCase();
 
   if (tier1Countries.includes(upperCountry)) {
-    baseRPM *= 1.3; // +30% pour les zones géographiques à fort pouvoir d'achat publicitaire
+    baseRPM *= 1.3; // +30% pour les zones géographiques à fort pouvoir d'achat
   } else if (tier2Countries.includes(upperCountry)) {
     baseRPM *= 0.6; // -40% pour les marchés émergents
   }

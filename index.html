@@ -920,9 +920,19 @@
             document.getElementById('calc-rpm-header').innerText = t.rpmPotential;
 
             // Comparator Labels
-            document.getElementById('comp-title').innerText = t.comparerTitle;
-            document.getElementById('comp-subtitle').innerText = t.comparerSubtitle;
-            document.getElementById('comp-btn').innerText = t.compareBtn;
+
+const compTitle = document.getElementById('comp-title');
+if (compTitle) compTitle.innerText = t.comparatorTitle;
+
+const compSubtitle = document.getElementById('comp-subtitle');
+if (compSubtitle) compSubtitle.innerText = t.comparatorSubtitle;
+
+const compBtn = document.getElementById('comp-btn');
+if (compBtn) compBtn.innerText = t.compareBtn;
+
+const blogTitle = document.getElementById('blog-title');
+if (blogTitle) blogTitle.innerText = t.navBlog;
+
 
             // Promos & Ad cross sells
             document.getElementById('promo-lead').innerText = state.lang === 'en' ? "🔥 Leverage your assets:" : "🔥 Exploitez vos documents :";
