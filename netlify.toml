@@ -1,6 +1,16 @@
 [build]
   publish = "."
 
+# Register the edge function that injects the API key
+[[edge_functions]]
+  function = "inject-config"
+  path = "/"
+
+[[edge_functions]]
+  function = "inject-config"
+  path = "/index.html"
+
+# Security & cache headers
 [[headers]]
   for = "/*"
   [headers.values]
@@ -8,7 +18,6 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Cache-Control = "public, max-age=3600"
 
 [[headers]]
   for = "/css/*"
@@ -24,3 +33,14 @@
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# SPA-style routing for /channel/* paths
+[[redirects]]
+  from = "/channel/*"
+  to   = "/index.html"
+  status = 200

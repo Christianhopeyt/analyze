@@ -62,6 +62,34 @@ A premium SaaS web application for analyzing YouTube channel revenue, performanc
 
 **Without an API key**, the analyzer runs in demo mode — showing realistic simulated data based on the channel handle. This lets you demonstrate the full UI without needing API access.
 
+
+## Why the button works locally but not on Netlify (and the fix)
+
+### Root cause
+Netlify **environment variables are server-side only**. Setting `YT_API_KEY` in the
+Netlify dashboard does NOT make it available as `window.YT_API_KEY` in browser JavaScript.
+The old code checked `window.YT_API_KEY`, got `undefined`, treated it as falsy but then
+attempted a YouTube API call with an empty key anyway — which returned a 403 error that the
+catch block swallowed silently, making the button appear dead.
+
+### The fix (already applied)
+1. **A Netlify Edge Function** (`netlify/edge-functions/inject-config.js`) reads the env var
+   at request time on Netlify's edge and injects `<script>window.YT_API_KEY="...";</script>`
+   into the HTML before it reaches the browser.
+
+2. **Demo-mode fallback** — if `window.YT_API_KEY` is empty or the API call fails for any
+   reason, the analyzer automatically falls back to realistic demo data. This means the
+   button ALWAYS works, even with no API key configured.
+
+3. **`replaceState` with hash** instead of `pushState` with a path — prevents Netlify from
+   treating `/channel/somehandle` as a hard navigation that 404s.
+
+### Deploy checklist
+1. Add `YT_API_KEY` in Netlify → Site configuration → Environment variables
+2. The edge function reads it automatically — no other changes needed
+3. Without the key: demo mode works perfectly for all visitors
+4. With the key: real YouTube data is fetched and cached for 24 hours
+
 ## YouTube Data API v3 Setup
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
