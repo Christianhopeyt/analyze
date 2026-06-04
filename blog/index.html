@@ -1,94 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Blog – YouTube Revenue, Growth & Monetization Tips | Norcanto</title>
-  <meta name="description" content="Expert guides on YouTube revenue, RPM, channel growth, monetization strategies, and content creation from the Norcanto team." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>YouTube Creator Blog 2026 – Revenue, Growth & Monetization | Norcanto</title>
+  <meta name="description" content="Expert guides on YouTube revenue, RPM, channel growth, monetization strategies, and AI tools for creators. Updated 2026 data and benchmarks." />
+  <meta name="keywords" content="YouTube revenue 2026, YouTube RPM, YouTube monetization, channel growth, YouTube Shorts, AI for creators, free YouTube engagement rate calculator" />
   <link rel="canonical" href="https://analyzer.norcanto.com/blog/" />
-  <meta property="og:title" content="Blog – YouTube Analyzer by Norcanto" />
-  <meta property="og:description" content="Expert guides on YouTube revenue, RPM, channel growth, and monetization." />
+  <meta property="og:title" content="YouTube Creator Blog 2026 – Norcanto" />
+  <meta property="og:description" content="Expert guides on YouTube revenue, RPM, channel growth, and monetization. 2026 data." />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="../css/main.css" />
   <link rel="icon" type="image/png" href="../images/norcanto-logo.png" />
+  <style>
+    .filter-bar { display:flex; gap:8px; flex-wrap:wrap; align-items:center; padding: clamp(20px,4vw,32px) 0; border-bottom:1px solid var(--border); }
+    .filter-label { font-size:0.8rem; font-weight:700; color:var(--text-3); margin-right:4px; white-space:nowrap; }
+    .filter-btn {
+      padding: 6px 15px; border-radius: 99px; font-size: 0.78rem; font-weight: 700;
+      border: 1.5px solid var(--border); background: var(--surface); color: var(--text-2);
+      cursor: pointer; transition: all 0.18s ease; font-family: var(--font-body);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .filter-btn.active { background: var(--yt-red); color: #fff; border-color: var(--yt-red); box-shadow: 0 4px 14px rgba(255,0,0,0.25); }
+    .filter-btn:hover:not(.active) { border-color: var(--gray-300); color: var(--text); }
+    .blog-card[data-hidden="true"] { display: none; }
+    .no-results { display:none; text-align:center; padding:48px 20px; color:var(--text-3); font-size:0.95rem; }
+    .no-results.visible { display:block; }
+    /* Featured card responsive */
+    .featured-card { display:grid; grid-template-columns:1fr 1.2fr; gap:0; overflow:hidden; padding:0; border-radius:var(--radius-xl); }
+    @media(max-width:640px){ .featured-card { grid-template-columns:1fr; } .featured-card .featured-img { min-height:160px; } }
+  </style>
 </head>
 <body>
-<header id="header"><div class="container"><div class="header-inner">
-  <a href="../index.html" class="header-logo"><img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" />YouTube Analyzer <span>by Norcanto</span></a>
-  <nav class="header-nav">
-    <a href="../index.html#analyzer">Channel Analysis</a>
-    <a href="../index.html#calculator">Calculator</a>
-    <a href="index.html" class="active">Blog</a>
-    <a href="../about/index.html">About</a>
-  </nav>
-  <div class="header-controls">
+
+<header id="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="header-logo">
+        <img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" />
+        YouTube Analyzer <span>by Norcanto</span>
+      </a>
+      <nav class="header-nav">
+        <a href="../index.html#analyzer">Channel Analysis</a>
+        <a href="../index.html#calculator">Calculator</a>
+        <a href="index.html" class="active">Blog</a>
+        <a href="../privacy/index.html">Privacy</a>
+        <a href="../about/index.html">About</a>
+      </nav>
+      <div class="header-controls">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="EN">EN</button>
+          <button class="lang-btn" data-lang="FR">FR</button>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="https://norcanto.com" target="_blank" rel="noopener" class="btn btn-primary header-cta">Norcanto AI</a>
+      </div>
+      <button class="hamburger" aria-label="Menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-menu" aria-label="Mobile navigation">
+  <a href="../index.html#analyzer">Channel Analysis</a>
+  <a href="../index.html#calculator">Calculator</a>
+  <a href="index.html">Blog</a>
+  <a href="../privacy/index.html">Privacy Policy</a>
+  <a href="../about/index.html">About</a>
+  <a href="https://norcanto.com" target="_blank" rel="noopener" style="color:var(--yt-red);font-weight:700;">Norcanto AI</a>
+  <div class="mobile-menu-controls">
     <div class="lang-switcher">
       <button class="lang-btn active" data-lang="EN">EN</button>
       <button class="lang-btn" data-lang="FR">FR</button>
     </div>
-    <button class="theme-toggle" aria-label="Toggle theme"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
-    <a href="https://norcanto.com" target="_blank" rel="noopener" class="btn btn-primary header-cta">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      Norcanto AI
-    </a>
+    <button class="theme-toggle" aria-label="Toggle theme">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
   </div>
-  <button class="hamburger" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
-</div></div></header>
-<nav class="mobile-menu">
-  <a href="../index.html#analyzer">Channel Analysis</a>
-  <a href="../index.html#calculator">Calculator</a>
-  <a href="index.html">Blog</a>
-  <a href="../about/index.html">About</a>
 </nav>
 
-<main style="padding-top:68px;">
+<main style="padding-top:64px;">
+
   <!-- Hero -->
-  <section style="padding:64px 0 48px;background:var(--bg-2);border-bottom:1px solid var(--border);">
+  <section style="padding:clamp(40px,7vw,64px) 0 clamp(28px,5vw,48px);background:var(--bg-2);border-bottom:1px solid var(--border);">
     <div class="container">
       <div class="section-header" style="margin-bottom:0;">
         <div class="section-divider"></div>
-        <h1>YouTube Creator Blog</h1>
-        <p>Guides, strategies, and data-driven insights for YouTube creators and marketers</p>
+        <h1 id="blog-hero-title">YouTube Creator Blog</h1>
+        <p id="blog-hero-sub">Guides, strategies, and 2026 data-driven insights for YouTube creators and marketers</p>
       </div>
     </div>
   </section>
 
-  <!-- Categories -->
-  <section style="padding:32px 0;border-bottom:1px solid var(--border);">
+  <!-- Filter Bar -->
+  <section>
     <div class="container">
-      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
-        <span style="font-size:0.82rem;font-weight:600;color:var(--text-3);margin-right:4px;">Filter:</span>
-        <button class="btn btn-primary" style="padding:6px 16px;font-size:0.8rem;border-radius:99px;">All</button>
-        <button class="btn btn-secondary" style="padding:6px 16px;font-size:0.8rem;border-radius:99px;">YouTube Revenue</button>
-        <button class="btn btn-secondary" style="padding:6px 16px;font-size:0.8rem;border-radius:99px;">Channel Growth</button>
-        <button class="btn btn-secondary" style="padding:6px 16px;font-size:0.8rem;border-radius:99px;">Monetization</button>
-        <button class="btn btn-secondary" style="padding:6px 16px;font-size:0.8rem;border-radius:99px;">YouTube Shorts</button>
-        <button class="btn btn-secondary" style="padding:6px 16px;font-size:0.8rem;border-radius:99px;">Video Marketing</button>
-        <button class="btn btn-secondary" style="padding:6px 16px;font-size:0.8rem;border-radius:99px;">AI for Creators</button>
+      <div class="filter-bar">
+        <span class="filter-label" id="filter-label">Filter:</span>
+        <button class="filter-btn active" data-cat="all">All</button>
+        <button class="filter-btn" data-cat="YouTube Revenue">YouTube Revenue</button>
+        <button class="filter-btn" data-cat="Channel Growth">Channel Growth</button>
+        <button class="filter-btn" data-cat="YouTube Monetization">Monetization</button>
+        <button class="filter-btn" data-cat="YouTube Shorts">Shorts</button>
+        <button class="filter-btn" data-cat="Video Marketing">Video Marketing</button>
+        <button class="filter-btn" data-cat="AI for Creators">AI for Creators</button>
+        <button class="filter-btn" data-cat="Content Creators">Content Creators</button>
       </div>
     </div>
   </section>
 
   <!-- Featured Article -->
-  <section style="padding:48px 0 0;">
+  <section style="padding:clamp(28px,5vw,48px) 0 0;" id="featured-section">
     <div class="container">
-      <a href="how-much-youtube-pays-per-view.html" style="display:block;">
-        <div class="card" style="display:grid;grid-template-columns:1fr 1.2fr;gap:0;overflow:hidden;padding:0;border-radius:var(--radius-xl);">
-          <div style="background:linear-gradient(135deg,rgba(255,0,0,0.08),rgba(255,0,0,0.02));display:flex;align-items:center;justify-content:center;min-height:280px;position:relative;">
-            <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,0,0,0.06),transparent);"></div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="80" height="80" style="color:var(--yt-red);opacity:0.3;position:relative;z-index:1;"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      <a href="how-much-youtube-pays-per-view.html" class="card featured-card" style="display:grid;" data-cat="YouTube Revenue">
+        <div class="featured-img" style="background:linear-gradient(135deg,rgba(255,0,0,0.08),rgba(255,0,0,0.02));display:flex;align-items:center;justify-content:center;min-height:260px;position:relative;">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,0,0,0.06),transparent);"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" width="72" height="72" style="color:var(--yt-red);opacity:0.3;position:relative;z-index:1;"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div style="padding:clamp(24px,4vw,36px);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <span class="badge badge-red">YouTube Revenue</span>
+            <span style="font-size:0.72rem;color:var(--text-4);">Featured · 2026</span>
           </div>
-          <div style="padding:36px;">
-            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
-              <span class="badge badge-red">YouTube Revenue</span>
-              <span style="font-size:0.75rem;color:var(--text-4);">Featured</span>
-            </div>
-            <h2 style="font-size:clamp(1.2rem,2.5vw,1.7rem);margin-bottom:12px;line-height:1.25;">How Much Does YouTube Pay Per View in 2025?</h2>
-            <p style="font-size:0.9rem;color:var(--text-3);line-height:1.65;margin-bottom:20px;">A complete breakdown of YouTube's CPM and RPM rates by country, niche, and content type — with real creator earnings examples and what you can do to increase your revenue.</p>
-            <div style="display:flex;align-items:center;gap:12px;font-size:0.78rem;color:var(--text-4);">
-              <span>January 15, 2025</span>
-              <span>·</span>
-              <span>8 min read</span>
-            </div>
+          <h2 style="font-size:clamp(1.15rem,2.5vw,1.7rem);margin-bottom:10px;line-height:1.25;" id="feat-title">How Much Does YouTube Pay Per View in 2026?</h2>
+          <p style="font-size:clamp(0.82rem,1.5vw,0.9rem);color:var(--text-3);line-height:1.65;margin-bottom:16px;" id="feat-desc">A complete breakdown of YouTube's 2026 CPM and RPM rates by country, niche, and content type — with real creator earnings examples and actionable tips to increase your revenue.</p>
+          <div style="display:flex;align-items:center;gap:10px;font-size:0.75rem;color:var(--text-4);">
+            <span id="feat-date">January 15, 2026</span><span>·</span><span>8 min read</span>
           </div>
         </div>
       </a>
@@ -96,82 +136,153 @@
   </section>
 
   <!-- Article Grid -->
-  <section class="section">
+  <section class="section" id="article-grid-section">
     <div class="container">
-      <div class="blog-grid">
+      <div class="blog-grid" id="blog-grid">
 
-        <a href="youtube-rpm-by-niche.html" class="blog-card">
+        <a href="youtube-rpm-by-niche.html" class="blog-card" data-cat="YouTube Monetization">
           <div class="blog-thumb"><div class="blog-thumb-inner"><div class="blog-thumb-bg"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div>
           <div class="blog-body">
             <div class="blog-cat">YouTube Monetization</div>
-            <div class="blog-title">YouTube RPM by Niche: Which Categories Pay the Most?</div>
-            <div class="blog-excerpt">Finance pays 6x more than gaming. Discover the full RPM breakdown across 15+ YouTube niches and how to choose the most profitable one for your channel.</div>
-            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>January 22, 2025 · 6 min read</div>
+            <div class="blog-title">YouTube RPM by Niche in 2026: Which Categories Pay the Most?</div>
+            <div class="blog-excerpt">Finance pays 6x more than gaming. Discover the full 2026 RPM breakdown across 15+ niches and how to choose the most profitable category for your channel.</div>
+            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>January 22, 2026 · 6 min read</div>
           </div>
         </a>
 
-        <a href="youtube-shorts-monetization.html" class="blog-card">
+        <a href="youtube-shorts-monetization.html" class="blog-card" data-cat="YouTube Shorts">
           <div class="blog-thumb"><div class="blog-thumb-inner"><div class="blog-thumb-bg"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
           <div class="blog-body">
             <div class="blog-cat">YouTube Shorts</div>
-            <div class="blog-title">YouTube Shorts Monetization: Everything Creators Need to Know</div>
-            <div class="blog-excerpt">Do Shorts actually pay? We break down the RPM reality and how to build a strategy combining Shorts with long-form for maximum revenue.</div>
-            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>February 5, 2025 · 7 min read</div>
+            <div class="blog-title">YouTube Shorts Monetization in 2026: What Creators Actually Earn</div>
+            <div class="blog-excerpt">Real RPM numbers, the Shorts revenue pool explained, and how to build a hybrid strategy that uses Shorts for growth while long-form drives your real income.</div>
+            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>February 5, 2026 · 7 min read</div>
           </div>
         </a>
 
-        <a href="grow-youtube-channel-fast.html" class="blog-card">
+        <a href="grow-youtube-channel-fast.html" class="blog-card" data-cat="Channel Growth">
           <div class="blog-thumb"><div class="blog-thumb-inner"><div class="blog-thumb-bg"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div></div>
           <div class="blog-body">
             <div class="blog-cat">Channel Growth</div>
-            <div class="blog-title">10 Proven Strategies to Grow Your YouTube Channel Fast in 2025</div>
-            <div class="blog-excerpt">From SEO optimization to upload cadence and community building — these are the tactics that actually move the needle for channel growth.</div>
-            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>February 14, 2025 · 10 min read</div>
+            <div class="blog-title">10 Proven Strategies to Grow Your YouTube Channel Fast in 2026</div>
+            <div class="blog-excerpt">From SEO and thumbnail testing to community posts and algorithm-aware upload scheduling — the tactics that actually move subscriber counts in 2026.</div>
+            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>February 14, 2026 · 10 min read</div>
           </div>
         </a>
 
-        <a href="youtube-sponsorship-guide.html" class="blog-card">
+        <a href="youtube-sponsorship-guide.html" class="blog-card" data-cat="Video Marketing">
           <div class="blog-thumb"><div class="blog-thumb-inner"><div class="blog-thumb-bg"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div></div>
           <div class="blog-body">
             <div class="blog-cat">Video Marketing</div>
-            <div class="blog-title">How to Land YouTube Sponsorships: A Step-by-Step Guide</div>
-            <div class="blog-excerpt">Sponsorships can pay 10x more than AdSense for the same video. Learn how to pitch brands, set your rates, and build long-term partnerships.</div>
-            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>March 3, 2025 · 9 min read</div>
+            <div class="blog-title">How to Land YouTube Sponsorships in 2026: A Step-by-Step Guide</div>
+            <div class="blog-excerpt">Sponsorships pay 10x more than AdSense for the same video. How to build a media kit, pitch brands at your subscriber tier, and set rates that brands actually pay.</div>
+            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>March 3, 2026 · 9 min read</div>
           </div>
         </a>
 
-        <a href="ai-tools-for-youtube-creators.html" class="blog-card">
+        <a href="ai-tools-for-youtube-creators.html" class="blog-card" data-cat="AI for Creators">
           <div class="blog-thumb"><div class="blog-thumb-inner"><div class="blog-thumb-bg"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 8v4l3 3"/></svg></div></div>
           <div class="blog-body">
             <div class="blog-cat">AI for Creators</div>
-            <div class="blog-title">The Best AI Tools for YouTube Creators in 2025</div>
-            <div class="blog-excerpt">From scriptwriting to thumbnail generation and analytics — these AI tools will save you hours every week and help you produce better content.</div>
-            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>March 18, 2025 · 7 min read</div>
+            <div class="blog-title">The Best AI Tools for YouTube Creators in 2026</div>
+            <div class="blog-excerpt">From scriptwriting and thumbnail generation to analytics and SEO — the AI tools saving creators 10+ hours per week while producing higher-performing content.</div>
+            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>March 18, 2026 · 7 min read</div>
           </div>
         </a>
 
-        <a href="youtube-cpm-countries.html" class="blog-card">
+        <a href="youtube-cpm-countries.html" class="blog-card" data-cat="YouTube Revenue">
           <div class="blog-thumb"><div class="blog-thumb-inner"><div class="blog-thumb-bg"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div></div>
           <div class="blog-body">
             <div class="blog-cat">YouTube Revenue</div>
-            <div class="blog-title">YouTube CPM by Country: Where Advertisers Pay the Most in 2025</div>
-            <div class="blog-excerpt">US, Norway, and Australia top the CPM charts. Here's a full country-by-country CPM comparison and how geography affects your YouTube earnings.</div>
-            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>April 2, 2025 · 6 min read</div>
+            <div class="blog-title">YouTube CPM by Country in 2026: Where Advertisers Pay the Most</div>
+            <div class="blog-excerpt">US, Norway, and Australia top the 2026 CPM charts. Country-by-country comparison showing exactly how geography multiplies or reduces your YouTube ad revenue.</div>
+            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>April 2, 2026 · 6 min read</div>
           </div>
         </a>
 
+        <!-- NEW: Article 8 -->
+        <a href="youtube-engagement-rate-calculator.html" class="blog-card" data-cat="Content Creators">
+          <div class="blog-thumb"><div class="blog-thumb-inner"><div class="blog-thumb-bg"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div></div>
+          <div class="blog-body">
+            <div class="blog-cat">Content Creators</div>
+            <div class="blog-title">YouTube Engagement Rate: What It Is, How to Calculate It, and Why It Matters</div>
+            <div class="blog-excerpt">Engagement rate is the metric brands use to evaluate sponsorship value. Learn the formula, what a good rate looks like for your size, and how to improve yours in 2026.</div>
+            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>April 20, 2026 · 7 min read</div>
+          </div>
+        </a>
+
+        <!-- NEW: Article 9 -->
+        <a href="youtube-channel-country-analyzer.html" class="blog-card" data-cat="YouTube Monetization">
+          <div class="blog-thumb"><div class="blog-thumb-inner"><div class="blog-thumb-bg"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg></div></div>
+          <div class="blog-body">
+            <div class="blog-cat">YouTube Monetization</div>
+            <div class="blog-title">How to Find Out Where a YouTube Channel's Audience Comes From</div>
+            <div class="blog-excerpt">Audience country directly determines RPM. Learn how to identify a channel's geographic audience using our free analyzer, and why it changes everything about revenue potential.</div>
+            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>May 5, 2026 · 6 min read</div>
+          </div>
+        </a>
+
+        <!-- NEW: Article 10 -->
+        <a href="youtube-monetization-requirements-2026.html" class="blog-card" data-cat="YouTube Monetization">
+          <div class="blog-thumb"><div class="blog-thumb-inner"><div class="blog-thumb-bg"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div></div>
+          <div class="blog-body">
+            <div class="blog-cat">YouTube Monetization</div>
+            <div class="blog-title">YouTube Partner Program Requirements in 2026: Everything You Need to Qualify</div>
+            <div class="blog-excerpt">The YPP threshold changed in 2023 and remains in effect for 2026. Here are the exact subscriber, watch time, and policy requirements to start earning from your channel.</div>
+            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>May 18, 2026 · 5 min read</div>
+          </div>
+        </a>
+
+        <!-- NEW: Article 11 -->
+        <a href="compare-youtube-channels.html" class="blog-card" data-cat="Channel Growth">
+          <div class="blog-thumb"><div class="blog-thumb-inner"><div class="blog-thumb-bg"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div></div>
+          <div class="blog-body">
+            <div class="blog-cat">Channel Growth</div>
+            <div class="blog-title">How to Analyze and Compare YouTube Channels Like a Professional</div>
+            <div class="blog-excerpt">Brand managers and agencies compare channels every day. This is the exact framework — metrics, benchmarks, and red flags — used to evaluate YouTube channels before investing a sponsorship budget.</div>
+            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>June 3, 2026 · 8 min read</div>
+          </div>
+        </a>
+
+        <!-- NEW: Article 12 -->
+        <a href="youtube-revenue-affiliate-memberships.html" class="blog-card" data-cat="YouTube Revenue">
+          <div class="blog-thumb"><div class="blog-thumb-inner"><div class="blog-thumb-bg"></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div></div>
+          <div class="blog-body">
+            <div class="blog-cat">YouTube Revenue</div>
+            <div class="blog-title">Beyond AdSense: YouTube Affiliate Marketing and Channel Memberships in 2026</div>
+            <div class="blog-excerpt">The smartest creators earn 3–5x their AdSense income from affiliate links and memberships. Here's exactly how to set up both revenue streams and what numbers to realistically expect.</div>
+            <div class="blog-meta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>June 10, 2026 · 9 min read</div>
+          </div>
+        </a>
+
+      </div>
+      <div class="no-results" id="no-results">No articles found in this category yet. <a href="#" onclick="setFilter('all');return false;" style="color:var(--yt-red);">View all articles.</a></div>
+    </div>
+  </section>
+
+  <!-- Analyzer CTA — internal linking -->
+  <section style="background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div style="max-width:720px;margin:0 auto;padding:clamp(32px,5vw,52px) 0;text-align:center;">
+        <div class="section-divider"></div>
+        <h2 style="font-size:clamp(1.3rem,3vw,1.8rem);margin-bottom:12px;">Check Any Channel's Real Revenue Potential</h2>
+        <p style="color:var(--text-3);max-width:480px;margin:0 auto 24px;font-size:clamp(0.875rem,2vw,0.975rem);">Use our free YouTube Analyzer to get an instant revenue estimate, engagement rate, and Business Potential Score for any public channel — no account required.</p>
+        <a href="../index.html#analyzer" class="btn btn-primary btn-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Analyze a Channel Free
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Norcanto CTA -->
-  <section class="section-sm" style="background:var(--bg-2);border-top:1px solid var(--border);">
+  <section class="section-sm">
     <div class="container">
       <div class="promo-section norcanto" style="max-width:760px;margin:0 auto;">
         <div class="promo-content">
           <div class="promo-badge">Norcanto AI</div>
           <h2 class="promo-title">Work Smarter with Your Documents</h2>
-          <p class="promo-text">Norcanto AI helps creators analyze, summarize, and translate documents in seconds — scripts, contracts, briefs, and more.</p>
+          <p class="promo-text">Norcanto AI helps creators analyze, summarize, and translate documents in seconds — scripts, brand briefs, contracts, and research.</p>
           <a href="https://norcanto.com" target="_blank" rel="noopener" class="btn btn-lg" style="background:#fff;color:#0A0A0B;font-weight:700;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             Try Norcanto AI Free
@@ -180,22 +291,111 @@
       </div>
     </div>
   </section>
+
 </main>
 
-<footer id="footer"><div class="container">
-  <div class="footer-top">
-    <div class="footer-brand">
-      <div class="footer-logo"><img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" /><div class="footer-logo-text">YouTube Analyzer</div></div>
-      <p class="footer-desc">Free YouTube channel revenue analysis. Powered by Norcanto.</p>
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" /><div class="footer-logo-text">YouTube Analyzer</div></div>
+        <p class="footer-desc">Free YouTube channel revenue analysis and performance insights. Powered by Norcanto.</p>
+      </div>
+      <div><div class="footer-col-title">Tools</div><div class="footer-links"><a href="../index.html#analyzer">Channel Analyzer</a><a href="../index.html#calculator">Revenue Calculator</a><a href="index.html">Blog</a></div></div>
+      <div><div class="footer-col-title">Norcanto</div><div class="footer-links"><a href="https://norcanto.com" target="_blank" rel="noopener">Norcanto AI</a><a href="https://converter.norcanto.com" target="_blank" rel="noopener">QuickDocs</a><a href="../about/index.html">About</a></div></div>
+      <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="../privacy/index.html">Privacy Policy</a><a href="../terms/index.html">Terms of Use</a><a href="../contact/index.html">Contact</a><a href="../cookies-notice/index.html">Cookies</a></div></div>
     </div>
-    <div><div class="footer-col-title">Tools</div><div class="footer-links"><a href="../index.html#analyzer">Channel Analyzer</a><a href="../index.html#calculator">Revenue Calculator</a><a href="index.html">Blog</a></div></div>
-    <div><div class="footer-col-title">Norcanto</div><div class="footer-links"><a href="https://norcanto.com" target="_blank" rel="noopener">Norcanto AI</a><a href="https://converter.norcanto.com" target="_blank" rel="noopener">QuickDocs</a></div></div>
-    <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="../privacy/index.html">Privacy Policy</a><a href="../terms/index.html">Terms of Use</a><a href="../contact/index.html">Contact</a></div></div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 YouTube Analyzer by Norcanto. All rights reserved.</div>
+      <div class="footer-legal"><a href="../privacy/index.html">Privacy</a><a href="../terms/index.html">Terms</a><a href="../contact/index.html">Contact</a></div>
+    </div>
   </div>
-  <div class="footer-bottom"><div class="footer-copy">© 2026 YouTube Analyzer by Norcanto.</div><div class="footer-legal"><a href="../privacy/index.html">Privacy</a><a href="../terms/index.html">Terms</a><a href="../contact/index.html">Contact</a></div></div>
-</div></footer>
+</footer>
 
 <script src="../js/logo.js"></script>
 <script src="../js/app.js"></script>
+<script>
+// Blog filter logic
+(function(){
+  const grid    = document.getElementById('blog-grid');
+  const noRes   = document.getElementById('no-results');
+  const featSec = document.getElementById('featured-section');
+  const featCard= featSec ? featSec.querySelector('[data-cat]') : null;
+
+  function setFilter(cat) {
+    window._activeCat = cat;
+
+    // Toggle filter buttons
+    document.querySelectorAll('.filter-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.cat === cat);
+    });
+
+    // Filter grid cards
+    const cards = grid.querySelectorAll('.blog-card');
+    let visible = 0;
+    cards.forEach(card => {
+      const match = cat === 'all' || card.dataset.cat === cat;
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    // Handle featured card
+    if (featCard) {
+      const featMatch = cat === 'all' || featCard.dataset.cat === cat;
+      featSec.style.display = featMatch ? '' : 'none';
+    }
+
+    // No results
+    noRes.classList.toggle('visible', visible === 0);
+  }
+
+  // Expose for inline use
+  window.setFilter = setFilter;
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => setFilter(btn.dataset.cat));
+  });
+
+  // Blog page bilingual strings
+  const blogStrings = {
+    EN: {
+      hero_title:   'YouTube Creator Blog',
+      hero_sub:     'Guides, strategies, and 2026 data-driven insights for YouTube creators and marketers',
+      filter_label: 'Filter:',
+      feat_title:   'How Much Does YouTube Pay Per View in 2026?',
+      feat_desc:    'A complete breakdown of YouTube\'s 2026 CPM and RPM rates by country, niche, and content type — with real creator earnings examples and actionable tips to increase your revenue.',
+      feat_date:    'January 15, 2026',
+    },
+    FR: {
+      hero_title:   'Blog Créateurs YouTube',
+      hero_sub:     'Guides, stratégies et données 2026 pour les créateurs et marketeurs YouTube',
+      filter_label: 'Filtrer :',
+      feat_title:   'Combien YouTube Paie-t-il par Vue en 2026 ?',
+      feat_desc:    'Analyse complète des taux CPM et RPM YouTube 2026 par pays, niche et type de contenu — avec des exemples réels et des conseils pour augmenter vos revenus.',
+      feat_date:    '15 janvier 2026',
+    }
+  };
+
+  // Hook into global LangManager
+  const _origApply = window._blogLangApply || null;
+  document.addEventListener('DOMContentLoaded', () => {
+    // Patch LangManager.apply for blog-specific elements
+    if (window.LangManager) {
+      const origApply = LangManager.apply.bind(LangManager);
+      LangManager.apply = function(lang) {
+        origApply(lang);
+        const bs = blogStrings[lang] || blogStrings.EN;
+        const q = id => document.getElementById(id);
+        if (q('blog-hero-title')) q('blog-hero-title').textContent = bs.hero_title;
+        if (q('blog-hero-sub'))   q('blog-hero-sub').textContent   = bs.hero_sub;
+        if (q('filter-label'))    q('filter-label').textContent    = bs.filter_label;
+        if (q('feat-title'))      q('feat-title').textContent      = bs.feat_title;
+        if (q('feat-desc'))       q('feat-desc').textContent       = bs.feat_desc;
+        if (q('feat-date'))       q('feat-date').textContent       = bs.feat_date;
+      };
+    }
+  });
+})();
+</script>
 </body>
 </html>

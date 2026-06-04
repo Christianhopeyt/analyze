@@ -41,20 +41,68 @@ const LangManager = {
   current: localStorage.getItem('yta-lang') || 'EN',
   strings: {
     EN: {
-      hero_title:       'Discover How Much a <span class="accent">YouTube Channel</span> Can Earn',
-      hero_subtitle:    'Analyze any YouTube channel and get a detailed estimate of its revenue, growth potential, and performance.',
-      analyzer_label:   'YouTube Channel Analysis',
-      input_placeholder:'Paste a YouTube channel URL or @handle...',
-      analyze_btn:      'Analyze Now',
-      calc_title:       'Make a Manual Estimate',
+      hero_title:         'Discover How Much a <span class="accent">YouTube Channel</span> Can Earn',
+      hero_subtitle:      'Free YouTube engagement rate calculator and channel country analyzer. Paste any channel URL and get a complete revenue estimate, RPM breakdown, and business potential score — in seconds.',
+      analyzer_label:     'YouTube Channel Analysis',
+      input_placeholder:  'Paste a YouTube channel URL or @handle...',
+      analyze_btn:        'Analyze Now',
+      calc_title:         'Make a Manual Estimate',
+      blog_title:         'Latest from the Blog',
+      faq_title:          'Frequently Asked Questions',
+      hero_badge:         'Free YouTube Channel Analyzer — Updated 2026',
+      how_it_works:       'How It Works',
+      how_subtitle:       'Three steps to a complete YouTube channel analysis',
+      step1_title:        'Paste the Channel URL',
+      step1_desc:         'Paste any YouTube channel URL — handles, custom URLs, and channel IDs all supported.',
+      step2_title:        'AI-Powered Analysis',
+      step2_desc:         'Our algorithm detects niche, language, and audience to calculate the most accurate RPM-based revenue estimate.',
+      step3_title:        'Get Your Revenue Report',
+      step3_desc:         'Receive a full breakdown of monthly and annual earnings, business score, and growth potential in seconds.',
+      calc_subtitle:      'Enter your own numbers to calculate estimated YouTube revenue',
+      view_all_articles:  'View All Articles',
+      result_subs:        'Subscribers',
+      result_views:       'Total Views',
+      result_videos:      'Videos',
+      result_created:     'Channel Created',
+      monthly_revenue:    'Monthly Revenue',
+      annual_revenue:     'Annual Revenue',
+      minimum:            'Minimum',
+      average:            'Average',
+      maximum:            'Maximum',
+      business_score:     'Business Potential Score',
+      score_subtitle:     'Composite monetization potential',
     },
     FR: {
-      hero_title:       'Découvrez Combien une <span class="accent">Chaîne YouTube</span> Peut Gagner',
-      hero_subtitle:    "Analysez n'importe quelle chaîne YouTube et obtenez une estimation détaillée de ses revenus.",
-      analyzer_label:   'Analyse de Chaîne YouTube',
-      input_placeholder:"Collez l'URL d'une chaîne YouTube ou @pseudo...",
-      analyze_btn:      'Analyser',
-      calc_title:       'Faire une Estimation Manuelle',
+      hero_title:         'Découvrez Combien une <span class="accent">Chaîne YouTube</span> Peut Gagner',
+      hero_subtitle:      'Calculateur de taux d\'engagement YouTube gratuit et analyseur de pays. Collez une URL de chaîne et obtenez une estimation complète des revenus, RPM et score de potentiel en quelques secondes.',
+      analyzer_label:     'Analyse de Chaîne YouTube',
+      input_placeholder:  'Collez l\'URL d\'une chaîne YouTube ou @pseudo...',
+      analyze_btn:        'Analyser Maintenant',
+      calc_title:         'Faire une Estimation Manuelle',
+      blog_title:         'Derniers Articles du Blog',
+      faq_title:          'Questions Fréquentes',
+      hero_badge:         'Analyseur YouTube Gratuit — Mis à jour 2026',
+      how_it_works:       'Comment Ça Fonctionne',
+      how_subtitle:       'Trois étapes pour une analyse complète de chaîne YouTube',
+      step1_title:        'Collez l\'URL de la Chaîne',
+      step1_desc:         'Collez n\'importe quelle URL de chaîne YouTube — handles, URLs personnalisées et identifiants de chaîne acceptés.',
+      step2_title:        'Analyse par IA',
+      step2_desc:         'Notre algorithme détecte la niche, la langue et l\'audience pour calculer l\'estimation de revenus la plus précise.',
+      step3_title:        'Recevez Votre Rapport',
+      step3_desc:         'Obtenez une ventilation complète des revenus mensuels et annuels, score métier et potentiel de croissance en secondes.',
+      calc_subtitle:      'Entrez vos propres chiffres pour calculer les revenus YouTube estimés',
+      view_all_articles:  'Voir Tous les Articles',
+      result_subs:        'Abonnés',
+      result_views:       'Vues Totales',
+      result_videos:      'Vidéos',
+      result_created:     'Chaîne Créée',
+      monthly_revenue:    'Revenus Mensuels',
+      annual_revenue:     'Revenus Annuels',
+      minimum:            'Minimum',
+      average:            'Moyenne',
+      maximum:            'Maximum',
+      business_score:     'Score de Potentiel Commercial',
+      score_subtitle:     'Potentiel de monétisation composite',
     }
   },
   init() {
@@ -70,13 +118,65 @@ const LangManager = {
       btn.classList.toggle('active', btn.dataset.lang === lang)
     );
     const s = this.strings[lang]; if (!s) return;
-    const q = id => document.getElementById(id);
-    if (q('hero-title'))       q('hero-title').innerHTML      = s.hero_title;
-    if (q('hero-subtitle'))    q('hero-subtitle').textContent = s.hero_subtitle;
-    if (q('analyzer-label'))   q('analyzer-label').textContent= s.analyzer_label;
-    if (q('channel-input'))    q('channel-input').placeholder = s.input_placeholder;
+    const q  = id  => document.getElementById(id);
+    const qs = sel => document.querySelector(sel);
+    const qsa= sel => document.querySelectorAll(sel);
+
+    // Core IDs
+    if (q('hero-title'))       q('hero-title').innerHTML       = s.hero_title;
+    if (q('hero-subtitle'))    q('hero-subtitle').textContent  = s.hero_subtitle;
+    if (q('analyzer-label'))   q('analyzer-label').textContent = s.analyzer_label;
+    if (q('channel-input'))    q('channel-input').placeholder  = s.input_placeholder;
     if (q('analyze-btn-text')) q('analyze-btn-text').textContent = s.analyze_btn;
-    if (q('calc-title'))       q('calc-title').textContent    = s.calc_title;
+    if (q('calc-title'))       q('calc-title').textContent     = s.calc_title;
+
+    // Hero badge text
+    const badge = qs('.hero-badge');
+    if (badge) badge.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = '\n        ' + s.hero_badge + '\n      '; });
+
+    // Section headings (data-i18n pattern)
+    qsa('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (s[key]) el.textContent = s[key];
+    });
+
+    // How it works
+    if (q('hiw-title'))    q('hiw-title').textContent    = s.how_it_works;
+    if (q('hiw-subtitle')) q('hiw-subtitle').textContent = s.how_subtitle;
+    if (q('step1-title'))  q('step1-title').textContent  = s.step1_title;
+    if (q('step1-desc'))   q('step1-desc').textContent   = s.step1_desc;
+    if (q('step2-title'))  q('step2-title').textContent  = s.step2_title;
+    if (q('step2-desc'))   q('step2-desc').textContent   = s.step2_desc;
+    if (q('step3-title'))  q('step3-title').textContent  = s.step3_title;
+    if (q('step3-desc'))   q('step3-desc').textContent   = s.step3_desc;
+    if (q('calc-subtitle'))q('calc-subtitle').textContent= s.calc_subtitle;
+    if (q('faq-title'))    q('faq-title').textContent    = s.faq_title;
+    if (q('blog-preview-title')) q('blog-preview-title').textContent = s.blog_title;
+
+    // Calculator view all button
+    const vaa = qs('.view-all-articles');
+    if (vaa) vaa.childNodes.forEach(n => { if (n.nodeType===3 && n.textContent.trim()) n.textContent = ' '+s.view_all_articles+' '; });
+
+    // Results labels
+    if (q('stat-label-subs'))    q('stat-label-subs').textContent    = s.result_subs;
+    if (q('stat-label-views'))   q('stat-label-views').textContent   = s.result_views;
+    if (q('stat-label-videos'))  q('stat-label-videos').textContent  = s.result_videos;
+    if (q('stat-label-created')) q('stat-label-created').textContent = s.result_created;
+    if (q('rev-period-monthly')) q('rev-period-monthly').childNodes.forEach(n => { if (n.nodeType===3) n.textContent = ' '+s.monthly_revenue; });
+    if (q('rev-period-annual'))  q('rev-period-annual').childNodes.forEach(n  => { if (n.nodeType===3) n.textContent = ' '+s.annual_revenue; });
+    if (q('res-score-title'))    q('res-score-title').textContent    = s.business_score;
+    if (q('res-score-subtitle')) q('res-score-subtitle').textContent = s.score_subtitle;
+
+    // Revenue row labels
+    qsa('.revenue-row-label').forEach(el => {
+      const t = el.textContent.trim();
+      if (t === 'Minimum' || t === 'Minimum') el.textContent = s.minimum;
+      if (t === 'Average'  || t === 'Moyenne') el.textContent = s.average;
+      if (t === 'Maximum'  || t === 'Maximum') el.textContent = s.maximum;
+    });
+
+    // html lang attribute
+    document.documentElement.lang = lang === 'FR' ? 'fr' : 'en';
   }
 };
 

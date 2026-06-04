@@ -14,7 +14,7 @@ npm install
 ```
 YT_API_KEY=your_youtube_data_api_v3_key_here
 PORT=3001
-ALLOWED_ORIGIN=https://analyzer.norcanto.com
+ALLOWED_ORIGIN=https://yt.norcanto.com
 ```
 
 3. Run locally:

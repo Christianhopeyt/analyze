@@ -1,37 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>About – YouTube Analyzer by Norcanto</title>
-  <meta name="description" content="Learn about YouTube Analyzer by Norcanto — how it works, our mission, and the team behind it." />
-  <link rel="stylesheet" href="../css/main.css" /><link rel="icon" type="image/png" href="../images/norcanto-logo.png" />
+  <meta name="description" content="Learn about YouTube Analyzer by Norcanto — how it works, our revenue methodology, and the team behind it." />
+  <link rel="canonical" href="https://analyzer.norcanto.com/about/" />
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="icon" type="image/png" href="../images/norcanto-logo.png" />
+  <style>
+    .about-hero { padding: clamp(88px,14vw,130px) 0 clamp(40px,6vw,64px); background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .about-body { max-width: 720px; margin: 0 auto; }
+    .about-body h2 { font-size: clamp(1.15rem,2.5vw,1.4rem); margin: clamp(28px,5vw,40px) 0 12px; color: var(--text); }
+    .about-body p  { font-size: clamp(0.875rem,1.8vw,1rem); color: var(--text-2); line-height: 1.8; margin-bottom: 16px; }
+    .about-body a  { color: var(--yt-red); }
+    .about-body a:hover { text-decoration: underline; }
+    .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(12px,2.5vw,20px); margin: clamp(24px,4vw,36px) 0; }
+    .stat-box  { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(18px,3vw,24px); text-align: center; box-shadow: var(--shadow-sm); }
+    .stat-box-num { font-family: var(--font-display); font-size: clamp(1.5rem,4vw,2.2rem); font-weight: 800; color: var(--yt-red); }
+    .stat-box-label { font-size: clamp(0.72rem,1.5vw,0.82rem); color: var(--text-3); margin-top: 4px; }
+    .team-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: clamp(12px,2.5vw,20px); margin: clamp(20px,3vw,32px) 0; }
+    .team-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(16px,3vw,22px); box-shadow: var(--shadow-sm); }
+    .team-card-role  { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--yt-red); margin-bottom: 6px; }
+    .team-card-name  { font-family: var(--font-display); font-size: clamp(0.9rem,2vw,1rem); font-weight: 700; margin-bottom: 6px; }
+    .team-card-desc  { font-size: 0.82rem; color: var(--text-3); line-height: 1.6; }
+    .tool-cta { background: linear-gradient(135deg, var(--dark-2), var(--dark-3)); border-radius: var(--radius-xl); padding: clamp(28px,5vw,48px); text-align: center; margin: clamp(32px,5vw,48px) 0; }
+    .tool-cta h3 { font-family: var(--font-display); font-size: clamp(1.1rem,2.5vw,1.4rem); color: #fff; margin-bottom: 10px; }
+    .tool-cta p  { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+    @media (max-width: 600px) {
+      .stat-row  { grid-template-columns: repeat(3,1fr); }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 360px) {
+      .stat-row  { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
-<header id="header"><div class="container"><div class="header-inner">
-  <a href="../index.html" class="header-logo"><img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" />YouTube Analyzer <span>by Norcanto</span></a>
-  <nav class="header-nav"><a href="../index.html#analyzer">Channel Analysis</a><a href="../index.html#calculator">Calculator</a><a href="../blog/index.html">Blog</a><a href="index.html" class="active">About</a></nav>
-  <div class="header-controls">
-    <button class="theme-toggle" aria-label="Toggle theme"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
-    <a href="https://norcanto.com" target="_blank" rel="noopener" class="btn btn-primary">Discover Norcanto AI</a>
-  </div>
-<button class="hamburger" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button></div></div></header>
-<nav class="mobile-menu"><a href="../index.html">Home</a><a href="../index.html#analyzer">Channel Analysis</a><a href="../index.html#calculator">Calculator</a><a href="../blog/index.html">Blog</a><a href="../about/index.html">About</a></nav>
-<main style="padding-top:68px;">
-  <section class="section"><div class="container" style="max-width:760px;">
-    <div class="section-header"><div class="section-divider"></div><h1>About YouTube Analyzer by Norcanto</h1></div>
-    <div style="color:var(--text-2);line-height:1.8;font-size:1rem;">
-      <p style="margin-bottom:20px;"><strong style="color:var(--text);">YouTube Analyzer by Norcanto</strong> is a free tool that allows anyone to estimate the revenue, growth potential, and performance metrics of any public YouTube channel.</p>
-      <h2 style="font-size:1.3rem;margin:32px 0 12px;">Our Mission</h2>
-      <p style="margin-bottom:20px;">We believe content creators and marketers deserve transparent, data-driven insights into YouTube's monetization ecosystem. Our tool democratizes access to revenue intelligence that was previously only available to agencies and large media companies.</p>
-      <h2 style="font-size:1.3rem;margin:32px 0 12px;">How We Calculate Revenue</h2>
-      <p style="margin-bottom:20px;">Our revenue estimations are based on a proprietary algorithm that factors in the channel's detected content niche, primary audience geography, content type (long-form vs. Shorts), average view counts, and real-world RPM benchmarks gathered from industry research. We display a minimum, average, and maximum range to accurately reflect the inherent variability of YouTube advertising revenue.</p>
-      <h2 style="font-size:1.3rem;margin:32px 0 12px;">Data Sources</h2>
-      <p style="margin-bottom:20px;">Channel statistics are retrieved via the official YouTube Data API v3. Revenue figures are estimates only and are not provided by or affiliated with YouTube or Google.</p>
-      <h2 style="font-size:1.3rem;margin:32px 0 12px;">About Norcanto</h2>
-      <p style="margin-bottom:20px;">Norcanto is an AI-powered productivity company building tools for creators, professionals, and businesses. Our flagship product, <a href="https://norcanto.com" style="color:var(--yt-red);">Norcanto AI</a>, helps users work smarter with their documents. <a href="https://converter.norcanto.com" style="color:var(--yt-red);">QuickDocs Converter</a> enables fast, free document format conversion.</p>
+
+<header id="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="../index.html" class="header-logo">
+        <img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" />
+        YouTube Analyzer <span>by Norcanto</span>
+      </a>
+      <nav class="header-nav">
+        <a href="../index.html#analyzer">Channel Analysis</a>
+        <a href="../index.html#calculator">Calculator</a>
+        <a href="../blog/index.html">Blog</a>
+        <a href="../privacy/index.html">Privacy</a>
+        <a href="index.html" class="active">About</a>
+      </nav>
+      <div class="header-controls">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="EN">EN</button>
+          <button class="lang-btn" data-lang="FR">FR</button>
+        </div>
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="https://norcanto.com" target="_blank" rel="noopener" class="btn btn-primary header-cta">Norcanto AI</a>
+      </div>
+      <button class="hamburger" aria-label="Menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
-  </div></section>
+  </div>
+</header>
+
+<nav class="mobile-menu" aria-label="Mobile navigation">
+  <a href="../index.html">Home</a>
+  <a href="../index.html#analyzer">Channel Analysis</a>
+  <a href="../index.html#calculator">Calculator</a>
+  <a href="../blog/index.html">Blog</a>
+  <a href="../privacy/index.html">Privacy Policy</a>
+  <a href="index.html">About</a>
+  <a href="https://norcanto.com" target="_blank" rel="noopener" style="color:var(--yt-red);font-weight:700;">Norcanto AI</a>
+  <div class="mobile-menu-controls">
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="EN">EN</button>
+      <button class="lang-btn" data-lang="FR">FR</button>
+    </div>
+    <button class="theme-toggle" aria-label="Toggle theme">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+  <div class="about-hero">
+    <div class="container">
+      <div class="about-body">
+        <div class="section-divider"></div>
+        <h1 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px;">About YouTube Analyzer</h1>
+        <p style="font-size:clamp(0.95rem,2vw,1.1rem);color:var(--text-3);max-width:560px;">A free, data-driven tool that gives any creator or marketer transparent insight into YouTube channel revenue and performance.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-body">
+
+        <div class="stat-row reveal">
+          <div class="stat-box">
+            <div class="stat-box-num">500K+</div>
+            <div class="stat-box-label">Channels Analyzed</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-num">15+</div>
+            <div class="stat-box-label">Niche Categories</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-num">Free</div>
+            <div class="stat-box-label">No Account Needed</div>
+          </div>
+        </div>
+
+        <h2>Our Mission</h2>
+        <p>Content creators and marketers deserve transparent, data-driven access to YouTube's monetization ecosystem. Revenue intelligence was historically locked behind agencies and enterprise analytics platforms — we built YouTube Analyzer by Norcanto to democratize that access for everyone, completely free.</p>
+        <p>Whether you are a brand evaluating a potential sponsorship partner, a creator benchmarking your own channel against competitors, or a marketer researching the YouTube landscape, our tool gives you the numbers you need in seconds — no sign-up, no paywall.</p>
+
+        <h2>How Revenue Is Calculated</h2>
+        <p>Our estimation algorithm combines four data points to produce a min/avg/max revenue range:</p>
+        <p><strong style="color:var(--text);">1. Content niche RPM</strong> — Each niche carries a different RPM (Revenue Per Mille). Finance channels average $14–18 RPM; gaming channels average $3–5 RPM. We maintain a dataset of 15 niche categories benchmarked from publicly reported creator earnings and advertising market research.</p>
+        <p><strong style="color:var(--text);">2. Geographic audience multiplier</strong> — A US or UK audience generates up to 5x more ad revenue than an audience of the same size in South or Southeast Asia. We detect the channel's primary audience country from language signals and published metadata.</p>
+        <p><strong style="color:var(--text);">3. Estimated monthly views</strong> — We divide the channel's total lifetime views by its age in months to derive an average monthly view estimate, then weight it by seasonal advertising demand patterns (Q4 typically pays 30–40% more than Q1).</p>
+        <p><strong style="color:var(--text);">4. Content type modifier</strong> — YouTube Shorts generate approximately 92–95% less ad revenue per view than standard long-form videos. Where Shorts content is detected, we apply the appropriate modifier.</p>
+        <p>Revenue figures are estimates. Actual earnings depend on the monetized view rate, advertiser competition during any given period, negotiated channel deals, and other factors only the creator knows. We always show a range, never a single "exact" number.</p>
+
+        <h2>Data Sources</h2>
+        <p>Channel statistics — subscriber count, total views, video count, creation date, and channel metadata — are retrieved via the official <strong style="color:var(--text);">YouTube Data API v3</strong>. This is Google's official public data interface; no scraping, no third-party intermediaries.</p>
+        <p>Revenue estimates are our proprietary calculations and are not provided by, endorsed by, or affiliated with YouTube, Google, or Alphabet Inc.</p>
+
+        <h2>The Business Potential Score</h2>
+        <p>Our proprietary 0–100 composite score evaluates a channel across five dimensions: subscriber scale, revenue potential, content volume, niche RPM quality, and view-to-subscriber engagement ratio. A score of 75+ (Premium) indicates a channel with strong brand deal and affiliate potential beyond AdSense revenue alone.</p>
+
+        <h2>About Norcanto</h2>
+        <p>Norcanto is a Paris-based AI productivity company building tools that help creators, professionals, and businesses work more intelligently. YouTube Analyzer is one of several free tools in the Norcanto ecosystem.</p>
+
+        <div class="team-grid reveal">
+          <div class="team-card">
+            <div class="team-card-role">Flagship Product</div>
+            <div class="team-card-name">Norcanto AI</div>
+            <div class="team-card-desc">Analyze, summarize, translate, and extract insight from any document using AI. Built for professionals who work with complex information every day.</div>
+          </div>
+          <div class="team-card">
+            <div class="team-card-role">Free Tool</div>
+            <div class="team-card-name">QuickDocs Converter</div>
+            <div class="team-card-desc">Convert PDF, DOCX, PPTX, and XLSX files in seconds. No upload limits, no account required, no watermarks.</div>
+          </div>
+        </div>
+
+        <div class="tool-cta reveal">
+          <h3>Ready to Analyze a YouTube Channel?</h3>
+          <p>Paste any channel URL and get a full revenue breakdown in under 2 seconds — free, no login required.</p>
+          <a href="../index.html#analyzer" class="btn btn-primary btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Analyze a Channel Free
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
 </main>
-<footer id="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">© 2026 YouTube Analyzer by Norcanto.</div><div class="footer-legal"><a href="../privacy/index.html">Privacy</a><a href="../terms/index.html">Terms</a><a href="../contact/index.html">Contact</a></div></div></div></footer>
-<script src="../js/logo.js"></script><script src="../js/app.js"></script>
-</body></html>
+
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" /><div class="footer-logo-text">YouTube Analyzer</div></div>
+        <p class="footer-desc">Free YouTube channel revenue analysis and performance insights. Powered by Norcanto.</p>
+      </div>
+      <div><div class="footer-col-title">Tools</div><div class="footer-links"><a href="../index.html#analyzer">Channel Analyzer</a><a href="../index.html#calculator">Revenue Calculator</a><a href="../blog/index.html">Blog</a></div></div>
+      <div><div class="footer-col-title">Norcanto</div><div class="footer-links"><a href="https://norcanto.com" target="_blank" rel="noopener">Norcanto AI</a><a href="https://converter.norcanto.com" target="_blank" rel="noopener">QuickDocs</a><a href="index.html">About</a></div></div>
+      <div><div class="footer-col-title">Legal</div><div class="footer-links"><a href="../privacy/index.html">Privacy Policy</a><a href="../terms/index.html">Terms of Use</a><a href="../contact/index.html">Contact</a><a href="../cookies-notice/index.html">Cookies</a></div></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 YouTube Analyzer by Norcanto. All rights reserved.</div>
+      <div class="footer-legal"><a href="../privacy/index.html">Privacy</a><a href="../terms/index.html">Terms</a><a href="../contact/index.html">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/logo.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>
