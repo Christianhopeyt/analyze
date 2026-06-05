@@ -7,6 +7,13 @@
   <meta name="description" content="Get in touch with the YouTube Analyzer by Norcanto team. We respond within 48 hours." />
   <link rel="canonical" href="https://analyzer.norcanto.com/contact/" />
   <link rel="stylesheet" href="../css/main.css" />
+  <!-- Performance: preconnect + non-blocking fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+        media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" /></noscript>
   <link rel="icon" type="image/png" href="../images/norcanto-logo.png" />
   <style>
     .contact-page { padding-top: 68px; }
@@ -80,7 +87,7 @@
   <div class="container">
     <div class="header-inner">
       <a href="../index.html" class="header-logo">
-        <img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" />
+        <img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
         YouTube Analyzer <span>by Norcanto</span>
       </a>
       <nav class="header-nav">
@@ -128,8 +135,8 @@
   <div class="contact-hero">
     <div class="container">
       <div class="section-divider"></div>
-      <h1 style="font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:10px;">Contact Us</h1>
-      <p style="font-size:clamp(0.9rem,2vw,1rem);color:var(--text-3);">We read every message and reply within 48 hours.</p>
+      <h1 style="font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:10px;" id="contact-page-title">Contact Us</h1>
+      <p style="font-size:clamp(0.9rem,2vw,1rem);color:var(--text-3);" id="contact-page-sub">We read every message and reply within 48 hours.</p>
     </div>
   </div>
 
@@ -139,8 +146,7 @@
 
         <!-- Form -->
         <div class="contact-form-card">
-          <h2>Send a Message</h2>
-
+          <h2 id="contact-form-h">Send a Message</h2>
 
           <!-- The form — action points to Formspree, replace YOUR_FORM_ID -->
           <div id="contact-form-wrap">
@@ -152,17 +158,17 @@
 
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label" for="cf-name">Your Name *</label>
+                  <label class="form-label" for="cf-name" id="contact-name-label">Your Name *</label>
                   <input type="text" id="cf-name" name="name" class="form-input" placeholder="Jane Smith" required autocomplete="name" />
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="cf-email">Email Address *</label>
+                  <label class="form-label" for="cf-email" id="contact-email-label">Email Address *</label>
                   <input type="email" id="cf-email" name="email" class="form-input" placeholder="jane@example.com" required autocomplete="email" />
                 </div>
               </div>
 
               <div class="form-group">
-                <label class="form-label" for="cf-subject">Subject *</label>
+                <label class="form-label" for="cf-subject" id="contact-subject-label">Subject *</label>
                 <select id="cf-subject" name="subject" class="form-select" required>
                   <option value="">Select a topic...</option>
                   <option>General Inquiry</option>
@@ -175,7 +181,7 @@
               </div>
 
               <div class="form-group">
-                <label class="form-label" for="cf-message">Message *</label>
+                <label class="form-label" for="cf-message" id="contact-message-label">Message *</label>
                 <textarea id="cf-message" name="message" class="form-textarea" placeholder="Tell us how we can help..." required></textarea>
               </div>
 
@@ -191,8 +197,8 @@
             <div class="form-success-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            <h3>Message sent!</h3>
-            <p>Thank you for reaching out. We will reply to your email within 48 hours.</p>
+            <h3 id="form-success-h">Message sent!</h3>
+            <p id="form-success-p">Thank you for reaching out. We will reply to your email within 48 hours.</p>
           </div>
         </div>
 
@@ -210,18 +216,18 @@
             <div class="info-card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
-            <div class="info-card-title">Response Time</div>
-            <div class="info-card-text">We reply within 48 hours on business days (Mon–Fri).</div>
+            <div class="info-card-title" id="contact-resp-title">Response Time</div>
+            <div class="info-card-text" id="contact-resp-text">We reply within 48 hours on business days (Mon–Fri).</div>
           </div>
 
           <div class="info-card">
             <div class="info-card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
-            <div class="info-card-title">Privacy Requests</div>
-            <div class="info-card-text">For data deletion or privacy concerns, email <a href="mailto:privacy@norcanto.com">privacy@norcanto.com</a> directly.</div>
+            <div class="info-card-title" id="contact-priv-title">Privacy Requests</div>
+            <div class="info-card-text" id="contact-priv-text">For data deletion or privacy concerns, email <a href="mailto:privacy@norcanto.com">privacy@norcanto.com</a> directly.</div>
           </div>
-          
+
         </div>
 
       </div>
@@ -233,7 +239,7 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="footer-logo"><img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" /><div class="footer-logo-text">YouTube Analyzer</div></div>
+        <div class="footer-logo"><img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img"  loading="lazy" decoding="async" /><div class="footer-logo-text">YouTube Analyzer</div></div>
         <p class="footer-desc">Free YouTube channel revenue analysis and performance insights. Powered by Norcanto.</p>
       </div>
       <div><div class="footer-col-title">Tools</div><div class="footer-links"><a href="../index.html#analyzer">Channel Analyzer</a><a href="../index.html#calculator">Revenue Calculator</a><a href="../blog/index.html">Blog</a></div></div>
@@ -247,8 +253,8 @@
   </div>
 </footer>
 
-<script src="../js/logo.js"></script>
-<script src="../js/app.js"></script>
+<script src="../js/logo.js" defer></script>
+<script src="../js/app.js" defer></script>
 <script>
 // Contact form — AJAX submission to Formspree, shows success state inline
 (function(){
@@ -279,7 +285,7 @@
 
     // Check if Formspree ID has been configured
     const action = form.getAttribute('action');
-    if (action.includes('mnjyqkrp')) {
+    if (action.includes('YOUR_FORM_ID')) {
       // Fallback: open mail client directly so form is never completely dead
       const name    = document.getElementById('cf-name').value;
       const email   = document.getElementById('cf-email').value;

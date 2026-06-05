@@ -41,68 +41,190 @@ const LangManager = {
   current: localStorage.getItem('yta-lang') || 'EN',
   strings: {
     EN: {
-      hero_title:         'Discover How Much a <span class="accent">YouTube Channel</span> Can Earn',
-      hero_subtitle:      'Free YouTube engagement rate calculator and channel country analyzer. Paste any channel URL and get a complete revenue estimate, RPM breakdown, and business potential score — in seconds.',
-      analyzer_label:     'YouTube Channel Analysis',
-      input_placeholder:  'Paste a YouTube channel URL or @handle...',
-      analyze_btn:        'Analyze Now',
-      calc_title:         'Make a Manual Estimate',
-      blog_title:         'Latest from the Blog',
-      faq_title:          'Frequently Asked Questions',
-      hero_badge:         'Free YouTube Channel Analyzer — Updated 2026',
-      how_it_works:       'How It Works',
-      how_subtitle:       'Three steps to a complete YouTube channel analysis',
-      step1_title:        'Paste the Channel URL',
-      step1_desc:         'Paste any YouTube channel URL — handles, custom URLs, and channel IDs all supported.',
-      step2_title:        'AI-Powered Analysis',
-      step2_desc:         'Our algorithm detects niche, language, and audience to calculate the most accurate RPM-based revenue estimate.',
-      step3_title:        'Get Your Revenue Report',
-      step3_desc:         'Receive a full breakdown of monthly and annual earnings, business score, and growth potential in seconds.',
-      calc_subtitle:      'Enter your own numbers to calculate estimated YouTube revenue',
-      view_all_articles:  'View All Articles',
-      result_subs:        'Subscribers',
-      result_views:       'Total Views',
-      result_videos:      'Videos',
-      result_created:     'Channel Created',
-      monthly_revenue:    'Monthly Revenue',
-      annual_revenue:     'Annual Revenue',
-      minimum:            'Minimum',
-      average:            'Average',
-      maximum:            'Maximum',
-      business_score:     'Business Potential Score',
-      score_subtitle:     'Composite monetization potential',
+      hero_title:        'Discover How Much a <span class="accent">YouTube Channel</span> Can Earn',
+      hero_subtitle:     'Free YouTube engagement rate calculator and channel country analyzer. Paste any channel URL and get a complete revenue estimate, RPM breakdown, and business potential score — in seconds.',
+      analyzer_label:    'YouTube Channel Analysis',
+      input_placeholder: 'Paste a YouTube channel URL or @handle...',
+      analyze_btn:       'Analyze Now',
+      calc_title:        'Make a Manual Estimate',
+      blog_title:        'Latest from the Blog',
+      faq_title:         'Frequently Asked Questions',
+      hero_badge:        'Free YouTube Channel Analyzer — Updated 2026',
+      how_it_works:      'How It Works',
+      how_subtitle:      'Three steps to a complete YouTube channel analysis',
+      step1_title:       'Paste the Channel URL',
+      step1_desc:        'Paste any YouTube channel URL — handles, custom URLs, and channel IDs all supported.',
+      step2_title:       'AI-Powered Analysis',
+      step2_desc:        'Our algorithm detects niche, language, and audience to calculate the most accurate RPM-based revenue estimate.',
+      step3_title:       'Get Your Revenue Report',
+      step3_desc:        'Receive a full breakdown of monthly and annual earnings, business score, and growth potential in seconds.',
+      calc_subtitle:     'Enter your own numbers to calculate estimated YouTube revenue',
+      view_all_articles: 'View All Articles',
+      result_subs:       'Subscribers',
+      result_views:      'Total Views',
+      result_videos:     'Videos',
+      result_created:    'Channel Created',
+      monthly_revenue:   'Monthly Revenue',
+      annual_revenue:    'Annual Revenue',
+      minimum:           'Minimum',
+      average:           'Average',
+      maximum:           'Maximum',
+      business_score:    'Business Potential Score',
+      score_subtitle:    'Composite monetization potential',
+      norcanto_title:    'Need to Work Smarter with Your Documents?',
+      norcanto_text:     'Use Norcanto AI to analyze, summarize, translate, and leverage your documents with artificial intelligence.',
+      norcanto_btn:      'Discover Norcanto AI',
+      quickdocs_title:   'Convert Your Documents in Seconds',
+      quickdocs_text:    'QuickDocs Converter allows you to quickly convert PDF, DOCX, PPTX, XLSX files and much more. Fast, secure, and free.',
+      quickdocs_btn:     'Use QuickDocs Converter',
+      about_title:       'About YouTube Analyzer',
+      about_sub:         'A free, data-driven tool that gives any creator or marketer transparent insight into YouTube channel revenue and performance.',
+      about_mission_h:   'Our Mission',
+      about_method_h:    'How Revenue Is Calculated',
+      about_data_h:      'Data Sources',
+      about_score_h:     'The Business Potential Score',
+      about_norcanto_h:  'About Norcanto',
+      about_cta_h:       'Ready to Analyze a YouTube Channel?',
+      about_cta_p:       'Paste any channel URL and get a full revenue breakdown in under 2 seconds — free, no login required.',
+      about_cta_btn:     'Analyze a Channel Free',
+      privacy_title:     'Privacy Policy',
+      privacy_updated:   'Last updated: January 1, 2026',
+      terms_title:       'Terms of Use',
+      terms_updated:     'Last updated: January 1, 2026',
+      contact_title:     'Contact Us',
+      contact_sub:       'We read every message and reply within 48 hours.',
+      contact_form_h:    'Send a Message',
+      contact_name_l:    'Your Name',
+      contact_email_l:   'Email Address',
+      contact_subject_l: 'Subject',
+      contact_subject_p: 'Select a topic...',
+      contact_message_l: 'Message',
+      contact_message_p: 'Tell us how we can help...',
+      contact_submit:    'Send Message',
+      contact_resp_t:    'Response Time',
+      contact_resp_p:    'We reply within 48 hours on business days (Mon\u2013Fri).',
+      contact_priv_t:    'Privacy Requests',
+      contact_priv_p:    'For data deletion or privacy concerns, email privacy@norcanto.com directly.',
+      contact_free_t:    'Free Tool',
+      contact_free_p:    'YouTube Analyzer is 100% free. No account, no subscription.',
+      contact_success_h: 'Message sent!',
+      contact_success_p: 'Thank you for reaching out. We will reply within 48 hours.',
+      cookies_title:     'Cookie Policy',
+      cookies_updated:   'Last updated: January 1, 2026',
+      cookies_what_h:    'What Are Cookies?',
+      cookies_what_p:    'Cookies are small text files placed on your device when you visit a website. They help websites remember your preferences and improve your experience.',
+      cookies_use_h:     'Cookies We Use',
+      cookies_manage_h:  'Managing Cookies',
+      cookies_manage_p:  'You can manage or delete cookies through your browser settings. Note that disabling certain cookies may affect the functionality of this site.',
+      blog_hero_title:   'YouTube Creator Blog',
+      blog_hero_sub:     'Guides, strategies, and 2026 data-driven insights for YouTube creators and marketers',
+      blog_filter_lbl:   'Filter:',
+      blog_cta_h:        "Check Any Channel's Real Revenue Potential",
+      blog_cta_p:        'Use our free YouTube Analyzer to get an instant revenue estimate, engagement rate, and Business Potential Score for any public channel.',
+      blog_cta_btn:      'Analyze a Channel Free',
+      footer_copy:       '\u00a9 2026 YouTube Analyzer by Norcanto. All rights reserved.',
+      footer_desc:       'Free YouTube channel revenue analysis and performance insights. Powered by Norcanto.',
+      cookie_text:       'We use cookies to improve your experience and analyze traffic. By clicking \u201cAccept\u201d, you agree to our Cookie Policy.',
+      cookie_accept:     'Accept',
+      cookie_reject:     'Reject',
+      nav_analysis:      'Channel Analysis',
+      nav_calculator:    'Calculator',
+      nav_blog:          'Blog',
+      nav_privacy:       'Privacy',
+      nav_about:         'About',
     },
     FR: {
-      hero_title:         'Découvrez Combien une <span class="accent">Chaîne YouTube</span> Peut Gagner',
-      hero_subtitle:      'Calculateur de taux d\'engagement YouTube gratuit et analyseur de pays. Collez une URL de chaîne et obtenez une estimation complète des revenus, RPM et score de potentiel en quelques secondes.',
-      analyzer_label:     'Analyse de Chaîne YouTube',
-      input_placeholder:  'Collez l\'URL d\'une chaîne YouTube ou @pseudo...',
-      analyze_btn:        'Analyser Maintenant',
-      calc_title:         'Faire une Estimation Manuelle',
-      blog_title:         'Derniers Articles du Blog',
-      faq_title:          'Questions Fréquentes',
-      hero_badge:         'Analyseur YouTube Gratuit — Mis à jour 2026',
-      how_it_works:       'Comment Ça Fonctionne',
-      how_subtitle:       'Trois étapes pour une analyse complète de chaîne YouTube',
-      step1_title:        'Collez l\'URL de la Chaîne',
-      step1_desc:         'Collez n\'importe quelle URL de chaîne YouTube — handles, URLs personnalisées et identifiants de chaîne acceptés.',
-      step2_title:        'Analyse par IA',
-      step2_desc:         'Notre algorithme détecte la niche, la langue et l\'audience pour calculer l\'estimation de revenus la plus précise.',
-      step3_title:        'Recevez Votre Rapport',
-      step3_desc:         'Obtenez une ventilation complète des revenus mensuels et annuels, score métier et potentiel de croissance en secondes.',
-      calc_subtitle:      'Entrez vos propres chiffres pour calculer les revenus YouTube estimés',
-      view_all_articles:  'Voir Tous les Articles',
-      result_subs:        'Abonnés',
-      result_views:       'Vues Totales',
-      result_videos:      'Vidéos',
-      result_created:     'Chaîne Créée',
-      monthly_revenue:    'Revenus Mensuels',
-      annual_revenue:     'Revenus Annuels',
-      minimum:            'Minimum',
-      average:            'Moyenne',
-      maximum:            'Maximum',
-      business_score:     'Score de Potentiel Commercial',
-      score_subtitle:     'Potentiel de monétisation composite',
+      hero_title:        'D\u00e9couvrez Combien une <span class="accent">Cha\u00eene YouTube</span> Peut Gagner',
+      hero_subtitle:     "Calculateur de taux d'engagement YouTube gratuit et analyseur de pays. Collez une URL de cha\u00eene et obtenez une estimation compl\u00e8te des revenus, RPM et score de potentiel en quelques secondes.",
+      analyzer_label:    'Analyse de Cha\u00eene YouTube',
+      input_placeholder: "Collez l'URL d'une cha\u00eene YouTube ou @pseudo...",
+      analyze_btn:       'Analyser Maintenant',
+      calc_title:        'Faire une Estimation Manuelle',
+      blog_title:        'Derniers Articles du Blog',
+      faq_title:         'Questions Fr\u00e9quentes',
+      hero_badge:        'Analyseur YouTube Gratuit \u2014 Mis \u00e0 jour 2026',
+      how_it_works:      'Comment \u00c7a Fonctionne',
+      how_subtitle:      'Trois \u00e9tapes pour une analyse compl\u00e8te de cha\u00eene YouTube',
+      step1_title:       "Collez l'URL de la Cha\u00eene",
+      step1_desc:        "Collez n'importe quelle URL YouTube \u2014 handles, URLs personnalis\u00e9es et identifiants de cha\u00eene tous accept\u00e9s.",
+      step2_title:       'Analyse par Intelligence Artificielle',
+      step2_desc:        "Notre algorithme d\u00e9tecte la niche, la langue et l'audience pour calculer l'estimation de revenus la plus pr\u00e9cise.",
+      step3_title:       'Recevez Votre Rapport',
+      step3_desc:        'Obtenez une ventilation compl\u00e8te des revenus mensuels et annuels, score commercial et potentiel de croissance en secondes.',
+      calc_subtitle:     'Entrez vos propres chiffres pour calculer les revenus YouTube estim\u00e9s',
+      view_all_articles: 'Voir Tous les Articles',
+      result_subs:       'Abonn\u00e9s',
+      result_views:      'Vues Totales',
+      result_videos:     'Vid\u00e9os',
+      result_created:    'Cha\u00eene Cr\u00e9\u00e9e',
+      monthly_revenue:   'Revenus Mensuels',
+      annual_revenue:    'Revenus Annuels',
+      minimum:           'Minimum',
+      average:           'Moyenne',
+      maximum:           'Maximum',
+      business_score:    'Score de Potentiel Commercial',
+      score_subtitle:    'Potentiel de mon\u00e9tisation composite',
+      norcanto_title:    'Besoin de Travailler Plus Intelligemment avec vos Documents\u00a0?',
+      norcanto_text:     "Utilisez Norcanto AI pour analyser, r\u00e9sumer, traduire et exploiter vos documents gr\u00e2ce \u00e0 l'intelligence artificielle.",
+      norcanto_btn:      'D\u00e9couvrir Norcanto AI',
+      quickdocs_title:   'Convertissez vos Documents en Quelques Secondes',
+      quickdocs_text:    'QuickDocs Converter vous permet de convertir rapidement des fichiers PDF, DOCX, PPTX, XLSX et bien plus encore.',
+      quickdocs_btn:     'Utiliser QuickDocs Converter',
+      about_title:       '\u00c0 Propos de YouTube Analyzer',
+      about_sub:         "Un outil gratuit bas\u00e9 sur les donn\u00e9es qui offre \u00e0 tout cr\u00e9ateur ou sp\u00e9cialiste marketing une vision transparente des revenus et performances des cha\u00eenes YouTube.",
+      about_mission_h:   'Notre Mission',
+      about_method_h:    'Comment les Revenus Sont Calcul\u00e9s',
+      about_data_h:      'Sources de Donn\u00e9es',
+      about_score_h:     'Le Score de Potentiel Commercial',
+      about_norcanto_h:  '\u00c0 Propos de Norcanto',
+      about_cta_h:       'Pr\u00eat \u00e0 Analyser une Cha\u00eene YouTube\u00a0?',
+      about_cta_p:       "Collez n'importe quelle URL de cha\u00eene et obtenez une analyse compl\u00e8te des revenus en moins de 2 secondes \u2014 gratuit, sans compte requis.",
+      about_cta_btn:     'Analyser une Cha\u00eene Gratuitement',
+      privacy_title:     'Politique de Confidentialit\u00e9',
+      privacy_updated:   'Derni\u00e8re mise \u00e0 jour\u00a0: 1er janvier 2026',
+      terms_title:       "Conditions d'Utilisation",
+      terms_updated:     'Derni\u00e8re mise \u00e0 jour\u00a0: 1er janvier 2026',
+      contact_title:     'Nous Contacter',
+      contact_sub:       'Nous lisons chaque message et r\u00e9pondons sous 48 heures.',
+      contact_form_h:    'Envoyer un Message',
+      contact_name_l:    'Votre Nom',
+      contact_email_l:   'Adresse E-mail',
+      contact_subject_l: 'Sujet',
+      contact_subject_p: 'S\u00e9lectionnez un sujet\u2026',
+      contact_message_l: 'Message',
+      contact_message_p: 'Comment pouvons-nous vous aider\u00a0?',
+      contact_submit:    'Envoyer le Message',
+      contact_resp_t:    'D\u00e9lai de R\u00e9ponse',
+      contact_resp_p:    'Nous r\u00e9pondons sous 48 heures les jours ouvr\u00e9s (lun.\u2013ven.).',
+      contact_priv_t:    'Demandes de Confidentialit\u00e9',
+      contact_priv_p:    'Pour toute suppression de donn\u00e9es ou question de confidentialit\u00e9, \u00e9crivez directement \u00e0 privacy@norcanto.com.',
+      contact_free_t:    'Outil Gratuit',
+      contact_free_p:    'YouTube Analyzer est 100\u00a0% gratuit. Aucun compte, aucun abonnement.',
+      contact_success_h: 'Message envoy\u00e9\u00a0!',
+      contact_success_p: 'Merci de nous avoir contact\u00e9s. Nous vous r\u00e9pondrons sous 48 heures.',
+      cookies_title:     'Politique des Cookies',
+      cookies_updated:   'Derni\u00e8re mise \u00e0 jour\u00a0: 1er janvier 2026',
+      cookies_what_h:    'Que Sont les Cookies\u00a0?',
+      cookies_what_p:    'Les cookies sont de petits fichiers texte plac\u00e9s sur votre appareil lorsque vous visitez un site web. Ils permettent aux sites de m\u00e9moriser vos pr\u00e9f\u00e9rences et d\'am\u00e9liorer votre exp\u00e9rience.',
+      cookies_use_h:     'Cookies Utilis\u00e9s',
+      cookies_manage_h:  'G\u00e9rer les Cookies',
+      cookies_manage_p:  'Vous pouvez g\u00e9rer ou supprimer les cookies via les param\u00e8tres de votre navigateur. Notez que la d\u00e9sactivation de certains cookies peut affecter le fonctionnement du site.',
+      blog_hero_title:   'Blog Cr\u00e9ateurs YouTube',
+      blog_hero_sub:     'Guides, strat\u00e9gies et donn\u00e9es 2026 pour les cr\u00e9ateurs et sp\u00e9cialistes marketing YouTube',
+      blog_filter_lbl:   'Filtrer\u00a0:',
+      blog_cta_h:        "V\u00e9rifiez le Potentiel de Revenus de N'importe Quelle Cha\u00eene",
+      blog_cta_p:        'Utilisez notre analyseur YouTube gratuit pour obtenir une estimation instantan\u00e9e des revenus, du taux d\'engagement et du Score de Potentiel Commercial.',
+      blog_cta_btn:      'Analyser une Cha\u00eene Gratuitement',
+      footer_copy:       '\u00a9 2026 YouTube Analyzer by Norcanto. Tous droits r\u00e9serv\u00e9s.',
+      footer_desc:       'Analyse gratuite des revenus et performances de cha\u00eenes YouTube. Propuls\u00e9 par Norcanto.',
+      cookie_text:       'Nous utilisons des cookies pour am\u00e9liorer votre exp\u00e9rience et analyser le trafic. En cliquant sur \u00ab\u00a0Accepter\u00a0\u00bb, vous acceptez notre Politique des Cookies.',
+      cookie_accept:     'Accepter',
+      cookie_reject:     'Refuser',
+      nav_analysis:      'Analyse de Cha\u00eene',
+      nav_calculator:    'Calculateur',
+      nav_blog:          'Blog',
+      nav_privacy:       'Confidentialit\u00e9',
+      nav_about:         '\u00c0 Propos',
     }
   },
   init() {
@@ -118,64 +240,158 @@ const LangManager = {
       btn.classList.toggle('active', btn.dataset.lang === lang)
     );
     const s = this.strings[lang]; if (!s) return;
-    const q  = id  => document.getElementById(id);
-    const qs = sel => document.querySelector(sel);
-    const qsa= sel => document.querySelectorAll(sel);
+    const q   = id  => document.getElementById(id);
+    const qs  = sel => document.querySelector(sel);
+    const qsa = sel => document.querySelectorAll(sel);
+    const txt = (id, key) => { const el = q(id); if (el && s[key] !== undefined) el.textContent = s[key]; };
+    const ph  = (id, key) => { const el = q(id); if (el && s[key] !== undefined) el.placeholder  = s[key]; };
 
-    // Core IDs
-    if (q('hero-title'))       q('hero-title').innerHTML       = s.hero_title;
-    if (q('hero-subtitle'))    q('hero-subtitle').textContent  = s.hero_subtitle;
-    if (q('analyzer-label'))   q('analyzer-label').textContent = s.analyzer_label;
-    if (q('channel-input'))    q('channel-input').placeholder  = s.input_placeholder;
-    if (q('analyze-btn-text')) q('analyze-btn-text').textContent = s.analyze_btn;
-    if (q('calc-title'))       q('calc-title').textContent     = s.calc_title;
+    // ── data-i18n attribute: <any data-i18n="key"> (works on every page) ──
+    qsa('[data-i18n]').forEach(el => { const k = el.dataset.i18n; if (s[k] !== undefined) el.textContent = s[k]; });
+    qsa('[data-i18n-ph]').forEach(el => { const k = el.dataset.i18nPh; if (s[k] !== undefined) el.placeholder = s[k]; });
+    qsa('[data-i18n-html]').forEach(el => { const k = el.dataset.i18nHtml; if (s[k] !== undefined) el.innerHTML = s[k]; });
 
-    // Hero badge text
+    // ── Index page ──
+    const htEl = q('hero-title');
+    if (htEl) htEl.innerHTML = s.hero_title;
+    txt('hero-subtitle',     'hero_subtitle');
+    txt('analyzer-label',    'analyzer_label');
+    ph('channel-input',      'input_placeholder');
+    txt('analyze-btn-text',  'analyze_btn');
+    txt('calc-title',        'calc_title');
+    txt('calc-subtitle',     'calc_subtitle');
+    txt('faq-title',         'faq_title');
+    txt('blog-preview-title','blog_title');
+    txt('hiw-title',         'how_it_works');
+    txt('hiw-subtitle',      'how_subtitle');
+    txt('step1-title',       'step1_title');  txt('step1-desc', 'step1_desc');
+    txt('step2-title',       'step2_title');  txt('step2-desc', 'step2_desc');
+    txt('step3-title',       'step3_title');  txt('step3-desc', 'step3_desc');
+    txt('norcanto-promo-title',   'norcanto_title');
+    txt('norcanto-promo-text',    'norcanto_text');
+    txt('norcanto-promo-btn',     'norcanto_btn');
+    txt('quickdocs-promo-title',  'quickdocs_title');
+    txt('quickdocs-promo-text',   'quickdocs_text');
+    txt('quickdocs-promo-btn',    'quickdocs_btn');
+
+    // Hero badge
     const badge = qs('.hero-badge');
-    if (badge) badge.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = '\n        ' + s.hero_badge + '\n      '; });
+    if (badge && s.hero_badge) badge.childNodes.forEach(n => { if (n.nodeType === 3 && n.textContent.trim()) n.textContent = ' ' + s.hero_badge + ' '; });
 
-    // Section headings (data-i18n pattern)
-    qsa('[data-i18n]').forEach(el => {
-      const key = el.dataset.i18n;
-      if (s[key]) el.textContent = s[key];
-    });
-
-    // How it works
-    if (q('hiw-title'))    q('hiw-title').textContent    = s.how_it_works;
-    if (q('hiw-subtitle')) q('hiw-subtitle').textContent = s.how_subtitle;
-    if (q('step1-title'))  q('step1-title').textContent  = s.step1_title;
-    if (q('step1-desc'))   q('step1-desc').textContent   = s.step1_desc;
-    if (q('step2-title'))  q('step2-title').textContent  = s.step2_title;
-    if (q('step2-desc'))   q('step2-desc').textContent   = s.step2_desc;
-    if (q('step3-title'))  q('step3-title').textContent  = s.step3_title;
-    if (q('step3-desc'))   q('step3-desc').textContent   = s.step3_desc;
-    if (q('calc-subtitle'))q('calc-subtitle').textContent= s.calc_subtitle;
-    if (q('faq-title'))    q('faq-title').textContent    = s.faq_title;
-    if (q('blog-preview-title')) q('blog-preview-title').textContent = s.blog_title;
-
-    // Calculator view all button
+    // View all articles button
     const vaa = qs('.view-all-articles');
-    if (vaa) vaa.childNodes.forEach(n => { if (n.nodeType===3 && n.textContent.trim()) n.textContent = ' '+s.view_all_articles+' '; });
+    if (vaa) vaa.childNodes.forEach(n => { if (n.nodeType === 3 && n.textContent.trim()) n.textContent = ' ' + s.view_all_articles + ' '; });
 
-    // Results labels
-    if (q('stat-label-subs'))    q('stat-label-subs').textContent    = s.result_subs;
-    if (q('stat-label-views'))   q('stat-label-views').textContent   = s.result_views;
-    if (q('stat-label-videos'))  q('stat-label-videos').textContent  = s.result_videos;
-    if (q('stat-label-created')) q('stat-label-created').textContent = s.result_created;
-    if (q('rev-period-monthly')) q('rev-period-monthly').childNodes.forEach(n => { if (n.nodeType===3) n.textContent = ' '+s.monthly_revenue; });
-    if (q('rev-period-annual'))  q('rev-period-annual').childNodes.forEach(n  => { if (n.nodeType===3) n.textContent = ' '+s.annual_revenue; });
-    if (q('res-score-title'))    q('res-score-title').textContent    = s.business_score;
-    if (q('res-score-subtitle')) q('res-score-subtitle').textContent = s.score_subtitle;
+    // Results stat labels
+    txt('stat-label-subs',    'result_subs');
+    txt('stat-label-views',   'result_views');
+    txt('stat-label-videos',  'result_videos');
+    txt('stat-label-created', 'result_created');
+    txt('res-score-title',    'business_score');
+    txt('res-score-subtitle', 'score_subtitle');
 
-    // Revenue row labels
+    // Revenue period labels (contain SVG, so use childNode text)
+    const patchPeriod = (id, key) => {
+      const el = q(id);
+      if (el && s[key]) el.childNodes.forEach(n => { if (n.nodeType === 3) n.textContent = ' ' + s[key]; });
+    };
+    patchPeriod('rev-period-monthly', 'monthly_revenue');
+    patchPeriod('rev-period-annual',  'annual_revenue');
+
+    // Revenue row labels (Minimum / Average / Maximum)
     qsa('.revenue-row-label').forEach(el => {
       const t = el.textContent.trim();
-      if (t === 'Minimum' || t === 'Minimum') el.textContent = s.minimum;
-      if (t === 'Average'  || t === 'Moyenne') el.textContent = s.average;
-      if (t === 'Maximum'  || t === 'Maximum') el.textContent = s.maximum;
+      if (/^(Minimum)$/i.test(t))         el.textContent = s.minimum;
+      if (/^(Average|Moyenne)$/i.test(t)) el.textContent = s.average;
+      if (/^(Maximum)$/i.test(t))         el.textContent = s.maximum;
     });
 
-    // html lang attribute
+    // ── About page ──
+    txt('about-page-title',   'about_title');
+    txt('about-page-sub',     'about_sub');
+    txt('about-mission-h',    'about_mission_h');
+    txt('about-method-h',     'about_method_h');
+    txt('about-data-h',       'about_data_h');
+    txt('about-score-h',      'about_score_h');
+    txt('about-norcanto-h',   'about_norcanto_h');
+    txt('about-cta-h',        'about_cta_h');
+    txt('about-cta-p',        'about_cta_p');
+    txt('about-cta-btn',      'about_cta_btn');
+
+    // ── Privacy page ──
+    txt('privacy-page-title',   'privacy_title');
+    txt('privacy-page-updated', 'privacy_updated');
+
+    // ── Terms page ──
+    txt('terms-page-title',   'terms_title');
+    txt('terms-page-updated', 'terms_updated');
+
+    // ── Contact page ──
+    txt('contact-page-title',   'contact_title');
+    txt('contact-page-sub',     'contact_sub');
+    txt('contact-form-h',       'contact_form_h');
+    txt('contact-name-label',   'contact_name_l');
+    txt('contact-email-label',  'contact_email_l');
+    txt('contact-subject-label','contact_subject_l');
+    ph('cf-subject',            'contact_subject_p');
+    txt('contact-message-label','contact_message_l');
+    ph('cf-message',            'contact_message_p');
+    ph('cf-name',               'contact_name_l');
+    ph('cf-email',              'contact_email_l');
+    txt('submit-label',         'contact_submit');
+    txt('contact-resp-title',   'contact_resp_t');
+    txt('contact-resp-text',    'contact_resp_p');
+    txt('contact-priv-title',   'contact_priv_t');
+    txt('contact-priv-text',    'contact_priv_p');
+    txt('contact-free-title',   'contact_free_t');
+    txt('contact-free-text',    'contact_free_p');
+    txt('form-success-h',       'contact_success_h');
+    txt('form-success-p',       'contact_success_p');
+
+    // ── Cookies page ──
+    txt('cookies-page-title',   'cookies_title');
+    txt('cookies-page-updated', 'cookies_updated');
+    txt('cookies-what-h',       'cookies_what_h');
+    txt('cookies-what-p',       'cookies_what_p');
+    txt('cookies-use-h',        'cookies_use_h');
+    txt('cookies-manage-h',     'cookies_manage_h');
+    txt('cookies-manage-p',     'cookies_manage_p');
+
+    // ── Blog page ──
+    txt('blog-hero-title',  'blog_hero_title');
+    txt('blog-hero-sub',    'blog_hero_sub');
+    txt('filter-label',     'blog_filter_lbl');
+    txt('blog-cta-h',       'blog_cta_h');
+    txt('blog-cta-p',       'blog_cta_p');
+    txt('blog-cta-btn',     'blog_cta_btn');
+
+    // ── Footer (all pages) ──
+    qsa('.footer-copy').forEach(el => { el.textContent = s.footer_copy; });
+    qsa('.footer-desc').forEach(el => { el.textContent = s.footer_desc; });
+
+    // ── Cookie banner ──
+    const cb = q('cookie-banner-text');
+    if (cb && s.cookie_text) {
+      // Preserve the cookies-notice link inside the banner text
+      const linkEl = cb.querySelector('a');
+      const linkHtml = linkEl ? linkEl.outerHTML : '<a href="cookies-notice/index.html">Cookie Policy</a>';
+      cb.innerHTML = s.cookie_text.replace('Cookie Policy', linkHtml).replace('Politique des Cookies', linkHtml);
+    }
+    txt('cookie-accept-label', 'cookie_accept');
+    txt('cookie-reject-label', 'cookie_reject');
+
+    // ── Nav links (desktop + mobile, all pages) ──
+    qsa('.header-nav a, .mobile-menu a').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      const clean = href.replace(/^.*?#/, '#').replace(/^.*\/([^\/]+\.html)/, '$1').replace('../','');
+      if (clean.includes('#analyzer') || clean.includes('analyzer'))          { if (!clean.includes('http') && !clean.includes('norcanto')) a.textContent = s.nav_analysis; }
+      if (clean.includes('#calculator') || clean === 'calculator')             a.textContent = s.nav_calculator;
+      if (clean.includes('blog/index') || clean === 'blog' || (clean.includes('blog') && clean.endsWith('index.html'))) a.textContent = s.nav_blog;
+      if (clean.includes('privacy') && !clean.includes('http'))               a.textContent = s.nav_privacy;
+      if (clean.includes('about') && !clean.includes('http'))                 a.textContent = s.nav_about;
+    });
+
+    // html lang attr
     document.documentElement.lang = lang === 'FR' ? 'fr' : 'en';
   }
 };

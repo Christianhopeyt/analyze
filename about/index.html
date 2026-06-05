@@ -7,6 +7,13 @@
   <meta name="description" content="Learn about YouTube Analyzer by Norcanto — how it works, our revenue methodology, and the team behind it." />
   <link rel="canonical" href="https://analyzer.norcanto.com/about/" />
   <link rel="stylesheet" href="../css/main.css" />
+  <!-- Performance: preconnect + non-blocking fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+        media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" /></noscript>
   <link rel="icon" type="image/png" href="../images/norcanto-logo.png" />
   <style>
     .about-hero { padding: clamp(88px,14vw,130px) 0 clamp(40px,6vw,64px); background: var(--bg-2); border-bottom: 1px solid var(--border); }
@@ -42,7 +49,7 @@
   <div class="container">
     <div class="header-inner">
       <a href="../index.html" class="header-logo">
-        <img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" />
+        <img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
         YouTube Analyzer <span>by Norcanto</span>
       </a>
       <nav class="header-nav">
@@ -93,8 +100,8 @@
     <div class="container">
       <div class="about-body">
         <div class="section-divider"></div>
-        <h1 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px;">About YouTube Analyzer</h1>
-        <p style="font-size:clamp(0.95rem,2vw,1.1rem);color:var(--text-3);max-width:560px;">A free, data-driven tool that gives any creator or marketer transparent insight into YouTube channel revenue and performance.</p>
+        <h1 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px;" id="about-page-title">About YouTube Analyzer</h1>
+        <p style="font-size:clamp(0.95rem,2vw,1.1rem);color:var(--text-3);max-width:560px;" id="about-page-sub">A free, data-driven tool that gives any creator or marketer transparent insight into YouTube channel revenue and performance.</p>
       </div>
     </div>
   </div>
@@ -118,11 +125,11 @@
           </div>
         </div>
 
-        <h2>Our Mission</h2>
+        <h2 id="about-mission-h">Our Mission</h2>
         <p>Content creators and marketers deserve transparent, data-driven access to YouTube's monetization ecosystem. Revenue intelligence was historically locked behind agencies and enterprise analytics platforms — we built YouTube Analyzer by Norcanto to democratize that access for everyone, completely free.</p>
         <p>Whether you are a brand evaluating a potential sponsorship partner, a creator benchmarking your own channel against competitors, or a marketer researching the YouTube landscape, our tool gives you the numbers you need in seconds — no sign-up, no paywall.</p>
 
-        <h2>How Revenue Is Calculated</h2>
+        <h2 id="about-method-h">How Revenue Is Calculated</h2>
         <p>Our estimation algorithm combines four data points to produce a min/avg/max revenue range:</p>
         <p><strong style="color:var(--text);">1. Content niche RPM</strong> — Each niche carries a different RPM (Revenue Per Mille). Finance channels average $14–18 RPM; gaming channels average $3–5 RPM. We maintain a dataset of 15 niche categories benchmarked from publicly reported creator earnings and advertising market research.</p>
         <p><strong style="color:var(--text);">2. Geographic audience multiplier</strong> — A US or UK audience generates up to 5x more ad revenue than an audience of the same size in South or Southeast Asia. We detect the channel's primary audience country from language signals and published metadata.</p>
@@ -130,14 +137,14 @@
         <p><strong style="color:var(--text);">4. Content type modifier</strong> — YouTube Shorts generate approximately 92–95% less ad revenue per view than standard long-form videos. Where Shorts content is detected, we apply the appropriate modifier.</p>
         <p>Revenue figures are estimates. Actual earnings depend on the monetized view rate, advertiser competition during any given period, negotiated channel deals, and other factors only the creator knows. We always show a range, never a single "exact" number.</p>
 
-        <h2>Data Sources</h2>
+        <h2 id="about-data-h">Data Sources</h2>
         <p>Channel statistics — subscriber count, total views, video count, creation date, and channel metadata — are retrieved via the official <strong style="color:var(--text);">YouTube Data API v3</strong>. This is Google's official public data interface; no scraping, no third-party intermediaries.</p>
         <p>Revenue estimates are our proprietary calculations and are not provided by, endorsed by, or affiliated with YouTube, Google, or Alphabet Inc.</p>
 
-        <h2>The Business Potential Score</h2>
+        <h2 id="about-score-h">The Business Potential Score</h2>
         <p>Our proprietary 0–100 composite score evaluates a channel across five dimensions: subscriber scale, revenue potential, content volume, niche RPM quality, and view-to-subscriber engagement ratio. A score of 75+ (Premium) indicates a channel with strong brand deal and affiliate potential beyond AdSense revenue alone.</p>
 
-        <h2>About Norcanto</h2>
+        <h2 id="about-norcanto-h">About Norcanto</h2>
         <p>Norcanto is a Paris-based AI productivity company building tools that help creators, professionals, and businesses work more intelligently. YouTube Analyzer is one of several free tools in the Norcanto ecosystem.</p>
 
         <div class="team-grid reveal">
@@ -154,8 +161,8 @@
         </div>
 
         <div class="tool-cta reveal">
-          <h3>Ready to Analyze a YouTube Channel?</h3>
-          <p>Paste any channel URL and get a full revenue breakdown in under 2 seconds — free, no login required.</p>
+          <h3 id="about-cta-h">Ready to Analyze a YouTube Channel?</h3>
+          <p id="about-cta-p">Paste any channel URL and get a full revenue breakdown in under 2 seconds — free, no login required.</p>
           <a href="../index.html#analyzer" class="btn btn-primary btn-lg">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             Analyze a Channel Free
@@ -171,7 +178,7 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="footer-logo"><img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" /><div class="footer-logo-text">YouTube Analyzer</div></div>
+        <div class="footer-logo"><img src="../images/norcanto-logo.png" alt="Norcanto" class="site-logo-img"  loading="lazy" decoding="async" /><div class="footer-logo-text">YouTube Analyzer</div></div>
         <p class="footer-desc">Free YouTube channel revenue analysis and performance insights. Powered by Norcanto.</p>
       </div>
       <div><div class="footer-col-title">Tools</div><div class="footer-links"><a href="../index.html#analyzer">Channel Analyzer</a><a href="../index.html#calculator">Revenue Calculator</a><a href="../blog/index.html">Blog</a></div></div>
@@ -185,7 +192,7 @@
   </div>
 </footer>
 
-<script src="../js/logo.js"></script>
-<script src="../js/app.js"></script>
+<script src="../js/logo.js" defer></script>
+<script src="../js/app.js" defer></script>
 </body>
 </html>
