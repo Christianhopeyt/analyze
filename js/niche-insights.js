@@ -15,28 +15,24 @@ const NI_STRINGS = {
     summary:'Niche summary', titles:'Title ideas', tags:'Tag suggestions', angles:'Video angle ideas', ai_unavailable:'AI suggestions are unavailable. Public YouTube analytics remain valid.',
     no_fast:'No fast-performing videos met the current sample threshold.', low:'low', medium:'medium', high:'high', views_per_day:'views/day', days_old:'days old',
     pattern_how_to:'How-to', pattern_numbered:'List / numbered', pattern_question:'Question', pattern_beginner:'Beginner', pattern_comparison:'Comparison', pattern_review:'Review', pattern_urgency:'Urgency / newness',
-    guide_title:'How to Use the Dashboard', guide_intro:'Follow these steps to turn recent public YouTube data into a practical content plan.',
-    guide_step1_title:'Enter a niche, topic, or keyword', guide_step1_text:'Start with a clear search such as "fitness," "Christian motivation," "AI tools," or "football highlights."',
-    guide_step2_title:'Understand the analysis period', guide_step2_text:'The dashboard compares recent public YouTube activity from the last 7, 30, and 90 days when enough data is available.',
-    guide_step3_title:'Read the key scores', guide_step3_text:'Trend Score shows momentum, Competition Score estimates how crowded the sample is, and Opportunity Score highlights promising gaps.',
-    guide_step4_title:'Review the analytics', guide_step4_text:'Compare average views, engagement, upload frequency, fast-performing videos, and common keywords to understand the niche.',
-    guide_step5_title:'Use the AI suggestions', guide_step5_text:'Use the generated title ideas, tag suggestions, video angles, and niche summary as creative starting points.',
-    guide_step6_title:'Turn insights into content', guide_step6_text:'Use the evidence to decide what videos to create and how to differentiate them. Do not blindly copy other creators.',
-    guide_note:'Scores are directional indicators based on a recent public-data sample, not guarantees of future performance.',
+    guide_title:'How to Use Niche Insights', guide_intro:'Discover trending YouTube niches and content opportunities in minutes.',
+    guide_step1_title:'Enter a niche or keyword', guide_step1_text:'Example: Fitness, Christian Motivation, AI Tools.',
+    guide_step2_title:'Review the niche analytics', guide_step2_text:'Compare the trend, competition, and opportunity scores.',
+    guide_step3_title:'Analyze content opportunities', guide_step3_text:'Review keywords, fast-growing videos, and signs of audience demand.',
+    guide_step4_title:'Generate content ideas', guide_step4_text:'Use AI-powered title ideas, tags, and video angles as creative starting points.',
+    guide_step5_title:'Create and validate your next video', guide_step5_text:'Use the insights to choose and validate high-potential content topics.',
     limit_sample:'The report analyzes a sample of up to 50 recent relevant public videos, not every video in the niche.',
     limit_directional:'Scores are directional indicators based on sampled public data and do not guarantee performance.',
     limit_frequency:'Upload frequency means observed relevant uploads in the sample.',
     limit_unavailable:'Likes, comments, and tags may be unavailable for some videos.'
   },
   FR: {
-    guide_title:'Comment Utiliser le Tableau de Bord', guide_intro:'Suivez ces \u00e9tapes pour transformer les donn\u00e9es YouTube publiques r\u00e9centes en plan de contenu concret.',
-    guide_step1_title:'Saisissez une niche, un sujet ou un mot-cl\u00e9', guide_step1_text:'Commencez par une recherche claire comme "fitness", "motivation chr\u00e9tienne", "outils IA" ou "meilleurs moments de football".',
-    guide_step2_title:'Comprenez la p\u00e9riode d\u2019analyse', guide_step2_text:'Le tableau de bord compare l\u2019activit\u00e9 YouTube publique r\u00e9cente des 7, 30 et 90 derniers jours lorsque les donn\u00e9es sont suffisantes.',
-    guide_step3_title:'Lisez les scores cl\u00e9s', guide_step3_text:'Le score de tendance indique la dynamique, le score de concurrence estime la saturation de l\u2019\u00e9chantillon et le score d\u2019opportunit\u00e9 met en \u00e9vidence des pistes prometteuses.',
-    guide_step4_title:'Examinez les statistiques', guide_step4_text:'Comparez les vues moyennes, l\u2019engagement, la fr\u00e9quence de publication, les vid\u00e9os \u00e0 progression rapide et les mots-cl\u00e9s fr\u00e9quents.',
-    guide_step5_title:'Utilisez les suggestions IA', guide_step5_text:'Utilisez les id\u00e9es de titres, suggestions de tags, angles de vid\u00e9os et le r\u00e9sum\u00e9 de niche comme points de d\u00e9part cr\u00e9atifs.',
-    guide_step6_title:'Transformez les informations en contenu', guide_step6_text:'Utilisez les donn\u00e9es pour choisir les vid\u00e9os \u00e0 cr\u00e9er et vous diff\u00e9rencier. Ne copiez pas aveugl\u00e9ment les autres cr\u00e9ateurs.',
-    guide_note:'Les scores sont des indicateurs directionnels bas\u00e9s sur un \u00e9chantillon r\u00e9cent de donn\u00e9es publiques, et non des garanties de performance future.',
+    guide_title:'Comment Utiliser Niche Insights', guide_intro:'D\u00e9couvrez les niches YouTube tendance et les opportunit\u00e9s de contenu en quelques minutes.',
+    guide_step1_title:'Saisissez une niche ou un mot-cl\u00e9', guide_step1_text:'Exemple : Fitness, Motivation Chr\u00e9tienne, Outils IA.',
+    guide_step2_title:'Examinez les statistiques de la niche', guide_step2_text:'Comparez les scores de tendance, de concurrence et d\u2019opportunit\u00e9.',
+    guide_step3_title:'Analysez les opportunit\u00e9s de contenu', guide_step3_text:'Examinez les mots-cl\u00e9s, les vid\u00e9os en forte croissance et les signes de demande du public.',
+    guide_step4_title:'G\u00e9n\u00e9rez des id\u00e9es de contenu', guide_step4_text:'Utilisez les id\u00e9es de titres, tags et angles de vid\u00e9os g\u00e9n\u00e9r\u00e9s par IA comme points de d\u00e9part.',
+    guide_step5_title:'Cr\u00e9ez et validez votre prochaine vid\u00e9o', guide_step5_text:'Utilisez les informations pour choisir et valider des sujets de contenu \u00e0 fort potentiel.',
     title:'Tableau des Tendances de Niches YouTube', subtitle:'Analysez un échantillon récent de vidéos YouTube publiques pour comprendre la dynamique, la concurrence, l’engagement et les opportunités.',
     input_label:'Niche, sujet ou mot-clé', input_placeholder:'ex. finances personnelles pour débutants', analyze:'Analyser la Niche',
     region:'Région de l’audience', result_language:'Langue de pertinence des résultats', help:'Les statistiques utilisent jusqu’à 50 vidéos publiques récentes des 90 derniers jours. Aucune statistique fictive n’est générée.',
@@ -71,10 +67,16 @@ const NicheInsights = {
       setTimeout(() => { this.lang = button.dataset.lang; this.applyLanguage(); if (this.data) this.render(this.data); }, 0);
     }));
   },
-  text(key) { return NI_STRINGS[this.lang][key] || NI_STRINGS.EN[key] || key; },
+  text(key) { return NI_STRINGS[this.lang]?.[key] || NI_STRINGS.EN[key] || ''; },
   applyLanguage() {
-    document.querySelectorAll('[data-ni]').forEach(element => { element.textContent = this.text(element.dataset.ni); });
-    document.querySelectorAll('[data-ni-placeholder]').forEach(element => { element.placeholder = this.text(element.dataset.niPlaceholder); });
+    document.querySelectorAll('[data-ni]').forEach(element => {
+      const value = this.text(element.dataset.ni);
+      if (value) element.textContent = value;
+    });
+    document.querySelectorAll('[data-ni-placeholder]').forEach(element => {
+      const value = this.text(element.dataset.niPlaceholder);
+      if (value) element.placeholder = value;
+    });
     document.getElementById('niche-language').value = this.lang === 'FR' ? 'fr' : 'en';
   },
   setStatus(message, error = false) {
