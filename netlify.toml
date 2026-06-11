@@ -1,14 +1,6 @@
 [build]
   publish = "."
-
-# Register the edge function that injects the API key
-[[edge_functions]]
-  function = "inject-config"
-  path = "/"
-
-[[edge_functions]]
-  function = "inject-config"
-  path = "/index.html"
+  functions = "netlify/functions"
 
 # Security & cache headers
 [[headers]]
@@ -22,12 +14,12 @@
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=3600, must-revalidate"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=3600, must-revalidate"
 
 [[headers]]
   for = "/images/*"
@@ -41,6 +33,21 @@
 
 # SPA-style routing for /channel/* paths
 [[redirects]]
+  from = "/api/channel-analyzer"
+  to   = "/.netlify/functions/channel-analyzer"
+  status = 200
+
+[[redirects]]
+  from = "/api/niche-insights"
+  to   = "/.netlify/functions/niche-insights"
+  status = 200
+
+[[redirects]]
   from = "/channel/*"
   to   = "/index.html"
   status = 200
+
+[[redirects]]
+  from = "/fr/blog/:slug.html"
+  to   = "/fr/blog/:slug/"
+  status = 301

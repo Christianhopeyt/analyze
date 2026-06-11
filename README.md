@@ -12,6 +12,7 @@ A premium SaaS web application for analyzing YouTube channel revenue, performanc
 - Manual Revenue Calculator with real-time updates
 - Dark/Light mode toggle
 - EN/FR language switcher
+- Niche Insights dashboard using recent public YouTube data
 - Blog with SEO-optimized articles
 - Full legal pages (Privacy, Terms, Contact, Cookies)
 - Cookie consent banner
@@ -60,35 +61,31 @@ A premium SaaS web application for analyzing YouTube channel revenue, performanc
 4. Add environment variable: `YT_API_KEY` = your YouTube Data API v3 key
 5. Deploy
 
-**Without an API key**, the analyzer runs in demo mode — showing realistic simulated data based on the channel handle. This lets you demonstrate the full UI without needing API access.
+**Without an API key**, public YouTube analysis is unavailable and the UI shows an error. The site does not fabricate channel or niche analytics.
 
 
-## Why the button works locally but not on Netlify (and the fix)
+Niche Insights never generates demo analytics. If public YouTube data is unavailable and no recent cached result exists, it shows an error instead of fabricated metrics.
 
-### Root cause
-Netlify **environment variables are server-side only**. Setting `YT_API_KEY` in the
-Netlify dashboard does NOT make it available as `window.YT_API_KEY` in browser JavaScript.
-The old code checked `window.YT_API_KEY`, got `undefined`, treated it as falsy but then
-attempted a YouTube API call with an empty key anyway — which returned a 403 error that the
-catch block swallowed silently, making the button appear dead.
+## Niche Insights
 
-### The fix (already applied)
-1. **A Netlify Edge Function** (`netlify/edge-functions/inject-config.js`) reads the env var
-   at request time on Netlify's edge and injects `<script>window.YT_API_KEY="...";</script>`
-   into the HTML before it reaches the browser.
+The `/niche-insights/` dashboard calls the server-side `/api/niche-insights` Netlify Function.
 
-2. **Demo-mode fallback** — if `window.YT_API_KEY` is empty or the API call fails for any
-   reason, the analyzer automatically falls back to realistic demo data. This means the
-   button ALWAYS works, even with no API key configured.
+- YouTube Data API: one recent-video search request and one batched video-details request per uncached niche query
+- Analytics: deterministic local calculations from public video statistics
+- Gemini: optional summaries, title ideas, tag suggestions, and video angles only
+- Environment: `YT_API_KEY` is required; `GEMINI_API_KEY` and `GEMINI_MODEL` are optional
+- Cache: YouTube analytics for 8 hours, stale fallback up to 48 hours, and AI suggestions for 24 hours
+- Limitations: scores are directional estimates based on a recent sample, not private channel analytics or Google Trends data
 
-3. **`replaceState` with hash** instead of `pushState` with a path — prevents Netlify from
-   treating `/channel/somehandle` as a hard navigation that 404s.
+## Channel Analyzer API
 
-### Deploy checklist
-1. Add `YT_API_KEY` in Netlify → Site configuration → Environment variables
-2. The edge function reads it automatically — no other changes needed
-3. Without the key: demo mode works perfectly for all visitors
-4. With the key: real YouTube data is fetched and cached for 24 hours
+The main analyzer calls the server-side `/api/channel-analyzer` Netlify Function. The
+`YT_API_KEY` environment variable remains server-side and is never injected into browser
+JavaScript. Successful public channel responses are cached for 24 hours. If the server API
+is unavailable, the analyzer displays an error rather than fabricated channel statistics.
+
+Channel handles normally use two low-cost `channels.list` requests. Legacy/custom channel
+names may require a `search.list` fallback, which has a larger YouTube quota impact.
 
 ## YouTube Data API v3 Setup
 

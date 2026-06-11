@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Contact – YouTube Analyzer by Norcanto</title>
   <meta name="description" content="Get in touch with the YouTube Analyzer by Norcanto team. We respond within 48 hours." />
-  <link rel="canonical" href="https://norcanto.com/contact/" />
   <link rel="stylesheet" href="../css/main.css" />
   <!-- Performance: preconnect + non-blocking fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -84,6 +83,12 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862"
      crossorigin="anonymous"></script>
      
+            <link rel="canonical" href="https://norcanto.com/contact/" />
+  <link rel="alternate" hreflang="en" href="https://norcanto.com/contact/" />
+  <link rel="alternate" hreflang="fr" href="https://norcanto.com/fr/contact/" />
+  <link rel="alternate" hreflang="x-default" href="https://norcanto.com/contact/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="fr_FR" />
 </head>
 
 <!-- Google tag (gtag.js) -->
@@ -208,7 +213,7 @@
           </div>
 
           <!-- Success state -->
-          <div class="form-success" id="form-success">
+          <div class="form-success" id="form-success" role="status" aria-live="polite" tabindex="-1">
             <div class="form-success-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
@@ -292,11 +297,33 @@
 
     // Basic validation
     let valid = true;
+    let firstInvalid = null;
+    let summary = document.getElementById('contact-form-error');
+    if (!summary) {
+      summary = document.createElement('p');
+      summary.id = 'contact-form-error';
+      summary.className = 'form-error';
+      summary.setAttribute('role', 'alert');
+      form.appendChild(summary);
+    }
     form.querySelectorAll('[required]').forEach(el => {
       el.classList.remove('error');
-      if (!el.value.trim()) { el.classList.add('error'); valid = false; }
+      el.removeAttribute('aria-invalid');
+      if (!el.value.trim() || !el.checkValidity()) {
+        el.classList.add('error');
+        el.setAttribute('aria-invalid', 'true');
+        firstInvalid ||= el;
+        valid = false;
+      }
     });
-    if (!valid) return;
+    if (!valid) {
+      summary.textContent = LangManager.current === 'FR'
+        ? 'Vérifiez les champs obligatoires avant d’envoyer le message.'
+        : 'Please check the required fields before sending your message.';
+      firstInvalid?.focus();
+      return;
+    }
+    summary.textContent = '';
 
     // Check if Formspree ID has been configured
     const action = form.getAttribute('action');
@@ -324,6 +351,7 @@
       if (res.ok) {
         wrap.style.display = 'none';
         succ.classList.add('visible');
+        succ.focus();
       } else {
         throw new Error('Server error');
       }

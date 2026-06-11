@@ -6,7 +6,6 @@
   <title>YouTube Creator Blog 2026 – Revenue, Growth & Monetization | Norcanto</title>
   <meta name="description" content="Expert guides on YouTube revenue, RPM, channel growth, monetization strategies, and AI tools for creators. Updated 2026 data and benchmarks." />
   <meta name="keywords" content="YouTube revenue 2026, YouTube RPM, YouTube monetization, channel growth, YouTube Shorts, AI for creators, free YouTube engagement rate calculator" />
-  <link rel="canonical" href="https://norcanto.com/blog/" />
   <meta property="og:title" content="YouTube Creator Blog 2026 – Norcanto" />
   <meta property="og:description" content="Expert guides on YouTube revenue, RPM, channel growth, and monetization. 2026 data." />
   <meta property="og:type" content="website" />
@@ -41,6 +40,12 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862"
      crossorigin="anonymous"></script>
      
+            <link rel="canonical" href="https://norcanto.com/blog/" />
+  <link rel="alternate" hreflang="en" href="https://norcanto.com/blog/" />
+  <link rel="alternate" hreflang="fr" href="https://norcanto.com/fr/blog/" />
+  <link rel="alternate" hreflang="x-default" href="https://norcanto.com/blog/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="fr_FR" />
 </head>
 
 <!-- Google tag (gtag.js) -->
@@ -349,7 +354,9 @@
 
     // Toggle filter buttons
     document.querySelectorAll('.filter-btn').forEach(b => {
-      b.classList.toggle('active', b.dataset.cat === cat);
+      const active = b.dataset.cat === cat;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', String(active));
     });
 
     // Filter grid cards
@@ -375,6 +382,7 @@
   window.setFilter = setFilter;
 
   document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.setAttribute('aria-pressed', String(btn.classList.contains('active')));
     btn.addEventListener('click', () => setFilter(btn.dataset.cat));
   });
 

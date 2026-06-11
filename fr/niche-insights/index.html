@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tableau de bord des tendances de niche YouTube et analyseur d'opportunités | Norcanto</title>
+  <meta name="description" content="Analysez les vidéos YouTube publiques récentes pour n’importe quelle niche. Comparez les tendances, la concurrence, les opportunités, l'engagement, la fréquence de téléchargement, les mots-clés et les vidéos les plus performantes." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tableau de bord des tendances de niche YouTube | Norcanto" />
+  <meta property="og:description" content="Analysez l'activité récente de niche publique sur YouTube, la concurrence, l'engagement et les opportunités." />
+  <meta property="og:image" content="https://norcanto.com/images/og-image.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/niche-insights.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" media="print" onload="this.media='all'" />
+  <link rel="icon" type="image/png" href="/images/norcanto-logo.png" />
+              <link rel="canonical" href="https://norcanto.com/fr/niche-insights/" />
+  <link rel="alternate" hreflang="en" href="https://norcanto.com/niche-insights/" />
+  <link rel="alternate" hreflang="fr" href="https://norcanto.com/fr/niche-insights/" />
+  <link rel="alternate" hreflang="x-default" href="https://norcanto.com/niche-insights/" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+</head>
+<body>
+<header id="header">
+  <div class="container"><div class="header-inner">
+    <a href="/fr/" class="header-logo"><img src="/images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" loading="eager" />Analyseur YouTube <span>par Norcanto</span></a>
+    <nav class="header-nav"></nav>
+    <div class="header-controls">
+      <div class="lang-switcher"><button class="lang-btn active" data-lang="EN">EN</button><button class="lang-btn" data-lang="FR">FR</button></div>
+      <button class="theme-toggle" aria-label="Changer de thème"></button>
+    </div>
+    <button class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+  </div></div>
+</header>
+<nav class="mobile-menu" aria-label="Navigation mobile">
+  <div class="mobile-menu-controls">
+    <div class="lang-switcher"><button class="lang-btn active" data-lang="EN">EN</button><button class="lang-btn" data-lang="FR">FR</button></div>
+    <button class="theme-toggle" aria-label="Changer de thème"></button>
+  </div>
+</nav>
+
+<main class="niche-page" id="main-content">
+  <section class="niche-hero">
+    <div class="container">
+      <div class="niche-hero-copy">
+        <div class="section-divider"></div>
+        <h1 data-ni="title">Tableau de bord des tendances de niche YouTube</h1>
+        <p data-ni="subtitle">Analysez un échantillon récent de vidéos YouTube publiques pour comprendre la dynamique, la concurrence, l'engagement et les opportunités de contenu.</p>
+      </div>
+      <form class="niche-search-card" id="niche-form" novalidate>
+        <div class="niche-search-row">
+          <div>
+            <label class="sr-only" for="niche-query" data-ni="input_label">Niche, sujet ou mot-clé</label>
+            <input class="niche-input" id="niche-query" type="text" maxlength="100" autocomplete="off" aria-describedby="niche-help niche-status" data-ni-placeholder="input_placeholder" placeholder="par ex. finances personnelles pour les débutants" />
+          </div>
+          <button class="niche-submit" id="niche-submit" type="submit" data-ni="analyze">Analyser la niche</button>
+        </div>
+        <div class="niche-filters">
+          <div class="niche-field">
+            <label for="niche-region" data-ni="region">Région d'audience</label>
+            <select id="niche-region">
+              <option value="US">États-Unis</option><option value="GB">Royaume-Uni</option><option value="CA">Canada</option>
+              <option value="AU">Australie</option><option value="FR">France</option><option value="DE">Allemagne</option>
+              <option value="ES">Espagne</option><option value="BR">Brésil</option><option value="IN">Inde</option>
+              <option value="MX">Mexique</option><option value="JP">Japon</option><option value="KR">Corée du Sud</option>
+            </select>
+          </div>
+          <div class="niche-field">
+            <label for="niche-language" data-ni="result_language">Langage de pertinence des résultats</label>
+            <select id="niche-language"><option value="en">Anglais</option><option value="fr">Français</option></select>
+          </div>
+        </div>
+        <p class="niche-help" id="niche-help" data-ni="help">Analytics utilise jusqu'à 50 vidéos publiques pertinentes récentes des 90 derniers jours. Aucune fausse analyse n’est générée.</p>
+        <p class="niche-status" id="niche-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="niche-results" aria-live="polite">
+    <div class="container">
+      <div class="niche-report-header">
+        <div><h2 id="report-title"></h2><p class="niche-report-meta" id="report-meta"></p></div>
+        <span class="badge badge-gray confidence-badge" id="confidence-badge"></span>
+      </div>
+      <div class="source-notices" id="source-notices"></div>
+      <div class="niche-score-grid" id="score-grid"></div>
+      <div class="niche-metrics-grid" id="metrics-grid"></div>
+      <div class="niche-layout">
+        <div class="niche-stack">
+          <section class="niche-panel"><h3 data-ni="time_comparison">Comparaison 7/30/90 jours</h3><div id="window-table"></div></section>
+          <section class="niche-panel"><h3 data-ni="fast_videos">Vidéos rAPIdes</h3><div class="fast-video-list" id="fast-videos"></div></section>
+          <section class="niche-panel ai-panel" id="ai-panel"><h3 data-ni="ai_ideas">Idées générées par l'IA</h3><div id="ai-content"></div></section>
+        </div>
+        <aside class="niche-stack">
+          <section class="niche-panel"><h3 data-ni="keywords">Mots-clés courants</h3><div class="keyword-list" id="keyword-list"></div></section>
+          <section class="niche-panel"><h3 data-ni="patterns">Modèles de titres courants</h3><div class="pattern-list" id="pattern-list"></div></section>
+          <section class="niche-panel"><h3 data-ni="limitations">Limites</h3><ul class="limitations-list" id="limitations-list"></ul></section>
+        </aside>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">© 2026 Analyseur YouTube par Norcanto.</div><div class="footer-legal"><a href="/fr/privacy/">Confidentialité</a><a href="/fr/terms/">Termes</a><a href="/fr/contact/">Contact</a></div></div></div></footer>
+<script src="/js/logo.js" defer></script>
+<script src="/js/app.js" defer></script>
+<script src="/js/niche-insights.js" defer></script>
+</body>
+</html>

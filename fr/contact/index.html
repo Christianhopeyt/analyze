@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Contact – Analyseur YouTube par Norcanto</title>
+  <meta name="description" content="Contactez l’équipe YouTube Analyzer by Norcanto. Nous répondons sous 48 heures." />
+  <link rel="stylesheet" href="/css/main.css" />
+  <!-- Performance: preconnect + non-blocking fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+        media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" /></noscript>
+  <link rel="icon" type="image/png" href="/images/norcanto-logo.png" />
+  <style>
+    .contact-page { padding-top: 68px; }
+    .contact-hero { padding: clamp(48px,8vw,80px) 0 clamp(32px,5vw,52px); background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(24px,4vw,48px); align-items: start; margin-top: clamp(32px,5vw,52px); }
+    .contact-form-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: clamp(24px,4vw,40px); box-shadow: var(--shadow-md); }
+    .contact-form-card h2 { font-family: var(--font-display); font-size: clamp(1rem,2.5vw,1.2rem); margin-bottom: clamp(18px,3vw,24px); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .form-group:last-of-type { margin-bottom: 0; }
+    .form-label { font-size: 0.82rem; font-weight: 700; color: var(--text-2); }
+    .form-input, .form-select, .form-textarea {
+      width: 100%; padding: 11px 13px;
+      background: var(--input-bg); border: 1.5px solid var(--border);
+      border-radius: var(--radius-md); font-size: 0.9rem; color: var(--text);
+      transition: all 0.2s ease; outline: none; font-family: var(--font-body);
+      -webkit-appearance: none; appearance: none;
+    }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239999AA' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 13px center; padding-right: 36px;
+    }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--yt-red); box-shadow: 0 0 0 3px rgba(255,0,0,0.09);
+    }
+    .form-input.error, .form-select.error, .form-textarea.error { border-color: var(--yt-red); }
+    .submit-btn {
+      width: 100%; height: 50px; margin-top: 20px;
+      background: var(--yt-red); color: #fff; border: none;
+      border-radius: var(--radius-lg); font-family: var(--font-body);
+      font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      box-shadow: 0 6px 24px rgba(255,0,0,0.28); transition: all 0.22s ease;
+    }
+    .submit-btn:hover { background: var(--yt-red-dark); transform: translateY(-1px); }
+    .submit-btn:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+    .submit-btn svg { width: 16px; height: 16px; }
+    .contact-sidebar { display: flex; flex-direction: column; gap: 16px; }
+    .info-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(18px,3vw,24px); box-shadow: var(--shadow-sm); }
+    .info-card-icon { width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--yt-red-glow); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; color: var(--yt-red); }
+    .info-card-icon svg { width: 18px; height: 18px; }
+    .info-card-title { font-family: var(--font-display); font-size: 0.9rem; font-weight: 700; margin-bottom: 5px; }
+    .info-card-text { font-size: 0.82rem; color: var(--text-3); line-height: 1.6; }
+    .info-card-text a { color: var(--yt-red); }
+    /* Success state */
+    .form-success { display: none; text-align: center; padding: 40px 20px; }
+    .form-success.visible { display: block; }
+    .form-success-icon { width: 60px; height: 60px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .form-success-icon svg { width: 26px; height: 26px; color: var(--green-dark); }
+    .form-success h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 8px; }
+    .form-success p { font-size: 0.9rem; color: var(--text-3); }
+    /* Notice about Formspree setup */
+    .setup-notice { background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 14px 16px; margin-bottom: 20px; font-size: 0.78rem; color: var(--text-3); display: flex; gap: 10px; align-items: flex-start; }
+    .setup-notice svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 2px; color: var(--gold); }
+    @media (max-width: 720px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-sidebar { flex-direction: row; flex-wrap: wrap; }
+      .info-card { flex: 1; min-width: 200px; }
+    }
+    @media (max-width: 420px) {
+      .contact-sidebar { flex-direction: column; }
+      .info-card { min-width: unset; }
+    }
+  </style>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862"
+     crossorigin="anonymous"></script>
+     
+              <link rel="canonical" href="https://norcanto.com/fr/contact/" />
+  <link rel="alternate" hreflang="en" href="https://norcanto.com/contact/" />
+  <link rel="alternate" hreflang="fr" href="https://norcanto.com/fr/contact/" />
+  <link rel="alternate" hreflang="x-default" href="https://norcanto.com/contact/" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5BCXGE5L5G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5BCXGE5L5G');
+</script>
+
+<body>
+
+<header id="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/fr/" class="header-logo">
+        <img src="/images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
+        Analyseur YouTube <span>par Norcanto</span>
+      </a>
+      <nav class="header-nav">
+        <a href="/fr/#analyzer">Analyse des canaux</a>
+        <a href="/fr/#calculator">Calculatrice</a>
+        <a href="/fr/blog/">Blog</a>
+        <a href="/fr/privacy/">Confidentialité</a>
+        <a href="/fr/about/">À propos</a>
+      </nav>
+      <div class="header-controls">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="EN">EN</button>
+          <button class="lang-btn" data-lang="FR">FR</button>
+        </div>
+        <button class="theme-toggle" aria-label="Changer de thème">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+      <button class="hamburger" aria-label="Menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-menu" aria-label="Navigation mobile">
+  <a href="/fr/">Maison</a>
+  <a href="/fr/#analyzer">Analyse des canaux</a>
+  <a href="/fr/#calculator">Calculatrice</a>
+  <a href="/fr/blog/">Blog</a>
+  <a href="/fr/privacy/">politique de confidentialité</a>
+  <a href="/fr/about/">À propos</a>
+  <div class="mobile-menu-controls">
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="EN">EN</button>
+      <button class="lang-btn" data-lang="FR">FR</button>
+    </div>
+    <button class="theme-toggle" aria-label="Changer de thème">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<main class="contact-page">
+  <div class="contact-hero">
+    <div class="container">
+      <div class="section-divider"></div>
+      <h1 style="font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:10px;" id="contact-page-title">Contactez-nous</h1>
+      <p style="font-size:clamp(0.9rem,2vw,1rem);color:var(--text-3);" id="contact-page-sub">Nous lisons chaque message et répondons dans les 48 heures.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container" style="max-width:960px;">
+      <div class="contact-grid">
+
+        <!-- Form -->
+        <div class="contact-form-card">
+          <h2 id="contact-form-h">Envoyer un message</h2>
+
+          <!-- The form — action points to Formspree, replace YOUR_FORM_ID -->
+          <div id="contact-form-wrap">
+            <form id="contact-form" action="https://formspree.io/f/mnjyqkrp" method="POST" novalidate>
+              <!-- Honeypot spam field -->
+              <input type="text" name="_gotcha" style="display:none;" />
+              <!-- Redirect after submit (optional, we handle with JS) -->
+              <input type="hidden" name="_next" value="https://analyzer.norcanto.com/contact/?sent=true" />
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="cf-name" id="contact-name-label">Votre nom *</label>
+                  <input type="text" id="cf-name" name="name" class="form-input" placeholder="Jeanne Smith" required autocomplete="name" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cf-email" id="contact-email-label">Adresse e-mail *</label>
+                  <input type="email" id="cf-email" name="email" class="form-input" placeholder="jane@example.com" required autocomplete="email" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cf-subject" id="contact-subject-label">Sujet *</label>
+                <select id="cf-subject" name="subject" class="form-select" required>
+                  <option value="">Sélectionnez un sujet...</option>
+                  <option>Enquête générale</option>
+                  <option>Rapport de bug</option>
+                  <option>Demande de fonctionnalité</option>
+                  <option>Partenariat</option>
+                  <option>Demande de confidentialité</option>
+                  <option>Presse / Médias</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="cf-message" id="contact-message-label">Message *</label>
+                <textarea id="cf-message" name="message" class="form-textarea" placeholder="Dites-nous comment nous pouvons vous aider..." required></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn" id="submit-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                <span id="submit-label">Envoyer un message</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Success state -->
+          <div class="form-success" id="form-success" role="status" aria-live="polite" tabindex="-1">
+            <div class="form-success-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3 id="form-success-h">Message envoyé !</h3>
+            <p id="form-success-p">Merci de nous avoir contactés. Nous répondrons à votre email dans les 48 heures.</p>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="contact-sidebar">
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="info-card-title">E-mail</div>
+            <div class="info-card-text"><a href="mailto:hello@norcanto.com">hello@norcanto.com</a></div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="info-card-title" id="contact-resp-title">Temps de réponse</div>
+            <div class="info-card-text" id="contact-resp-text">Nous répondons dans les 48 heures les jours ouvrables (du lundi au vendredi).</div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="info-card-title" id="contact-priv-title">Demandes de confidentialité</div>
+            <div class="info-card-text" id="contact-priv-text">Pour des problèmes de suppression de données ou de confidentialité, envoyez un e-mail <a href="mailto:privacy@norcanto.com">privacy@norcanto.com</a> directement.</div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="/images/norcanto-logo.png" alt="Norcanto" class="site-logo-img"  loading="lazy" decoding="async" /><div class="footer-logo-text">Analyseur YouTube</div></div>
+        <p class="footer-desc">Analyse gratuite des revenus de la chaîne YouTube et informations sur les performances. Propulsé par Norcanto.</p>
+      </div>
+      <div><div class="footer-col-title">Outils</div><div class="footer-links"><a href="/fr/#analyzer">Analyseur de canaux</a><a href="/fr/#calculator">Calculateur de revenus</a><a href="/fr/blog/">Blog</a></div></div>
+      <div><div class="footer-col-title">Norcanto</div><div class="footer-links"><a href="https://norcanto.com" target="_blank" rel="noopener">Norcanto IA</a><a href="https://converter.norcanto.com" target="_blank" rel="noopener">Documents rapides</a><a href="/fr/about/">À propos</a></div></div>
+      <div><div class="footer-col-title">Légal</div><div class="footer-links"><a href="/fr/privacy/">politique de confidentialité</a><a href="/fr/terms/">Conditions d'utilisation</a><a href="/fr/contact/">Contact</a><a href="/fr/cookies-notice/">Cookies</a></div></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Analyseur YouTube par Norcanto. Tous droits réservés.</div>
+      <div class="footer-legal"><a href="/fr/privacy/">Confidentialité</a><a href="/fr/terms/">Termes</a><a href="/fr/contact/">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/logo.js" defer></script>
+<script src="/js/app.js" defer></script>
+<script>
+// Contact form — AJAX submission to Formspree, shows success state inline
+(function(){
+  const form   = document.getElementById('contact-form');
+  const wrap   = document.getElementById('contact-form-wrap');
+  const succ   = document.getElementById('form-success');
+  const btn    = document.getElementById('submit-btn');
+  const label  = document.getElementById('submit-label');
+
+  if (!form) return;
+
+  // If redirected back with ?sent=true, show success immediately
+  if (location.search.includes('sent=true')) {
+    wrap.style.display = 'none';
+    succ.classList.add('visible');
+  }
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Basic validation
+    let valid = true;
+    let firstInvalid = null;
+    let summary = document.getElementById('contact-form-error');
+    if (!summary) {
+      summary = document.createElement('p');
+      summary.id = 'contact-form-error';
+      summary.className = 'form-error';
+      summary.setAttribute('role', 'alert');
+      form.appendChild(summary);
+    }
+    form.querySelectorAll('[required]').forEach(el => {
+      el.classList.remove('error');
+      el.removeAttribute('aria-invalid');
+      if (!el.value.trim() || !el.checkValidity()) {
+        el.classList.add('error');
+        el.setAttribute('aria-invalid', 'true');
+        firstInvalid ||= el;
+        valid = false;
+      }
+    });
+    if (!valid) {
+      summary.textContent = LangManager.current === 'FR'
+        ? 'Vérifiez les champs obligatoires avant d’envoyer le message.'
+        : 'Please check the required fields before sending your message.';
+      firstInvalid?.focus();
+      return;
+    }
+    summary.textContent = '';
+
+    // Check if Formspree ID has been configured
+    const action = form.getAttribute('action');
+    if (action.includes('YOUR_FORM_ID')) {
+      // Fallback: open mail client directly so form is never completely dead
+      const name    = document.getElementById('cf-name').value;
+      const email   = document.getElementById('cf-email').value;
+      const subject = document.getElementById('cf-subject').value;
+      const msg     = document.getElementById('cf-message').value;
+      window.location.href = `mailto:hello@norcanto.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('From: '+name+' ('+email+')\n\n'+msg)}`;
+      return;
+    }
+
+    // Submit to Formspree via fetch (no page reload)
+    btn.disabled = true;
+    label.textContent = 'Sending...';
+
+    try {
+      const res = await fetch(action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        wrap.style.display = 'none';
+        succ.classList.add('visible');
+        succ.focus();
+      } else {
+        throw new Error('Server error');
+      }
+    } catch(err) {
+      label.textContent = 'Send Message';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us directly at hello@norcanto.com');
+    }
+  });
+})();
+</script>
+</body>
+</html>

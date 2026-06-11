@@ -7,8 +7,6 @@
   <meta name="description" content="Free YouTube channel analyzer. Estimate any channel's monthly revenue, engagement rate, RPM, and country audience — no login required. Free YouTube engagement rate calculator and channel country analyzer online." />
   <meta name="keywords" content="YouTube analyzer, free YouTube engagement rate calculator, YouTube channel country analyzer online, YouTube revenue estimator, YouTube RPM calculator, analyseur chaîne YouTube gratuit, calculateur revenus YouTube" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://norcanto.com/" />
-
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://norcanto.com/" />
@@ -62,6 +60,12 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862"
      crossorigin="anonymous"></script>
      
+                <link rel="canonical" href="https://norcanto.com/" />
+  <link rel="alternate" hreflang="en" href="https://norcanto.com/" />
+  <link rel="alternate" hreflang="fr" href="https://norcanto.com/fr/" />
+  <link rel="alternate" hreflang="x-default" href="https://norcanto.com/" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="fr_FR" />
 </head>
   
   <!-- Google tag (gtag.js) -->
@@ -104,7 +108,7 @@
        
       </div>
 
-      <button class="hamburger" aria-label="Menu">
+      <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
     </div>
@@ -112,7 +116,7 @@
 </header>
 
 <!-- Mobile Menu -->
-<nav class="mobile-menu" aria-label="Mobile navigation">
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
   <a href="#analyzer">Channel Analysis</a>
   <a href="#calculator">Revenue Calculator</a>
   <a href="blog/index.html">Blog</a>
@@ -173,33 +177,38 @@
   <div class="container">
     <div class="analyzer-card reveal">
       <div class="analyzer-label" id="analyzer-label">YouTube Channel Analysis</div>
+      <form id="analyzer-form" novalidate>
       <div id="analyzer-input-group">
         <div class="analyzer-input-group">
           <div class="analyzer-input-wrap">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <label class="sr-only" for="channel-input">YouTube channel URL or handle</label>
             <input
-              type="url"
+              type="text"
               id="channel-input"
               class="analyzer-input"
               placeholder="Paste a YouTube channel URL..."
               autocomplete="off"
               spellcheck="false"
+              aria-describedby="analyzer-help analyzer-error"
             />
           </div>
-          <button id="analyze-btn" class="analyze-btn">
+          <button type="submit" id="analyze-btn" class="analyze-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
             <span id="analyze-btn-text">Analyze Now</span>
           </button>
         </div>
-        <div class="analyzer-hints">
+        <div class="analyzer-hints" id="analyzer-help">
           <span class="hint-tag">youtube.com/@channel</span>
           <span class="hint-tag">youtube.com/channel/UC...</span>
           <span class="hint-tag">youtube.com/c/name</span>
         </div>
+        <p class="form-error" id="analyzer-error" role="alert"></p>
       </div>
-      <div class="spinner-overlay" id="analyzer-spinner">
+      </form>
+      <div class="spinner-overlay" id="analyzer-spinner" role="status" aria-live="polite">
         <div class="spinner"></div>
-        <div class="spinner-text">Analyzing channel data...</div>
+        <div class="spinner-text" id="spinner-text">Analyzing channel data...</div>
       </div>
     </div>
   </div>
@@ -208,6 +217,7 @@
 <!-- ======================== RESULTS ======================== -->
 <section id="results">
   <div class="container">
+    <div class="data-notice" id="results-data-notice" role="status" aria-live="polite"></div>
     <!-- Banner -->
     <img id="res-banner" src="" alt="Channel Banner" class="channel-banner" style="display:none;" />
 
@@ -675,6 +685,7 @@
         <div class="footer-links">
           <a href="#analyzer">Channel Analyzer</a>
           <a href="#calculator">Revenue Calculator</a>
+          <a href="niche-insights/index.html">Niche Insights</a>
           <a href="blog/index.html">Blog</a>
         </div>
       </div>

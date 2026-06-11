@@ -29,6 +29,8 @@ const ThemeManager = {
     localStorage.setItem('yta-theme', theme);
     document.querySelectorAll('.theme-toggle').forEach(btn => {
       btn.innerHTML = theme === 'dark' ? icons.sun : icons.moon;
+      btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+      btn.setAttribute('aria-pressed', String(theme === 'dark'));
     });
   },
   toggle() { this.apply(this.current === 'dark' ? 'light' : 'dark'); }
@@ -38,7 +40,7 @@ const ThemeManager = {
    LANGUAGE
    ======================== */
 const LangManager = {
-  current: localStorage.getItem('yta-lang') || 'EN',
+  current: location.pathname === '/fr' || location.pathname.startsWith('/fr/') ? 'FR' : 'EN',
   strings: {
     EN: {
       hero_title:        'Discover How Much a <span class="accent">YouTube Channel</span> Can Earn',
@@ -129,9 +131,17 @@ const LangManager = {
       cookie_reject:     'Reject',
       nav_analysis:      'Channel Analysis',
       nav_calculator:    'Calculator',
+      nav_niche:         'Niche Insights',
       nav_blog:          'Blog',
       nav_privacy:       'Privacy',
       nav_about:         'About',
+      loading:           'Analyzing channel data...',
+      invalid_channel:   'Enter a valid YouTube channel URL or @handle.',
+      empty_channel:     'Please enter a YouTube channel URL or @handle.',
+      hourly_limit:      'Hourly limit reached. Try again later.',
+      analysis_complete: 'Analysis complete.',
+      analysis_failed:   'Analysis failed. Please try again.',
+      live_notice:       'Live channel statistics retrieved from YouTube. Revenue figures are independent estimates and are not provided by YouTube.',
     },
     FR: {
       hero_title:        'D\u00e9couvrez Combien une <span class="accent">Cha\u00eene YouTube</span> Peut Gagner',
@@ -222,22 +232,45 @@ const LangManager = {
       cookie_reject:     'Refuser',
       nav_analysis:      'Analyse de Cha\u00eene',
       nav_calculator:    'Calculateur',
+      nav_niche:         'Tendances de Niche',
       nav_blog:          'Blog',
       nav_privacy:       'Confidentialit\u00e9',
       nav_about:         '\u00c0 Propos',
+      loading:           'Analyse des donn\u00e9es de la cha\u00eene...',
+      invalid_channel:   'Saisissez une URL YouTube ou un @pseudo valide.',
+      empty_channel:     'Saisissez une URL YouTube ou un @pseudo.',
+      hourly_limit:      'Limite horaire atteinte. R\u00e9essayez plus tard.',
+      analysis_complete: 'Analyse termin\u00e9e.',
+      analysis_failed:   "L'analyse a \u00e9chou\u00e9. Veuillez r\u00e9essayer.",
+      live_notice:       'Statistiques de cha\u00eene r\u00e9cup\u00e9r\u00e9es depuis YouTube. Les revenus sont des estimations ind\u00e9pendantes non fournies par YouTube.',
     }
   },
   init() {
+    localStorage.setItem('yta-lang', this.current);
     document.querySelectorAll('.lang-btn').forEach(btn =>
-      btn.addEventListener('click', () => { if (btn.dataset.lang !== this.current) this.apply(btn.dataset.lang); })
+      btn.addEventListener('click', () => {
+        if (btn.dataset.lang === this.current) return;
+        let path = location.pathname.replace(/^\/fr(?=\/|$)/, '') || '/';
+        if (btn.dataset.lang === 'FR') {
+          path = path.replace(/^\/blog\/(.+)\.html$/, '/blog/$1/');
+        } else {
+          path = path.replace(/^\/blog\/(.+)\/$/, '/blog/$1.html');
+        }
+        const targetPath = btn.dataset.lang === 'FR' ? `/fr${path === '/' ? '/' : path}` : path;
+        location.href = `${targetPath}${location.search}${location.hash}`;
+      })
     );
     this.apply(this.current);
   },
-  apply(lang) {
+  apply(lang, persist = true) {
     this.current = lang;
-    localStorage.setItem('yta-lang', lang);
+    if (persist) localStorage.setItem('yta-lang', lang);
     document.querySelectorAll('.lang-btn').forEach(btn =>
-      btn.classList.toggle('active', btn.dataset.lang === lang)
+      {
+        const active = btn.dataset.lang === lang;
+        btn.classList.toggle('active', active);
+        btn.setAttribute('aria-pressed', String(active));
+      }
     );
     const s = this.strings[lang]; if (!s) return;
     const q   = id  => document.getElementById(id);
@@ -258,6 +291,7 @@ const LangManager = {
     txt('analyzer-label',    'analyzer_label');
     ph('channel-input',      'input_placeholder');
     txt('analyze-btn-text',  'analyze_btn');
+    txt('spinner-text',      'loading');
     txt('calc-title',        'calc_title');
     txt('calc-subtitle',     'calc_subtitle');
     txt('faq-title',         'faq_title');
@@ -380,8 +414,18 @@ const LangManager = {
     txt('cookie-accept-label', 'cookie_accept');
     txt('cookie-reject-label', 'cookie_reject');
 
+    const notice = q('results-data-notice');
+    if (notice?.classList.contains('visible')) {
+      notice.textContent = s.live_notice;
+    }
+
     // ── Nav links (desktop + mobile, all pages) ──
     qsa('.header-nav a, .mobile-menu a').forEach(a => {
+      const navKey = a.dataset.nav;
+      if (navKey && s[`nav_${navKey}`]) {
+        a.textContent = s[`nav_${navKey}`];
+        return;
+      }
       const href = a.getAttribute('href') || '';
       const clean = href.replace(/^.*?#/, '#').replace(/^.*\/([^\/]+\.html)/, '$1').replace('../','');
       if (clean.includes('#analyzer') || clean.includes('analyzer'))          { if (!clean.includes('http') && !clean.includes('norcanto')) a.textContent = s.nav_analysis; }
@@ -404,23 +448,61 @@ const MobileMenu = {
     const hamburger = document.querySelector('.hamburger');
     const menu      = document.querySelector('.mobile-menu');
     if (!hamburger || !menu) return;
+    if (!menu.id) menu.id = 'mobile-menu';
+    hamburger.setAttribute('aria-controls', menu.id);
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Open menu');
+    menu.setAttribute('aria-hidden', 'true');
+    if (!menu.getAttribute('aria-label')) menu.setAttribute('aria-label', 'Mobile navigation');
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'mobile-menu-backdrop';
+    backdrop.setAttribute('aria-hidden', 'true');
+    menu.after(backdrop);
+
+    const close = (restoreFocus = false) => {
+      menu.classList.remove('open');
+      backdrop.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open menu');
+      menu.setAttribute('aria-hidden', 'true');
+      if (restoreFocus) hamburger.focus();
+    };
+    const open = () => {
+      menu.classList.add('open');
+      backdrop.classList.add('open');
+      document.body.classList.add('menu-open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      hamburger.setAttribute('aria-label', 'Close menu');
+      menu.setAttribute('aria-hidden', 'false');
+      menu.querySelector('a, button')?.focus();
+    };
     hamburger.addEventListener('click', e => {
       e.stopPropagation();
-      const open = menu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', String(open));
+      menu.classList.contains('open') ? close() : open();
     });
     document.addEventListener('click', e => {
-      if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
-        menu.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
+      if (!hamburger.contains(e.target) && !menu.contains(e.target)) close();
+    });
+    backdrop.addEventListener('click', () => close(true));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => close()));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) close(true);
+      if (e.key === 'Tab' && menu.classList.contains('open')) {
+        const focusable = [...menu.querySelectorAll('a[href], button:not([disabled])')];
+        if (!focusable.length) return;
+        const first = focusable[0], last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
       }
     });
-    menu.querySelectorAll('a').forEach(a =>
-      a.addEventListener('click', () => {
-        menu.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      })
-    );
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && menu.classList.contains('open')) close();
+    }, { passive: true });
   }
 };
 
@@ -468,6 +550,8 @@ function showToast(msg, type = 'success') {
     : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
   const t = document.createElement('div');
   t.className = `toast ${type}`;
+  t.setAttribute('role', type === 'error' ? 'alert' : 'status');
+  t.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
   t.innerHTML = `${icon}<span>${msg}</span>`;
   document.body.appendChild(t);
   setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 400); }, 3500);
@@ -616,14 +700,14 @@ const Analyzer = {
 
   rl() {
     if (Date.now() > this._rl.reset) { this._rl.n=0; this._rl.reset=Date.now()+3600000; }
-    if (this._rl.n >= this._rl.max) { showToast('Hourly limit reached. Try again later.','error'); return false; }
+    if (this._rl.n >= this._rl.max) { showToast(this.text('hourly_limit'),'error'); return false; }
     this._rl.n++; return true;
   },
 
   async run(raw) {
     if (this.loading) return;
     const parsed = this.parse(raw);
-    if (!parsed) { showToast('Enter a valid YouTube URL or @handle.','error'); shakeInput(); return; }
+    if (!parsed) { this.showError(this.text('invalid_channel')); return; }
     if (!this.rl()) return;
 
     // Check cache
@@ -636,93 +720,53 @@ const Analyzer = {
     this.setLoading(true);
     try {
       // ── KEY POINT ───────────────────────────────────────────────────────────
-      // window.YT_API_KEY is ONLY set if you manually inject it via a
-      // Netlify Edge Function or a build-time inject script (see README).
-      // A bare Netlify env var NEVER reaches browser JS.
-      // Without a key we always use demo mode — that is intentional and correct.
+      // Live channel data is fetched through the same-origin serverless proxy.
       // ────────────────────────────────────────────────────────────────────────
-      const key = (typeof window !== 'undefined' && window.YT_API_KEY) ? window.YT_API_KEY : '';
-      let data;
-
-      if (key) {
-        data = await this.ytFetch(parsed, key);
-      } else {
-        await new Promise(r => setTimeout(r, 1100 + Math.random()*400));
-        data = this.demo(parsed.value);
-      }
+      const data = await this.ytFetch(parsed);
 
       if (!data) { showToast('Channel not found. Check the URL.','error'); return; }
       try { localStorage.setItem(ck, JSON.stringify({d:data,t:Date.now()})); } catch(_){}
       this.render(data);
     } catch(err) {
       console.error('[YTA]', err);
-      // If the API call itself failed (wrong key, quota, network), fall back to demo
-      try {
-        const fallback = this.demo(parsed.value);
-        this.render(fallback);
-        showToast('Using estimated data (API unavailable).','success');
-      } catch(e2) {
-        showToast('Analysis failed. Please try again.','error');
-      }
+      this.showError(this.text('analysis_failed'));
     } finally {
       this.setLoading(false);
     }
   },
 
-  async ytFetch(parsed, key) {
-    const base = 'https://www.googleapis.com/youtube/v3';
-    let id = parsed.type==='id' ? parsed.value : null;
-    if (!id) {
-      const r = await fetch(`${base}/search?part=snippet&type=channel&q=${encodeURIComponent(parsed.value)}&maxResults=1&key=${key}`);
-      if (!r.ok) throw new Error(`Search HTTP ${r.status}`);
-      const j = await r.json();
-      if (j.error) throw new Error(j.error.message);
-      id = j.items?.[0]?.snippet?.channelId;
-    }
-    if (!id) return null;
-    const r2 = await fetch(`${base}/channels?part=snippet,statistics,brandingSettings&id=${id}&key=${key}`);
-    if (!r2.ok) throw new Error(`Channel HTTP ${r2.status}`);
-    const j2 = await r2.json();
-    if (j2.error) throw new Error(j2.error.message);
-    const ch = j2.items?.[0]; if (!ch) return null;
-    const {snippet:sn, statistics:st, brandingSettings:br} = ch;
+  async ytFetch(parsed) {
+    const response = await fetch(`/api/channel-analyzer?type=${encodeURIComponent(parsed.type)}&value=${encodeURIComponent(parsed.value)}`);
+    if (!response.ok) throw new Error(`Channel API HTTP ${response.status}`);
+    const ch = await response.json();
+    const sn = ch;
+    const st = ch;
     const ageMo = Math.max(1,Math.round((Date.now()-new Date(sn.publishedAt))/(1000*60*60*24*30)));
     const lang  = detectLanguage(sn.title, sn.description);
     return {
       id:ch.id, title:sn.title,
-      handle: sn.customUrl||('@'+sn.title.toLowerCase().replace(/\s+/g,'')),
+      handle: sn.handle||('@'+sn.title.toLowerCase().replace(/\s+/g,'')),
       description:sn.description,
-      avatar: sn.thumbnails?.high?.url||sn.thumbnails?.default?.url,
-      banner: br?.image?.bannerExternalUrl||null,
+      avatar: sn.avatar,
+      banner: sn.banner,
       subscriberCount:st.subscriberCount||0, viewCount:st.viewCount||0, videoCount:st.videoCount||0,
       publishedAt:sn.publishedAt, ageMonths:ageMo,
       niche:detectNiche(sn.title,sn.description), language:lang,
-      country:sn.country||detectCountry(lang),
+      country:sn.country||detectCountry(lang), source:'live',
     };
   },
 
-  demo(handle) {
-    const h    = String(handle||'demo').toLowerCase().replace(/[^a-z0-9]/g,'');
-    const seed = [...h].reduce((a,c)=>a+c.charCodeAt(0),0)||42;
-    const pick = (arr) => arr[seed % arr.length];
-    const niche = pick(Object.keys(RPM_DATA.niches));
-    const lang  = pick(['English','French','Spanish','German','Portuguese']);
-    const cntry = pick(['US','GB','FR','DE','CA','AU','BR','IN']);
-    const subs  = ((seed*347891+100000)%5000000)+50000;
-    const views = subs * (((seed*13)%300)+50);
-    const vids  = ((seed*7+30)%800)+30;
-    const age   = ((seed*11)%60)+18;
-    const name  = h.charAt(0).toUpperCase()+h.slice(1).replace(/[-_]/g,' ');
-    return {
-      id:'UC'+h.replace(/[^a-zA-Z0-9]/g,'').padEnd(22,'X').slice(0,22),
-      title:name, handle:'@'+h,
-      description:`A ${RPM_DATA.niches[niche].label} channel.`,
-      avatar:`https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=FF0000&color=fff&size=200&bold=true`,
-      banner:null,
-      subscriberCount:Math.round(subs), viewCount:Math.round(views), videoCount:Math.round(vids),
-      publishedAt:new Date(Date.now()-age*30*24*3600*1000).toISOString(),
-      ageMonths:age, niche, language:lang, country:cntry,
-    };
+  text(key) {
+    return LangManager.strings[LangManager.current]?.[key] || LangManager.strings.EN[key] || key;
+  },
+
+  showError(message) {
+    const error = document.getElementById('analyzer-error');
+    const input = document.getElementById('channel-input');
+    if (error) error.textContent = message;
+    if (input) input.setAttribute('aria-invalid', 'true');
+    shakeInput();
+    showToast(message, 'error');
   },
 
   setLoading(on) {
@@ -733,6 +777,7 @@ const Analyzer = {
     if (ig)  ig.style.display  = on ? 'none' : '';
     if (sp)  sp.classList.toggle('visible', on);
     if (btn) btn.disabled = on;
+    if (sp) sp.setAttribute('aria-hidden', String(!on));
   },
 
   render(data) {
@@ -751,6 +796,12 @@ const Analyzer = {
         const top = sec.getBoundingClientRect().top + window.scrollY - off;
         window.scrollTo({ top, behavior: 'smooth' });
       }, 80);
+    }
+
+    const notice = document.getElementById('results-data-notice');
+    if (notice) {
+      notice.textContent = this.text('live_notice');
+      notice.className = 'data-notice visible live';
     }
 
     // Avatar
@@ -774,7 +825,7 @@ const Analyzer = {
     set('res-subs',     fmtNum(data.subscriberCount));
     set('res-views',    fmtNum(data.viewCount));
     set('res-videos',   fmtNum(data.videoCount));
-    set('res-created',  new Date(data.publishedAt).toLocaleDateString('en-US',{year:'numeric',month:'long'}));
+    set('res-created',  new Date(data.publishedAt).toLocaleDateString(LangManager.current === 'FR' ? 'fr-FR' : 'en-US',{year:'numeric',month:'long'}));
 
     // Revenue
     set('res-month-min', fmtUSD(rev.monthly.min));
@@ -812,7 +863,7 @@ const Analyzer = {
     } catch(_) {}
 
     document.title = `${data.title} — YouTube Analyzer by Norcanto`;
-    showToast('Analysis complete!','success');
+    showToast(this.text('analysis_complete'),'success');
   }
 };
 
@@ -872,9 +923,17 @@ const Calc = {
     });
     document.querySelectorAll('.type-btn').forEach(btn =>
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active'); this.run();
+        document.querySelectorAll('.type-btn').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+        this.run();
       })
+    );
+    document.querySelectorAll('.type-btn').forEach(btn =>
+      btn.setAttribute('aria-pressed', String(btn.classList.contains('active')))
     );
     this.run();
   },
@@ -896,13 +955,28 @@ const Calc = {
    ======================== */
 const FAQ = {
   init() {
-    document.querySelectorAll('.faq-question').forEach(btn =>
+    document.querySelectorAll('.faq-question').forEach((btn, index) => {
+      const answer = btn.closest('.faq-item')?.querySelector('.faq-answer');
+      if (!answer) return;
+      const answerId = answer.id || `faq-answer-${index + 1}`;
+      answer.id = answerId;
+      btn.setAttribute('aria-controls', answerId);
+      btn.setAttribute('aria-expanded', 'false');
+      answer.setAttribute('aria-hidden', 'true');
       btn.addEventListener('click', () => {
         const item = btn.closest('.faq-item'), open = item.classList.contains('open');
-        document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-        if (!open) item.classList.add('open');
-      })
-    );
+        document.querySelectorAll('.faq-item.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+          el.querySelector('.faq-answer')?.setAttribute('aria-hidden', 'true');
+        });
+        if (!open) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+          answer.setAttribute('aria-hidden', 'false');
+        }
+      });
+    });
   }
 };
 
@@ -935,25 +1009,103 @@ function initHeaderScroll() {
   update();
 }
 
+function normalizeNavigation() {
+  const path = location.pathname.toLowerCase();
+  const localePrefix = path === '/fr' || path.startsWith('/fr/') ? '/fr' : '';
+  const isFrench = localePrefix === '/fr';
+  const localHref = href => `${localePrefix}${isFrench ? href.replace(/index\.html(?=#|$)/, '') : href}`;
+  const active = path.includes('/blog/') ? 'blog'
+    : path.includes('/niche-insights/') ? 'niche'
+    : path.includes('/privacy/') ? 'privacy'
+    : path.includes('/about/') ? 'about'
+    : path === '/' || path === '/index.html' ? 'analysis'
+    : '';
+  const labels = isFrench
+    ? { analysis: 'Analyse de chaîne', calculator: 'Calculateur', niche: 'Tendances de niche', blog: 'Blog', privacy: 'Confidentialité', about: 'À propos' }
+    : { analysis: 'Channel Analysis', calculator: 'Calculator', niche: 'Niche Insights', blog: 'Blog', privacy: 'Privacy', about: 'About' };
+  const links = [
+    { key: 'analysis', href: localHref('/index.html#analyzer'), label: labels.analysis },
+    { key: 'calculator', href: localHref('/index.html#calculator'), label: labels.calculator },
+    { key: 'niche', href: localHref('/niche-insights/index.html'), label: labels.niche },
+    { key: 'blog', href: localHref('/blog/index.html'), label: labels.blog },
+    { key: 'privacy', href: localHref('/privacy/index.html'), label: labels.privacy },
+    { key: 'about', href: localHref('/about/index.html'), label: labels.about },
+  ];
+  document.querySelectorAll('.header-nav').forEach(nav => {
+    nav.setAttribute('aria-label', isFrench ? 'Navigation principale' : 'Primary navigation');
+    nav.innerHTML = links.map(link =>
+      `<a href="${link.href}" data-nav="${link.key}"${active === link.key ? ' class="active" aria-current="page"' : ''}>${link.label}</a>`
+    ).join('');
+  });
+  document.querySelectorAll('.mobile-menu').forEach(menu => {
+    const controls = menu.querySelector('.mobile-menu-controls');
+    controls?.querySelectorAll('.lang-switcher').forEach(switcher => switcher.remove());
+    menu.querySelectorAll(':scope > a').forEach(link => link.remove());
+    links.forEach(link => {
+      const anchor = document.createElement('a');
+      anchor.href = link.href;
+      anchor.dataset.nav = link.key;
+      anchor.textContent = link.label;
+      if (active === link.key) {
+        anchor.className = 'active';
+        anchor.setAttribute('aria-current', 'page');
+      }
+      menu.insertBefore(anchor, controls);
+    });
+  });
+}
+
+function ensureHeaderControls() {
+  document.querySelectorAll('.header-controls').forEach(controls => {
+    if (!controls.querySelector('.lang-switcher')) {
+      const switcher = document.createElement('div');
+      switcher.className = 'lang-switcher';
+      switcher.innerHTML = '<button class="lang-btn active" data-lang="EN">EN</button><button class="lang-btn" data-lang="FR">FR</button>';
+      controls.prepend(switcher);
+    }
+  });
+}
+
+function initAccessibility() {
+  const target = document.querySelector('main') || document.getElementById('analyzer');
+  if (target && !target.id) target.id = 'main-content';
+  if (target && !document.querySelector('.skip-link')) {
+    const skip = document.createElement('a');
+    skip.className = 'skip-link';
+    skip.href = `#${target.id}`;
+    skip.textContent = LangManager.current === 'FR' ? 'Aller au contenu' : 'Skip to content';
+    document.body.prepend(skip);
+  }
+  document.querySelectorAll('.header-nav a.active, .mobile-menu a.active').forEach(link =>
+    link.setAttribute('aria-current', 'page')
+  );
+}
+
 /* ========================
    ANALYZER FORM — direct binding, no <form> element needed
    ======================== */
 function initForm() {
   const input = document.getElementById('channel-input');
   const btn   = document.getElementById('analyze-btn');
+  const form  = document.getElementById('analyzer-form');
 
   if (!input) { console.warn('[YTA] #channel-input not found'); return; }
   if (!btn)   { console.warn('[YTA] #analyze-btn not found');   return; }
 
   const go = () => {
     const v = input.value.trim();
-    if (!v) { shakeInput(); showToast('Please enter a YouTube channel URL.','error'); return; }
+    if (!v) { Analyzer.showError(Analyzer.text('empty_channel')); return; }
     Analyzer.run(v);
   };
 
-  btn.addEventListener('click', go);
-  input.addEventListener('keydown', e => { if (e.key==='Enter') { e.preventDefault(); go(); } });
-  input.addEventListener('input', () => input.classList.remove('input-error'));
+  if (form) form.addEventListener('submit', e => { e.preventDefault(); go(); });
+  else btn.addEventListener('click', go);
+  input.addEventListener('input', () => {
+    input.classList.remove('input-error');
+    input.removeAttribute('aria-invalid');
+    const error = document.getElementById('analyzer-error');
+    if (error) error.textContent = '';
+  });
 }
 
 /* ========================
@@ -966,7 +1118,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   ThemeManager.init();
+  ensureHeaderControls();
+  normalizeNavigation();
   LangManager.init();
+  initAccessibility();
   MobileMenu.init();
   ScrollReveal.init();
   CookieBanner.init();

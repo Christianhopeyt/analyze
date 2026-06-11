@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>À propos – Analyseur YouTube par Norcanto</title>
+  <meta name="description" content="Découvrez YouTube Analyzer de Norcanto : son fonctionnement, notre méthodologie de génération de revenus et l'équipe qui se cache derrière." />
+  <link rel="stylesheet" href="/css/main.css" />
+  <!-- Performance: preconnect + non-blocking fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
+        media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" /></noscript>
+  <link rel="icon" type="image/png" href="/images/norcanto-logo.png" />
+  <style>
+    .about-hero { padding: clamp(88px,14vw,130px) 0 clamp(40px,6vw,64px); background: var(--bg-2); border-bottom: 1px solid var(--border); }
+    .about-body { max-width: 720px; margin: 0 auto; }
+    .about-body h2 { font-size: clamp(1.15rem,2.5vw,1.4rem); margin: clamp(28px,5vw,40px) 0 12px; color: var(--text); }
+    .about-body p  { font-size: clamp(0.875rem,1.8vw,1rem); color: var(--text-2); line-height: 1.8; margin-bottom: 16px; }
+    .about-body a  { color: var(--yt-red); }
+    .about-body a:hover { text-decoration: underline; }
+    .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(12px,2.5vw,20px); margin: clamp(24px,4vw,36px) 0; }
+    .stat-box  { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(18px,3vw,24px); text-align: center; box-shadow: var(--shadow-sm); }
+    .stat-box-num { font-family: var(--font-display); font-size: clamp(1.5rem,4vw,2.2rem); font-weight: 800; color: var(--yt-red); }
+    .stat-box-label { font-size: clamp(0.72rem,1.5vw,0.82rem); color: var(--text-3); margin-top: 4px; }
+    .team-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: clamp(12px,2.5vw,20px); margin: clamp(20px,3vw,32px) 0; }
+    .team-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(16px,3vw,22px); box-shadow: var(--shadow-sm); }
+    .team-card-role  { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--yt-red); margin-bottom: 6px; }
+    .team-card-name  { font-family: var(--font-display); font-size: clamp(0.9rem,2vw,1rem); font-weight: 700; margin-bottom: 6px; }
+    .team-card-desc  { font-size: 0.82rem; color: var(--text-3); line-height: 1.6; }
+    .tool-cta { background: linear-gradient(135deg, var(--dark-2), var(--dark-3)); border-radius: var(--radius-xl); padding: clamp(28px,5vw,48px); text-align: center; margin: clamp(32px,5vw,48px) 0; }
+    .tool-cta h3 { font-family: var(--font-display); font-size: clamp(1.1rem,2.5vw,1.4rem); color: #fff; margin-bottom: 10px; }
+    .tool-cta p  { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+    @media (max-width: 600px) {
+      .stat-row  { grid-template-columns: repeat(3,1fr); }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 360px) {
+      .stat-row  { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862"
+     crossorigin="anonymous"></script>
+     
+              <link rel="canonical" href="https://norcanto.com/fr/about/" />
+  <link rel="alternate" hreflang="en" href="https://norcanto.com/about/" />
+  <link rel="alternate" hreflang="fr" href="https://norcanto.com/fr/about/" />
+  <link rel="alternate" hreflang="x-default" href="https://norcanto.com/about/" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5BCXGE5L5G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-5BCXGE5L5G');
+</script>
+
+<body>
+
+<header id="header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/fr/" class="header-logo">
+        <img src="/images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
+        Analyseur YouTube <span>par Norcanto</span>
+      </a>
+      <nav class="header-nav">
+        <a href="/fr/#analyzer">Analyse des canaux</a>
+        <a href="/fr/#calculator">Calculatrice</a>
+        <a href="/fr/blog/">Blog</a>
+        <a href="/fr/privacy/">Confidentialité</a>
+        <a href="/fr/about/" class="active">À propos</a>
+      </nav>
+      <div class="header-controls">
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="EN">EN</button>
+          <button class="lang-btn" data-lang="FR">FR</button>
+        </div>
+        <button class="theme-toggle" aria-label="Changer de thème">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        
+      </div>
+      <button class="hamburger" aria-label="Menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-menu" aria-label="Navigation mobile">
+  <a href="/fr/">Maison</a>
+  <a href="/fr/#analyzer">Analyse des canaux</a>
+  <a href="/fr/#calculator">Calculatrice</a>
+  <a href="/fr/blog/">Blog</a>
+  <a href="/fr/privacy/">politique de confidentialité</a>
+  <a href="/fr/about/">À propos</a>
+
+  <div class="mobile-menu-controls">
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="EN">EN</button>
+      <button class="lang-btn" data-lang="FR">FR</button>
+    </div>
+    <button class="theme-toggle" aria-label="Changer de thème">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+  <div class="about-hero">
+    <div class="container">
+      <div class="about-body">
+        <div class="section-divider"></div>
+        <h1 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px;" id="about-page-title">À propos de l'analyseur YouTube</h1>
+        <p style="font-size:clamp(0.95rem,2vw,1.1rem);color:var(--text-3);max-width:560px;" id="about-page-sub">Un outil gratuit basé sur des données qui donne à tout créateur ou spécialiste du marketing un aperçu transparent des revenus et des performances de la chaîne YouTube.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-body">
+
+        <div class="stat-row reveal">
+          <div class="stat-box">
+            <div class="stat-box-num">500 000+</div>
+            <div class="stat-box-label">Canaux analysés</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-num">15+</div>
+            <div class="stat-box-label">Catégories de niche</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-num">Gratuit</div>
+            <div class="stat-box-label">Aucun compte requis</div>
+          </div>
+        </div>
+
+        <h2 id="about-mission-h">Notre mission</h2>
+        <p>Les créateurs de contenu et les spécialistes du marketing méritent un accès transparent et basé sur les données à l'écosystème de monétisation de YouTube. Les renseignements sur les revenus étaient historiquement réservés aux agences et aux plateformes d'analyse d'entreprise. Nous avons créé YouTube Analyzer de Norcanto pour démocratiser cet accès pour tous, de manière entièrement gratuite.</p>
+        <p>Que vous soyez une marque évaluant un partenaire de sponsoring potentiel, un créateur comparant votre propre chaîne à celle de vos concurrents ou un spécialiste du marketing étudiant le paysage YouTube, notre outil vous donne les chiffres dont vous avez besoin en quelques secondes, sans inscription ni paywall.</p>
+
+        <h2 id="about-method-h">Comment les revenus sont calculés</h2>
+        <p>Notre algorithme d'estimation combine quatre points de données pour produire une fourchette de revenus min/moyenne/max :</p>
+        <p><strong style="color:var(--text);">1. RPM de niche de contenu</strong> — Chaque niche comporte un RPM (Revenue Per Mille) différent. Les canaux financiers se situent en moyenne entre 14 et 18 $ par minute ; les chaînes de jeux en moyenne 3 à 5 $ RPM. Nous maintenons un ensemble de données de 15 catégories de niche, comparées à partir des revenus des créateurs déclarés publiquement et d'études de marché publicitaire.</p>
+        <p><strong style="color:var(--text);">2. Multiplicateur d'audience géographique</strong> — Une audience américaine ou britannique génère jusqu'à 5 fois plus de revenus publicitaires qu'une audience de même taille en Asie du Sud ou du Sud-Est. Nous détectons le pays d'audience principal de la chaîne à partir des signaux linguistiques et des métadonnées publiées.</p>
+        <p><strong style="color:var(--text);">3. Vues mensuelles estimées</strong> — Nous divisons le nombre total de vues au cours de la durée de vie de la chaîne par son âge en mois pour obtenir une estimation mensuelle moyenne des vues, puis nous la pondérons en fonction des modèles de demande publicitaire saisonnière (le quatrième trimestre rapporte généralement 30 à 40 % de plus que le premier trimestre).</p>
+        <p><strong style="color:var(--text);">4. Modificateur de type de contenu</strong> — Les courts métrages YouTube génèrent environ 92 à 95 % de revenus publicitaires en moins par vue que les vidéos longues standards. Lorsque du contenu Short est détecté, nous appliquons le modificateur approprié.</p>
+        <p>Les chiffres des revenus sont des estimations. Les revenus réels dépendent du taux de vue monétisé, de la concurrence des annonceurs au cours d'une période donnée, des accords de chaîne négociés et d'autres facteurs que seul le créateur connaît. Nous montrons toujours une plage, jamais un seul nombre « exact ».</p>
+
+        <h2 id="about-data-h">Sources de données</h2>
+        <p>Les statistiques de la chaîne (nombre d'abonnés, nombre total de vues, nombre de vidéos, date de création et métadonnées de la chaîne) sont récupérées via le site officiel. <strong style="color:var(--text);">API de données YouTube v3</strong>. Il s'agit de l'interface de données publique officielle de Google ; pas de scrAPIng, pas d’intermédiaires tiers.</p>
+        <p>Les estimations de revenus sont nos calculs exclusifs et ne sont pas fournies, approuvées par ou affiliées à YouTube, Google ou Alphabet Inc.</p>
+
+        <h2 id="about-score-h">Le score de potentiel commercial</h2>
+        <p>Notre score composite exclusif de 0 à 100 évalue une chaîne selon cinq dimensions : l'échelle d'abonnés, le potentiel de revenus, le volume de contenu, la qualité du RPM de niche et le taux d'engagement vue/abonné. Un score de 75+ (Premium) indique une chaîne avec un fort accord de marque et un potentiel d'affiliation au-delà des seuls revenus AdSense.</p>
+
+        <h2 id="about-norcanto-h">À propos de Norcanto</h2>
+        <p>Norcanto est une société de productivité en IA basée à Paris qui crée des outils qui aident les créateurs, les professionnels et les entreprises à travailler plus intelligemment. YouTube Analyzer est l'un des nombreux outils gratuits de l'écosystème Norcanto.</p>
+
+        <div class="team-grid reveal">
+          <div class="team-card">
+            <div class="team-card-role">Produit phare</div>
+            <div class="team-card-name">Norcanto IA</div>
+            <div class="team-card-desc">Analysez, résumez, traduisez et extrayez des informations de n'importe quel document à l'aide de l'IA. Conçu pour les professionnels qui travaillent quotidiennement avec des informations complexes.</div>
+          </div>
+          <div class="team-card">
+            <div class="team-card-role">Outil gratuit</div>
+            <div class="team-card-name">Convertisseur QuickDocs</div>
+            <div class="team-card-desc">Convertissez les fichiers PDF, DOCX, PPTX et XLSX en quelques secondes. Aucune limite de téléchargement, aucun compte requis, aucun filigrane.</div>
+          </div>
+        </div>
+
+        <div class="tool-cta reveal">
+          <h3 id="about-cta-h">Prêt à analyser une chaîne YouTube ?</h3>
+          <p id="about-cta-p">Collez l’URL de n’importe quelle chaîne et obtenez une répartition complète des revenus en moins de 2 secondes – gratuitement et sans connexion requise.</p>
+          <a href="/fr/#analyzer" class="btn btn-primary btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            Analyser une chaîne gratuitement
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo"><img src="/images/norcanto-logo.png" alt="Norcanto" class="site-logo-img"  loading="lazy" decoding="async" /><div class="footer-logo-text">Analyseur YouTube</div></div>
+        <p class="footer-desc">Analyse gratuite des revenus de la chaîne YouTube et informations sur les performances. Propulsé par Norcanto.</p>
+      </div>
+      <div><div class="footer-col-title">Outils</div><div class="footer-links"><a href="/fr/#analyzer">Analyseur de canaux</a><a href="/fr/#calculator">Calculateur de revenus</a><a href="/fr/blog/">Blog</a></div></div>
+      <div><div class="footer-col-title">Norcanto</div><div class="footer-links"><a href="https://norcanto.com" target="_blank" rel="noopener">Norcanto IA</a><a href="https://converter.norcanto.com" target="_blank" rel="noopener">Documents rapides</a><a href="/fr/about/">À propos</a></div></div>
+      <div><div class="footer-col-title">Légal</div><div class="footer-links"><a href="/fr/privacy/">politique de confidentialité</a><a href="/fr/terms/">Conditions d'utilisation</a><a href="/fr/contact/">Contact</a><a href="/fr/cookies-notice/">Cookies</a></div></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Analyseur YouTube par Norcanto. Tous droits réservés.</div>
+      <div class="footer-legal"><a href="/fr/privacy/">Confidentialité</a><a href="/fr/terms/">Termes</a><a href="/fr/contact/">Contact</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/logo.js" defer></script>
+<script src="/js/app.js" defer></script>
+</body>
+</html>

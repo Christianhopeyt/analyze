@@ -1,1 +1,4 @@
+/api/channel-analyzer  /.netlify/functions/channel-analyzer  200
+/api/niche-insights  /.netlify/functions/niche-insights  200
 /channel/*  /index.html  200
+/fr/blog/:slug.html  /fr/blog/:slug/  301
