@@ -34,9 +34,11 @@ let cache = {};
 try { cache = JSON.parse(await fs.readFile(cachePath, 'utf8')); } catch {}
 
 function pageUrl(file, locale = 'en') {
-  const clean = file === 'index.html' ? '' : file.replace(/index\.html$/, '');
-  const localized = locale === 'fr' ? clean.replace(/^blog\/(.+)\.html$/, 'blog/$1/') : clean;
-  return `https://norcanto.com/${locale === 'fr' ? 'fr/' : ''}${localized}`;
+  const clean = publicPath(file === 'index.html'
+    ? ''
+    : file.replace(/\/index\.html$/, '').replace(/\.html$/, ''));
+  if (!clean) return `https://norcanto.com${locale === 'fr' ? '/fr' : '/'}`;
+  return `https://norcanto.com${locale === 'fr' ? '/fr' : ''}/${clean}`;
 }
 
 function shouldTranslate(text) {
@@ -123,11 +125,56 @@ function localizedInternalHref(file, href) {
   if (/^(?:https?:|mailto:|#|\/fr\/|\/api\/)/.test(href)) return href;
   const [pathname, suffix = ''] = href.split(/(?=[?#])/);
   if (!pathname || /\.(?:css|js|png|jpg|jpeg|webp|svg|ico|xml)$/i.test(pathname)) return href;
-  const resolved = path.posix.normalize(path.posix.join('/', path.posix.dirname(file), pathname));
+  const resolved = pathname.startsWith('/')
+    ? path.posix.normalize(pathname)
+    : path.posix.normalize(path.posix.join('/', path.posix.dirname(file), pathname));
   const clean = resolved
-    .replace(/index\.html$/, '')
-    .replace(/^\/blog\/(.+)\.html$/, '/blog/$1/');
-  return `/fr${clean === '/' ? '/' : clean}${suffix}`;
+    .replace(/\/index\.html$/, '')
+    .replace(/\.html$/, '');
+  const collapsed = collapseRepeatedSegments(clean);
+  const publicClean = publicPath(collapsed);
+  return `/fr${publicClean === '/' ? '' : publicClean}${suffix}`;
+}
+
+function collapseRepeatedSegments(pathname) {
+  const parts = pathname.split('/');
+  const collapsed = parts.filter((part, index) => !part || part !== parts[index - 1]);
+  const routeNames = new Set(['about', 'blog', 'contact', 'cookies-notice', 'niche-insights', 'privacy', 'terms']);
+  const routeIndexes = collapsed
+    .map((part, index) => routeNames.has(part) ? index : -1)
+    .filter(index => index > 0);
+  if (routeIndexes.length > 1) return `/${collapsed.slice(routeIndexes.at(-1)).join('/')}`;
+  return collapsed.join('/') || '/';
+}
+
+function publicPath(pathname) {
+  const clean = pathname.replace(/(^|\/)cookies-notice(?=\/|$)/, '$1cookies');
+  return clean.length > 1 ? clean.replace(/\/$/, '') : clean;
+}
+
+function cleanPublicLinks(html, file) {
+  return html.replace(/href="([^"]+)"/g, (_, href) => {
+    if (/^(?:https?:|mailto:|#|\/api\/|\/fr(?:\/|$))/.test(href)) return `href="${href}"`;
+    const [pathname, suffix = ''] = href.split(/(?=[?#])/);
+    if (!pathname || /\.(?:css|js|png|jpg|jpeg|webp|svg|ico|xml)$/i.test(pathname)) return `href="${href}"`;
+    const resolved = pathname.startsWith('/')
+      ? path.posix.normalize(pathname)
+      : path.posix.normalize(path.posix.join('/', path.posix.dirname(file), pathname));
+    const clean = resolved === '/index.html'
+      ? '/'
+      : resolved.replace(/\/index\.html$/, '').replace(/\.html$/, '');
+    return `href="${publicPath(collapseRepeatedSegments(clean))}${suffix}"`;
+  });
+}
+
+function cleanAbsolutePublicUrls(html) {
+  return html.replace(/https:\/\/norcanto\.com(\/[^"' <]*)?/g, (_, pathname = '/') => {
+    const [pathPart, suffix = ''] = pathname.split(/(?=[?#])/);
+    const clean = pathPart === '/index.html'
+      ? '/'
+      : pathPart.replace(/\/index\.html$/, '').replace(/\.html$/, '').replace(/\/$/, '');
+    return `https://norcanto.com${publicPath(clean) || '/'}${suffix}`;
+  });
 }
 
 function localizeLinks(html, file) {
@@ -178,6 +225,7 @@ function removeLocaleSeo(html) {
   return html
     .replace(/<link rel="canonical"[^>]*>\s*/gi, '')
     .replace(/<link rel="alternate" hreflang="[^"]+"[^>]*>\s*/gi, '')
+    .replace(/<meta property="og:url"[^>]*>\s*/gi, '')
     .replace(/<meta property="og:locale(?::alternate)?"[^>]*>\s*/gi, '');
 }
 
@@ -190,6 +238,7 @@ function withEnglishSeo(html, file) {
     `  <link rel="alternate" hreflang="en" href="${enUrl}" />`,
     `  <link rel="alternate" hreflang="fr" href="${frUrl}" />`,
     `  <link rel="alternate" hreflang="x-default" href="${enUrl}" />`,
+    `  <meta property="og:url" content="${enUrl}" />`,
     '  <meta property="og:locale" content="en_US" />',
     '  <meta property="og:locale:alternate" content="fr_FR" />',
     '</head>'
@@ -199,6 +248,8 @@ function withEnglishSeo(html, file) {
 async function buildPage(file) {
   const sourcePath = path.join(root, file);
   let html = await fs.readFile(sourcePath, 'utf8');
+  html = cleanPublicLinks(html, file);
+  html = cleanAbsolutePublicUrls(html);
   html = withEnglishSeo(html, file);
   await fs.writeFile(sourcePath, html, 'utf8');
   const enUrl = pageUrl(file);
@@ -210,6 +261,7 @@ async function buildPage(file) {
     `  <link rel="alternate" hreflang="en" href="${enUrl}" />`,
     `  <link rel="alternate" hreflang="fr" href="${frUrl}" />`,
     `  <link rel="alternate" hreflang="x-default" href="${enUrl}" />`,
+    `  <meta property="og:url" content="${frUrl}" />`,
     '  <meta property="og:locale" content="fr_FR" />',
     '  <meta property="og:locale:alternate" content="en_US" />',
     '</head>'
@@ -233,7 +285,8 @@ async function buildPage(file) {
 async function updateSitemap() {
   const sitemapPath = path.join(root, 'sitemap.xml');
   let sitemap = await fs.readFile(sitemapPath, 'utf8');
-  sitemap = sitemap.replace(/\s*<url>\s*<loc>https:\/\/norcanto\.com\/fr\/[\s\S]*?<\/url>/g, '');
+  sitemap = cleanAbsolutePublicUrls(sitemap);
+  sitemap = sitemap.replace(/\s*<url>\s*<loc>https:\/\/norcanto\.com\/fr(?:\/[^<]*)?<\/loc>[\s\S]*?<\/url>/g, '');
   const frenchEntries = publicPages.map(file => [
     '  <url>',
     `    <loc>${pageUrl(file, 'fr')}</loc>`,

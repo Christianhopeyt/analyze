@@ -250,13 +250,8 @@ const LangManager = {
     document.querySelectorAll('.lang-btn').forEach(btn =>
       btn.addEventListener('click', () => {
         if (btn.dataset.lang === this.current) return;
-        let path = location.pathname.replace(/^\/fr(?=\/|$)/, '') || '/';
-        if (btn.dataset.lang === 'FR') {
-          path = path.replace(/^\/blog\/(.+)\.html$/, '/blog/$1/');
-        } else {
-          path = path.replace(/^\/blog\/(.+)\/$/, '/blog/$1.html');
-        }
-        const targetPath = btn.dataset.lang === 'FR' ? `/fr${path === '/' ? '/' : path}` : path;
+        const path = location.pathname.replace(/^\/fr(?=\/|$)/, '') || '/';
+        const targetPath = btn.dataset.lang === 'FR' ? `/fr${path === '/' ? '' : path}` : path;
         location.href = `${targetPath}${location.search}${location.hash}`;
       })
     );
@@ -408,7 +403,7 @@ const LangManager = {
     if (cb && s.cookie_text) {
       // Preserve the cookies-notice link inside the banner text
       const linkEl = cb.querySelector('a');
-      const linkHtml = linkEl ? linkEl.outerHTML : '<a href="cookies-notice/index.html">Cookie Policy</a>';
+      const linkHtml = linkEl ? linkEl.outerHTML : '<a href="/cookies-notice">Cookie Policy</a>';
       cb.innerHTML = s.cookie_text.replace('Cookie Policy', linkHtml).replace('Politique des Cookies', linkHtml);
     }
     txt('cookie-accept-label', 'cookie_accept');
@@ -427,10 +422,10 @@ const LangManager = {
         return;
       }
       const href = a.getAttribute('href') || '';
-      const clean = href.replace(/^.*?#/, '#').replace(/^.*\/([^\/]+\.html)/, '$1').replace('../','');
+      const clean = href.replace(/^.*?#/, '#').replace(/^.*\/([^/]+)\/?$/, '$1');
       if (clean.includes('#analyzer') || clean.includes('analyzer'))          { if (!clean.includes('http') && !clean.includes('norcanto')) a.textContent = s.nav_analysis; }
       if (clean.includes('#calculator') || clean === 'calculator')             a.textContent = s.nav_calculator;
-      if (clean.includes('blog/index') || clean === 'blog' || (clean.includes('blog') && clean.endsWith('index.html'))) a.textContent = s.nav_blog;
+      if (clean === 'blog') a.textContent = s.nav_blog;
       if (clean.includes('privacy') && !clean.includes('http'))               a.textContent = s.nav_privacy;
       if (clean.includes('about') && !clean.includes('http'))                 a.textContent = s.nav_about;
     });
@@ -1013,23 +1008,23 @@ function normalizeNavigation() {
   const path = location.pathname.toLowerCase();
   const localePrefix = path === '/fr' || path.startsWith('/fr/') ? '/fr' : '';
   const isFrench = localePrefix === '/fr';
-  const localHref = href => `${localePrefix}${isFrench ? href.replace(/index\.html(?=#|$)/, '') : href}`;
+  const localHref = href => `${localePrefix}${isFrench && href.startsWith('/#') ? href.slice(1) : href}`;
   const active = path.includes('/blog/') ? 'blog'
     : path.includes('/niche-insights/') ? 'niche'
     : path.includes('/privacy/') ? 'privacy'
     : path.includes('/about/') ? 'about'
-    : path === '/' || path === '/index.html' ? 'analysis'
+    : path === '/' || path === '/fr' ? 'analysis'
     : '';
   const labels = isFrench
     ? { analysis: 'Analyse de chaîne', calculator: 'Calculateur', niche: 'Tendances de niche', blog: 'Blog', privacy: 'Confidentialité', about: 'À propos' }
     : { analysis: 'Channel Analysis', calculator: 'Calculator', niche: 'Niche Insights', blog: 'Blog', privacy: 'Privacy', about: 'About' };
   const links = [
-    { key: 'analysis', href: localHref('/index.html#analyzer'), label: labels.analysis },
-    { key: 'calculator', href: localHref('/index.html#calculator'), label: labels.calculator },
-    { key: 'niche', href: localHref('/niche-insights/index.html'), label: labels.niche },
-    { key: 'blog', href: localHref('/blog/index.html'), label: labels.blog },
-    { key: 'privacy', href: localHref('/privacy/index.html'), label: labels.privacy },
-    { key: 'about', href: localHref('/about/index.html'), label: labels.about },
+    { key: 'analysis', href: localHref('/#analyzer'), label: labels.analysis },
+    { key: 'calculator', href: localHref('/#calculator'), label: labels.calculator },
+    { key: 'niche', href: localHref('/niche-insights'), label: labels.niche },
+    { key: 'blog', href: localHref('/blog'), label: labels.blog },
+    { key: 'privacy', href: localHref('/privacy'), label: labels.privacy },
+    { key: 'about', href: localHref('/about'), label: labels.about },
   ];
   document.querySelectorAll('.header-nav').forEach(nav => {
     nav.setAttribute('aria-label', isFrench ? 'Navigation principale' : 'Primary navigation');

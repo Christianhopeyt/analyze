@@ -49,5 +49,6 @@
 
 [[redirects]]
   from = "/fr/blog/:slug.html"
-  to   = "/fr/blog/:slug/"
+  to   = "/fr/blog/:slug"
   status = 301
+  force = true
