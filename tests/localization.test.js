@@ -23,7 +23,7 @@ function localFileForUrl(url) {
 
 test('French pages have reciprocal SEO metadata and valid internal routes', () => {
   const files = htmlFiles(path.join(root, 'fr'));
-  assert.equal(files.length, 20);
+  assert.equal(files.length, 21);
 
   files.forEach(file => {
     const html = fs.readFileSync(file, 'utf8');
@@ -45,7 +45,7 @@ test('French pages have reciprocal SEO metadata and valid internal routes', () =
 test('English public pages expose clean links and SEO URLs', () => {
   [
     path.join(root, 'index.html'),
-    ...['about', 'blog', 'contact', 'cookies-notice', 'niche-insights', 'privacy', 'terms']
+    ...['about', 'blog', 'contact', 'cookies-notice', 'creator-dashboard', 'niche-insights', 'privacy', 'terms']
       .flatMap(directory => htmlFiles(path.join(root, directory)))
   ]
     .forEach(file => {
@@ -54,6 +54,23 @@ test('English public pages expose clean links and SEO URLs', () => {
       assert.doesNotMatch(html, /href="[^"]*(?:index\.html|\.html(?:[?#"]|$))/, relative);
       assert.doesNotMatch(html, /https:\/\/norcanto\.com[^"< ]*(?:index\.html|\.html)/, relative);
     });
+});
+
+test('public pages consistently use Norlytics product branding', () => {
+  const files = [
+    path.join(root, 'index.html'),
+    ...['about', 'blog', 'contact', 'cookies-notice', 'creator-dashboard', 'niche-insights', 'privacy', 'terms', 'fr']
+      .flatMap(directory => htmlFiles(path.join(root, directory)))
+  ];
+
+  files.forEach(file => {
+    const html = fs.readFileSync(file, 'utf8');
+    const relative = path.relative(root, file);
+    assert.match(html, /Norlytics/, relative);
+    assert.doesNotMatch(html, /YouTube Analyzer by Norcanto|YouTube Analyzer de Norcanto|Analyseur YouTube par Norcanto/, relative);
+    assert.doesNotMatch(html, /Norlytics\s*<span>(?:by|par) Norcanto<\/span>/, relative);
+    assert.doesNotMatch(html, /(<title>|property="og:title" content=")[^"<]*Norcanto/, relative);
+  });
 });
 
 test('sitemap includes every French canonical URL', () => {
@@ -67,14 +84,23 @@ test('sitemap includes every French canonical URL', () => {
   });
 });
 
-test('Netlify preserves legacy URLs with forced clean redirects', () => {
+test('Netlify page routing uses one-way redirects and clean rewrites without loops', () => {
   const redirects = fs.readFileSync(path.join(root, '_redirects'), 'utf8');
+  const netlifyConfig = fs.readFileSync(path.join(root, 'netlify.toml'), 'utf8');
   [
-    '/index.html  /  301!',
-    '/blog/index.html  /blog  301!',
-    '/niche-insights/index.html  /niche-insights  301!',
-    '/blog/:slug.html  /blog/:slug  301!',
-    '/fr/blog/:slug.html  /fr/blog/:slug  301!',
-    '/cookies-notice/index.html  /cookies  301!'
+    '/index.html  /  301',
+    '/blog/index.html  /blog  301',
+    '/niche-insights/index.html  /niche-insights  301',
+    '/creator-dashboard/index.html  /creator-dashboard  301',
+    '/blog/:slug.html  /blog/:slug  301',
+    '/fr/blog/:slug.html  /fr/blog/:slug  301',
+    '/cookies-notice/index.html  /cookies  301',
+    '/blog  /blog/index.html  200',
+    '/creator-dashboard  /creator-dashboard/index.html  200',
+    '/cookies  /cookies-notice/index.html  200',
+    '/fr/blog  /fr/blog/index.html  200',
+    '/fr/cookies  /fr/cookies-notice/index.html  200'
   ].forEach(rule => assert.ok(redirects.includes(rule), rule));
+  assert.doesNotMatch(redirects, /301!|^\/[^ ]+\/\s+\/[^ ]+\s+301$/m);
+  assert.doesNotMatch(netlifyConfig, /\[\[redirects\]\]/);
 });

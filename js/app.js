@@ -1,5 +1,5 @@
 /* ===========================
-   YouTube Analyzer by Norcanto
+   Norlytics
    Main Application JS — Production Ready
    =========================== */
 'use strict';
@@ -79,13 +79,13 @@ const LangManager = {
       quickdocs_title:   'Convert Your Documents in Seconds',
       quickdocs_text:    'QuickDocs Converter allows you to quickly convert PDF, DOCX, PPTX, XLSX files and much more. Fast, secure, and free.',
       quickdocs_btn:     'Use QuickDocs Converter',
-      about_title:       'About YouTube Analyzer',
-      about_sub:         'A free, data-driven tool that gives any creator or marketer transparent insight into YouTube channel revenue and performance.',
+      about_title:       'About Norlytics',
+      about_sub:         'Norlytics gives creators and marketers clear YouTube channel analytics, revenue estimates, and niche opportunity insights.',
       about_mission_h:   'Our Mission',
       about_method_h:    'How Revenue Is Calculated',
       about_data_h:      'Data Sources',
       about_score_h:     'The Business Potential Score',
-      about_norcanto_h:  'About Norcanto',
+      about_norcanto_h:  'The Company Behind Norlytics',
       about_cta_h:       'Ready to Analyze a YouTube Channel?',
       about_cta_p:       'Paste any channel URL and get a full revenue breakdown in under 2 seconds — free, no login required.',
       about_cta_btn:     'Analyze a Channel Free',
@@ -108,7 +108,7 @@ const LangManager = {
       contact_priv_t:    'Privacy Requests',
       contact_priv_p:    'For data deletion or privacy concerns, email privacy@norcanto.com directly.',
       contact_free_t:    'Free Tool',
-      contact_free_p:    'YouTube Analyzer is 100% free. No account, no subscription.',
+      contact_free_p:    'Norlytics is 100% free. No account, no subscription.',
       contact_success_h: 'Message sent!',
       contact_success_p: 'Thank you for reaching out. We will reply within 48 hours.',
       cookies_title:     'Cookie Policy',
@@ -122,14 +122,15 @@ const LangManager = {
       blog_hero_sub:     'Guides, strategies, and 2026 data-driven insights for YouTube creators and marketers',
       blog_filter_lbl:   'Filter:',
       blog_cta_h:        "Check Any Channel's Real Revenue Potential",
-      blog_cta_p:        'Use our free YouTube Analyzer to get an instant revenue estimate, engagement rate, and Business Potential Score for any public channel.',
+      blog_cta_p:        'Use Norlytics to get an instant revenue estimate, engagement rate, and Business Potential Score for any public channel.',
       blog_cta_btn:      'Analyze a Channel Free',
-      footer_copy:       '\u00a9 2026 YouTube Analyzer by Norcanto. All rights reserved.',
+      footer_copy:       '\u00a9 2026 Norlytics. All rights reserved.',
       footer_desc:       'Free YouTube channel revenue analysis and performance insights. Powered by Norcanto.',
       cookie_text:       'We use cookies to improve your experience and analyze traffic. By clicking \u201cAccept\u201d, you agree to our Cookie Policy.',
       cookie_accept:     'Accept',
       cookie_reject:     'Reject',
       nav_analysis:      'Channel Analysis',
+      nav_creator:       'Creator Dashboard',
       nav_calculator:    'Calculator',
       nav_niche:         'Niche Insights',
       nav_blog:          'Blog',
@@ -152,7 +153,7 @@ const LangManager = {
       calc_title:        'Faire une Estimation Manuelle',
       blog_title:        'Derniers Articles du Blog',
       faq_title:         'Questions Fr\u00e9quentes',
-      hero_badge:        'Analyseur YouTube Gratuit \u2014 Mis \u00e0 jour 2026',
+      hero_badge:        'Norlytics Gratuit \u2014 Mis \u00e0 jour 2026',
       how_it_works:      'Comment \u00c7a Fonctionne',
       how_subtitle:      'Trois \u00e9tapes pour une analyse compl\u00e8te de cha\u00eene YouTube',
       step1_title:       "Collez l'URL de la Cha\u00eene",
@@ -180,13 +181,13 @@ const LangManager = {
       quickdocs_title:   'Convertissez vos Documents en Quelques Secondes',
       quickdocs_text:    'QuickDocs Converter vous permet de convertir rapidement des fichiers PDF, DOCX, PPTX, XLSX et bien plus encore.',
       quickdocs_btn:     'Utiliser QuickDocs Converter',
-      about_title:       '\u00c0 Propos de YouTube Analyzer',
-      about_sub:         "Un outil gratuit bas\u00e9 sur les donn\u00e9es qui offre \u00e0 tout cr\u00e9ateur ou sp\u00e9cialiste marketing une vision transparente des revenus et performances des cha\u00eenes YouTube.",
+      about_title:       '\u00c0 Propos de Norlytics',
+      about_sub:         "Norlytics offre aux cr\u00e9ateurs et sp\u00e9cialistes marketing des analyses YouTube claires, des estimations de revenus et des insights sur les opportunit\u00e9s de niche.",
       about_mission_h:   'Notre Mission',
       about_method_h:    'Comment les Revenus Sont Calcul\u00e9s',
       about_data_h:      'Sources de Donn\u00e9es',
       about_score_h:     'Le Score de Potentiel Commercial',
-      about_norcanto_h:  '\u00c0 Propos de Norcanto',
+      about_norcanto_h:  "L'entreprise derri\u00e8re Norlytics",
       about_cta_h:       'Pr\u00eat \u00e0 Analyser une Cha\u00eene YouTube\u00a0?',
       about_cta_p:       "Collez n'importe quelle URL de cha\u00eene et obtenez une analyse compl\u00e8te des revenus en moins de 2 secondes \u2014 gratuit, sans compte requis.",
       about_cta_btn:     'Analyser une Cha\u00eene Gratuitement',
@@ -209,7 +210,7 @@ const LangManager = {
       contact_priv_t:    'Demandes de Confidentialit\u00e9',
       contact_priv_p:    'Pour toute suppression de donn\u00e9es ou question de confidentialit\u00e9, \u00e9crivez directement \u00e0 privacy@norcanto.com.',
       contact_free_t:    'Outil Gratuit',
-      contact_free_p:    'YouTube Analyzer est 100\u00a0% gratuit. Aucun compte, aucun abonnement.',
+      contact_free_p:    'Norlytics est 100\u00a0% gratuit. Aucun compte, aucun abonnement.',
       contact_success_h: 'Message envoy\u00e9\u00a0!',
       contact_success_p: 'Merci de nous avoir contact\u00e9s. Nous vous r\u00e9pondrons sous 48 heures.',
       cookies_title:     'Politique des Cookies',
@@ -223,14 +224,15 @@ const LangManager = {
       blog_hero_sub:     'Guides, strat\u00e9gies et donn\u00e9es 2026 pour les cr\u00e9ateurs et sp\u00e9cialistes marketing YouTube',
       blog_filter_lbl:   'Filtrer\u00a0:',
       blog_cta_h:        "V\u00e9rifiez le Potentiel de Revenus de N'importe Quelle Cha\u00eene",
-      blog_cta_p:        'Utilisez notre analyseur YouTube gratuit pour obtenir une estimation instantan\u00e9e des revenus, du taux d\'engagement et du Score de Potentiel Commercial.',
+      blog_cta_p:        'Utilisez Norlytics pour obtenir une estimation instantan\u00e9e des revenus, du taux d\'engagement et du Score de Potentiel Commercial.',
       blog_cta_btn:      'Analyser une Cha\u00eene Gratuitement',
-      footer_copy:       '\u00a9 2026 YouTube Analyzer by Norcanto. Tous droits r\u00e9serv\u00e9s.',
+      footer_copy:       '\u00a9 2026 Norlytics. Tous droits r\u00e9serv\u00e9s.',
       footer_desc:       'Analyse gratuite des revenus et performances de cha\u00eenes YouTube. Propuls\u00e9 par Norcanto.',
       cookie_text:       'Nous utilisons des cookies pour am\u00e9liorer votre exp\u00e9rience et analyser le trafic. En cliquant sur \u00ab\u00a0Accepter\u00a0\u00bb, vous acceptez notre Politique des Cookies.',
       cookie_accept:     'Accepter',
       cookie_reject:     'Refuser',
       nav_analysis:      'Analyse de Cha\u00eene',
+      nav_creator:       'Tableau Créateur',
       nav_calculator:    'Calculateur',
       nav_niche:         'Tendances de Niche',
       nav_blog:          'Blog',
@@ -709,7 +711,7 @@ const Analyzer = {
     const ck = 'yta-c-'+parsed.value.toLowerCase().replace(/[^a-z0-9]/g,'-');
     try {
       const hit = localStorage.getItem(ck);
-      if (hit) { const {d,t}=JSON.parse(hit); if (Date.now()-t<86400000) { this.render(d); return; } }
+      if (hit) { const {d,t}=JSON.parse(hit); if (Date.now()-t<86400000) { this.render(d); window.CreatorDashboard?.load(parsed); return; } }
     } catch(_){}
 
     this.setLoading(true);
@@ -720,8 +722,13 @@ const Analyzer = {
       const data = await this.ytFetch(parsed);
 
       if (!data) { showToast('Channel not found. Check the URL.','error'); return; }
-      try { localStorage.setItem(ck, JSON.stringify({d:data,t:Date.now()})); } catch(_){}
+      const creatorReport = data.creatorReport;
+      const cacheData = { ...data };
+      delete cacheData.creatorReport;
+      try { localStorage.setItem(ck, JSON.stringify({d:cacheData,t:Date.now()})); } catch(_){}
       this.render(data);
+      if (creatorReport) window.CreatorDashboard?.accept(creatorReport);
+      else window.CreatorDashboard?.load(parsed);
     } catch(err) {
       console.error('[YTA]', err);
       this.showError(this.text('analysis_failed'));
@@ -731,9 +738,18 @@ const Analyzer = {
   },
 
   async ytFetch(parsed) {
-    const response = await fetch(`/api/channel-analyzer?type=${encodeURIComponent(parsed.type)}&value=${encodeURIComponent(parsed.value)}`);
-    if (!response.ok) throw new Error(`Channel API HTTP ${response.status}`);
-    const ch = await response.json();
+    const query = `type=${encodeURIComponent(parsed.type)}&value=${encodeURIComponent(parsed.value)}`;
+    let response = await fetch(`/api/creator-dashboard?${query}`);
+    let creatorReport = null;
+    let ch;
+    if (response.ok) {
+      creatorReport = await response.json();
+      ch = creatorReport.channel;
+    } else {
+      response = await fetch(`/api/channel-analyzer?${query}`);
+      if (!response.ok) throw new Error(`Channel API HTTP ${response.status}`);
+      ch = await response.json();
+    }
     const sn = ch;
     const st = ch;
     const ageMo = Math.max(1,Math.round((Date.now()-new Date(sn.publishedAt))/(1000*60*60*24*30)));
@@ -744,10 +760,12 @@ const Analyzer = {
       description:sn.description,
       avatar: sn.avatar,
       banner: sn.banner,
-      subscriberCount:st.subscriberCount||0, viewCount:st.viewCount||0, videoCount:st.videoCount||0,
+      subscriberCount:st.hiddenSubscriberCount ? null : (st.subscriberCount||0),
+      hiddenSubscriberCount:Boolean(st.hiddenSubscriberCount),
+      viewCount:st.viewCount||0, videoCount:st.videoCount||0,
       publishedAt:sn.publishedAt, ageMonths:ageMo,
       niche:detectNiche(sn.title,sn.description), language:lang,
-      country:sn.country||detectCountry(lang), source:'live',
+      country:sn.country||detectCountry(lang), source:'live', creatorReport,
     };
   },
 
@@ -817,7 +835,7 @@ const Analyzer = {
     set('res-niche',    RPM_DATA.niches[data.niche]?.label||data.niche);
     set('res-language', data.language);
     set('res-country',  data.country);
-    set('res-subs',     fmtNum(data.subscriberCount));
+    set('res-subs',     data.hiddenSubscriberCount ? '—' : fmtNum(data.subscriberCount));
     set('res-views',    fmtNum(data.viewCount));
     set('res-videos',   fmtNum(data.videoCount));
     set('res-created',  new Date(data.publishedAt).toLocaleDateString(LangManager.current === 'FR' ? 'fr-FR' : 'en-US',{year:'numeric',month:'long'}));
@@ -857,7 +875,7 @@ const Analyzer = {
       }
     } catch(_) {}
 
-    document.title = `${data.title} — YouTube Analyzer by Norcanto`;
+    document.title = `${data.title} — Norlytics`;
     showToast(this.text('analysis_complete'),'success');
   }
 };
@@ -1010,16 +1028,18 @@ function normalizeNavigation() {
   const isFrench = localePrefix === '/fr';
   const localHref = href => `${localePrefix}${isFrench && href.startsWith('/#') ? href.slice(1) : href}`;
   const active = path.includes('/blog/') ? 'blog'
-    : path.includes('/niche-insights/') ? 'niche'
+    : path.includes('/creator-dashboard') ? 'creator'
+    : path.includes('/niche-insights') ? 'niche'
     : path.includes('/privacy/') ? 'privacy'
     : path.includes('/about/') ? 'about'
     : path === '/' || path === '/fr' ? 'analysis'
     : '';
   const labels = isFrench
-    ? { analysis: 'Analyse de chaîne', calculator: 'Calculateur', niche: 'Tendances de niche', blog: 'Blog', privacy: 'Confidentialité', about: 'À propos' }
-    : { analysis: 'Channel Analysis', calculator: 'Calculator', niche: 'Niche Insights', blog: 'Blog', privacy: 'Privacy', about: 'About' };
+    ? { analysis: 'Analyse de chaîne', creator: 'Tableau Créateur', calculator: 'Calculateur', niche: 'Tendances de niche', blog: 'Blog', privacy: 'Confidentialité', about: 'À propos' }
+    : { analysis: 'Channel Analysis', creator: 'Creator Dashboard', calculator: 'Calculator', niche: 'Niche Insights', blog: 'Blog', privacy: 'Privacy', about: 'About' };
   const links = [
     { key: 'analysis', href: localHref('/#analyzer'), label: labels.analysis },
+    { key: 'creator', href: localHref('/creator-dashboard'), label: labels.creator },
     { key: 'calculator', href: localHref('/#calculator'), label: labels.calculator },
     { key: 'niche', href: localHref('/niche-insights'), label: labels.niche },
     { key: 'blog', href: localHref('/blog'), label: labels.blog },
@@ -1084,8 +1104,7 @@ function initForm() {
   const btn   = document.getElementById('analyze-btn');
   const form  = document.getElementById('analyzer-form');
 
-  if (!input) { console.warn('[YTA] #channel-input not found'); return; }
-  if (!btn)   { console.warn('[YTA] #analyze-btn not found');   return; }
+  if (!input || !btn) return;
 
   const go = () => {
     const v = input.value.trim();

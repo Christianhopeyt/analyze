@@ -30,25 +30,3 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
-
-# SPA-style routing for /channel/* paths
-[[redirects]]
-  from = "/api/channel-analyzer"
-  to   = "/.netlify/functions/channel-analyzer"
-  status = 200
-
-[[redirects]]
-  from = "/api/niche-insights"
-  to   = "/.netlify/functions/niche-insights"
-  status = 200
-
-[[redirects]]
-  from = "/channel/*"
-  to   = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/fr/blog/:slug.html"
-  to   = "/fr/blog/:slug"
-  status = 301
-  force = true

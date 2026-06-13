@@ -1,44 +1,57 @@
+# API and application rewrites
 /api/channel-analyzer  /.netlify/functions/channel-analyzer  200
 /api/niche-insights  /.netlify/functions/niche-insights  200
+/api/creator-dashboard  /.netlify/functions/creator-dashboard  200
+/api/creator-dashboard-ai  /.netlify/functions/creator-dashboard-ai  200
 /channel/*  /index.html  200
-/index.html  /  301!
-/blog/index.html  /blog  301!
-/niche-insights/index.html  /niche-insights  301!
-/about/index.html  /about  301!
-/contact/index.html  /contact  301!
-/privacy/index.html  /privacy  301!
-/terms/index.html  /terms  301!
-/cookies/index.html  /cookies  301!
-/cookies-notice/index.html  /cookies  301!
-/cookies-notice  /cookies  301!
-/blog/:slug.html  /blog/:slug  301!
-/fr/index.html  /fr  301!
-/fr/blog/index.html  /fr/blog  301!
-/fr/niche-insights/index.html  /fr/niche-insights  301!
-/fr/about/index.html  /fr/about  301!
-/fr/contact/index.html  /fr/contact  301!
-/fr/privacy/index.html  /fr/privacy  301!
-/fr/terms/index.html  /fr/terms  301!
-/fr/cookies/index.html  /fr/cookies  301!
-/fr/cookies-notice/index.html  /fr/cookies  301!
-/fr/cookies-notice  /fr/cookies  301!
-/fr/blog/:slug.html  /fr/blog/:slug  301!
-/blog/:slug  /blog/:slug.html  200
-/blog/  /blog  301!
-/niche-insights/  /niche-insights  301!
-/about/  /about  301!
-/contact/  /contact  301!
-/privacy/  /privacy  301!
-/terms/  /terms  301!
-/cookies/  /cookies  301!
-/fr/  /fr  301!
-/fr/blog/  /fr/blog  301!
-/fr/niche-insights/  /fr/niche-insights  301!
-/fr/about/  /fr/about  301!
-/fr/contact/  /fr/contact  301!
-/fr/privacy/  /fr/privacy  301!
-/fr/terms/  /fr/terms  301!
-/fr/cookies/  /fr/cookies  301!
-/fr/blog/:slug/  /fr/blog/:slug  301!
+
+# Legacy English URLs -> clean public URLs
+/index.html  /  301
+/blog/index.html  /blog  301
+/niche-insights/index.html  /niche-insights  301
+/creator-dashboard/index.html  /creator-dashboard  301
+/about/index.html  /about  301
+/contact/index.html  /contact  301
+/privacy/index.html  /privacy  301
+/terms/index.html  /terms  301
+/cookies/index.html  /cookies  301
+/cookies-notice/index.html  /cookies  301
+/cookies-notice  /cookies  301
+/blog/:slug.html  /blog/:slug  301
+
+# Legacy French URLs -> clean public URLs
+/fr/index.html  /fr  301
+/fr/blog/index.html  /fr/blog  301
+/fr/niche-insights/index.html  /fr/niche-insights  301
+/fr/creator-dashboard/index.html  /fr/creator-dashboard  301
+/fr/about/index.html  /fr/about  301
+/fr/contact/index.html  /fr/contact  301
+/fr/privacy/index.html  /fr/privacy  301
+/fr/terms/index.html  /fr/terms  301
+/fr/cookies/index.html  /fr/cookies  301
+/fr/cookies-notice/index.html  /fr/cookies  301
+/fr/cookies-notice  /fr/cookies  301
+/fr/blog/:slug.html  /fr/blog/:slug  301
+
+# Clean English URLs -> physical files
+/blog  /blog/index.html  200
+/niche-insights  /niche-insights/index.html  200
+/creator-dashboard  /creator-dashboard/index.html  200
+/about  /about/index.html  200
+/contact  /contact/index.html  200
+/privacy  /privacy/index.html  200
+/terms  /terms/index.html  200
 /cookies  /cookies-notice/index.html  200
+/blog/:slug  /blog/:slug.html  200
+
+# Clean French URLs -> physical files
+/fr  /fr/index.html  200
+/fr/blog  /fr/blog/index.html  200
+/fr/niche-insights  /fr/niche-insights/index.html  200
+/fr/creator-dashboard  /fr/creator-dashboard/index.html  200
+/fr/about  /fr/about/index.html  200
+/fr/contact  /fr/contact/index.html  200
+/fr/privacy  /fr/privacy/index.html  200
+/fr/terms  /fr/terms/index.html  200
 /fr/cookies  /fr/cookies-notice/index.html  200
+/fr/blog/:slug  /fr/blog/:slug/index.html  200

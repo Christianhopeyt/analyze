@@ -1,5 +1,5 @@
 {
-  "name": "youtube-analyzer-site",
+  "name": "norlytics-site",
   "private": true,
   "scripts": {
     "test": "node --test --test-isolation=none tests/*.test.js",

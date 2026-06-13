@@ -4,6 +4,7 @@ import path from 'node:path';
 const root = process.cwd();
 const publicPages = [
   'index.html',
+  'creator-dashboard/index.html',
   'niche-insights/index.html',
   'blog/index.html',
   'blog/ai-tools-for-youtube-creators.html',
@@ -26,7 +27,7 @@ const publicPages = [
 ];
 
 const skipTags = new Set(['script', 'style', 'svg', 'path', 'line', 'polyline', 'polygon', 'circle', 'rect']);
-const preservedTerms = ['YouTube', 'Norcanto', 'AdSense', 'Gemini', 'RPM', 'CPM', 'API', 'QuickDocs'];
+const preservedTerms = ['YouTube', 'Norlytics', 'Norcanto', 'AdSense', 'Gemini', 'RPM', 'CPM', 'API', 'QuickDocs'];
 const untranslatedTokens = new Set(['EN', 'FR', 'Blog', 'Contact', 'Cookies', 'FAQ', 'USD']);
 const cachePath = path.join(root, '.translation-cache.json');
 let cache = {};
@@ -59,6 +60,7 @@ function restoreProtectedText(source, translated) {
   emails.forEach(value => {
     restored = restored.replace(/[\p{L}\w.+-]+@[\w.-]+\.[A-Za-z]{2,}/u, value);
   });
+  restored = restored.replace(/Norlytiques/gi, 'Norlytics');
   return restored;
 }
 
@@ -139,7 +141,7 @@ function localizedInternalHref(file, href) {
 function collapseRepeatedSegments(pathname) {
   const parts = pathname.split('/');
   const collapsed = parts.filter((part, index) => !part || part !== parts[index - 1]);
-  const routeNames = new Set(['about', 'blog', 'contact', 'cookies-notice', 'niche-insights', 'privacy', 'terms']);
+  const routeNames = new Set(['about', 'blog', 'contact', 'cookies-notice', 'creator-dashboard', 'niche-insights', 'privacy', 'terms']);
   const routeIndexes = collapsed
     .map((part, index) => routeNames.has(part) ? index : -1)
     .filter(index => index > 0);

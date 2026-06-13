@@ -1,4 +1,4 @@
-# YouTube Analyzer API Proxy
+# Norlytics API Proxy
 
 This folder contains a lightweight Node.js proxy server that securely forwards
 requests to the YouTube Data API v3 without exposing your API key in the browser.

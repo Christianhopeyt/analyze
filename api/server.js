@@ -1,4 +1,4 @@
-// YouTube Analyzer – API Proxy Server (Node.js)
+// Norlytics – API Proxy Server (Node.js)
 // Deploy as a Netlify Function or standalone Express server
 
 const express = require('express');
@@ -103,5 +103,5 @@ app.get('/api/channel', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`YouTube Analyzer API proxy running on port ${PORT}`);
+  console.log(`Norlytics API proxy running on port ${PORT}`);
 });

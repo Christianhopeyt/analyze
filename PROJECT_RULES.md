@@ -1,5 +1,5 @@
 
-Project: YouTube Analyzer by Norcanto
+Project: Norlytics
 
 Rules:
 - Mobile-first design

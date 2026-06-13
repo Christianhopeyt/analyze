@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Tableau de bord du créateur Norlytics – Analyse de la chaîne YouTube publique</title>
+  <meta name="description" content="Analysez les vidéos publiques récentes d'une chaîne YouTube avec Norlytics Creator Dashboard. Examinez les modèles de téléchargement, la vitesse de croissance, les meilleures vidéos, le score de la chaîne et les idées de contenu IA." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tableau de bord du créateur Norlytics – Analyse de la chaîne YouTube publique" />
+  <meta property="og:description" content="Transformez les données récentes des chaînes YouTube publiques en informations sur les mises en ligne, la croissance, les performances et le contenu." />
+  <meta property="og:image" content="https://norcanto.com/images/og-image.png" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/creator-dashboard.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" media="print" onload="this.media='all'" />
+  <link rel="icon" type="image/png" href="/images/norcanto-logo.png" />
+        <link rel="canonical" href="https://norcanto.com/fr/creator-dashboard" />
+  <link rel="alternate" hreflang="en" href="https://norcanto.com/creator-dashboard" />
+  <link rel="alternate" hreflang="fr" href="https://norcanto.com/fr/creator-dashboard" />
+  <link rel="alternate" hreflang="x-default" href="https://norcanto.com/creator-dashboard" />
+  <meta property="og:url" content="https://norcanto.com/fr/creator-dashboard" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+</head>
+<body>
+<header id="header"><div class="container"><div class="header-inner">
+  <a href="/fr" class="header-logo"><img src="/images/norcanto-logo.png" alt="Norlytics" class="site-logo-img" loading="eager" />Norlytics</a>
+  <nav class="header-nav"></nav>
+  <div class="header-controls"><div class="lang-switcher"><button class="lang-btn active" data-lang="EN">EN</button><button class="lang-btn" data-lang="FR">FR</button></div><button class="theme-toggle" aria-label="Changer de thème"></button></div>
+  <button class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</div></div></header>
+<nav class="mobile-menu" aria-label="Navigation mobile"><div class="mobile-menu-controls"><button class="theme-toggle" aria-label="Changer de thème"></button></div></nav>
+
+<main class="creator-page" id="main-content">
+  <section class="creator-page-hero">
+    <div class="container">
+      <div class="creator-page-copy"><div class="section-divider"></div><h1>Tableau de bord du créateur</h1><p>Analysez les vidéos YouTube publiques récentes pour comprendre les modèles de mise en ligne d'une chaîne, sa vitesse de croissance, son engagement, son contenu de premier ordre et ses prochaines opportunités de contenu.</p></div>
+      <form class="creator-page-form" id="creator-page-form" novalidate>
+        <div class="creator-page-search"><label class="sr-only" for="creator-page-input">URL ou identifiant de la chaîne YouTube</label><input class="creator-page-input" id="creator-page-input" type="text" maxlength="150" autocomplete="off" placeholder="Collez l'URL d'une chaîne YouTube ou @handle..." aria-describedby="creator-page-help creator-page-status" /><button class="creator-page-submit" id="creator-page-submit" type="submit">Créer un tableau de bord</button></div>
+        <p class="creator-page-help" id="creator-page-help">Utilise jusqu'à 50 téléchargements publics récents. Il ne s’agit pas d’analyses privées de YouTube Studio.</p>
+        <p class="creator-page-status" id="creator-page-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+  <section class="creator-page-results"><div class="container">
+    <section class="creator-channel-overview" id="creator-channel-overview" hidden><img id="creator-page-avatar" alt="" /><div class="creator-channel-name"><h2 id="creator-page-name"></h2><p id="creator-page-handle"></p></div><div class="creator-page-channel-stats" id="creator-page-channel-stats"></div></section>
+    <div id="creator-page-report" hidden>
+      <section class="creator-dashboard" id="creator-dashboard" aria-labelledby="creator-dashboard-title">
+        <div class="creator-dashboard-heading"><div><p class="creator-eyebrow" data-cd="eyebrow">Données publiques YouTube</p><h2 id="creator-dashboard-title" data-cd="title">Tableau de bord du créateur</h2><p data-cd="subtitle">Modèles de téléchargement récents, signaux de performances et idées de contenu basés sur les données des chaînes publiques.</p></div><span class="badge badge-gray" id="creator-confidence"></span></div>
+        <div class="creator-source-notice" id="creator-source-notice" role="status" aria-live="polite"></div><div class="creator-loading" id="creator-loading" role="status"><div class="spinner"></div><span data-cd="loading">Création du tableau de bord du créateur à partir de vidéos publiques récentes...</span></div><div class="creator-error" id="creator-error" role="alert"></div>
+        <div class="creator-content" id="creator-content" hidden><div class="creator-tabs" role="tablist" aria-label="Sections du tableau de bord du créateur"><button type="button" role="tab" aria-selected="true" aria-controls="creator-panel-overview" id="creator-tab-overview" data-tab="overview" data-cd="tab_overview">Aperçu</button><button type="button" role="tab" aria-selected="false" aria-controls="creator-panel-videos" id="creator-tab-videos" data-tab="videos" data-cd="tab_videos">Vidéos</button><button type="button" role="tab" aria-selected="false" aria-controls="creator-panel-ideas" id="creator-tab-ideas" data-tab="ideas" data-cd="tab_ideas">Idées</button></div>
+          <div class="creator-panel" id="creator-panel-overview" role="tabpanel" aria-labelledby="creator-tab-overview"><div class="creator-metric-grid" id="creator-metrics"></div><div class="creator-overview-grid"><article class="creator-card"><h3 data-cd="views_recent">Vues sur les mises en ligne récentes</h3><div class="creator-video-chart" id="creator-video-chart"></div></article><article class="creator-card"><h3 data-cd="upload_pattern">Modèle de téléchargement</h3><div id="creator-upload-pattern"></div></article></div><article class="creator-card"><h3 data-cd="growth_velocity">Vitesse de croissance</h3><div id="creator-growth"></div></article></div>
+          <div class="creator-panel" id="creator-panel-videos" role="tabpanel" aria-labelledby="creator-tab-videos" hidden><div class="creator-video-list" id="creator-top-videos"></div></div>
+          <div class="creator-panel" id="creator-panel-ideas" role="tabpanel" aria-labelledby="creator-tab-ideas" hidden><div class="creator-ai-notice" data-cd="ai_notice">Les idées et les recommandations sont des interprétations générées par Gemini des mesures publiques ci-dessus.</div><div class="creator-ai-content" id="creator-ai-content"></div></div>
+        </div>
+      </section>
+    </div>
+  </div></section>
+</main>
+<footer id="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">© 2026 Norlytics. Propulsé par Norcanto.</div><div class="footer-legal"><a href="/fr/privacy">Confidentialité</a><a href="/fr/terms">Termes</a><a href="/fr/contact">Contact</a></div></div></div></footer>
+<script src="/js/logo.js" defer></script><script src="/js/app.js" defer></script><script src="/js/creator-dashboard.js" defer></script><script src="/js/creator-dashboard-page.js" defer></script>
+</body>
+</html>

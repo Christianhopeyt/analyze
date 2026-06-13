@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>YouTube Analyzer par Norcanto – Calculateur gratuit de revenus et d'engagement de la chaîne YouTube 2026</title>
-  <meta name="description" content="Analyseur de chaîne YouTube gratuit. Estimez les revenus mensuels, le taux d'engagement, le RPM et l'audience nationale de n'importe quelle chaîne, aucune connexion n'est requise. Calculateur gratuit de taux d'engagement YouTube et analyseur de pays de chaîne en ligne." />
+  <title>Norlytics – Analyses YouTube et informations de niche gratuites</title>
+  <meta name="description" content="Utilisez Norlytics pour analyser gratuitement les revenus, l'engagement, le RPM, les signaux d'audience et les opportunités de niche de la chaîne YouTube – aucune connexion requise." />
   <meta name="keywords" content="YouTube analyzer, free YouTube engagement rate calculator, YouTube channel country analyzer online, YouTube revenue estimator, YouTube RPM calculator, analyseur chaîne YouTube gratuit, calculateur revenus YouTube" />
   <meta name="robots" content="index, follow" />
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="YouTube Analyzer par Norcanto – Calculateur gratuit de revenus et d’engagement 2026" />
-  <meta property="og:description" content="Analysez gratuitement les revenus, le taux d'engagement, le RPM et l'audience nationale de n'importe quelle chaîne YouTube. Aucune connexion requise." />
+  <meta property="og:title" content="Norlytics – Analyses YouTube et informations de niche gratuites" />
+  <meta property="og:description" content="Analysez les performances de la chaîne YouTube et découvrez des opportunités de niche avec Norlytics. Gratuit, sans connexion requise." />
   <meta property="og:image" content="https://norcanto.com/images/og-image.png" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="YouTube Analyzer by Norcanto – Free Revenue Calculator" />
-  <meta name="twitter:description" content="Analyze any YouTube channel revenue, engagement rate and performance. Free, no login." />
+  <meta name="twitter:title" content="Norlytics – Free YouTube Analytics & Niche Insights" />
+  <meta name="twitter:description" content="Analyze YouTube channel performance and discover niche opportunities with Norlytics." />
   <meta name="twitter:image" content="https://norcanto.com/images/og-image.png" />
 
   <!-- Schema.org -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Analyseur YouTube par Norcanto","url":"https://norcanto.com/","description":"Estimateur de revenus de chaîne YouTube gratuit, calculateur de taux d'engagement et analyseur de pays. Analysez n’importe quelle chaîne YouTube publique en quelques secondes.","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"fr","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"creator":{"@type":"Organization","name":"Norcanto","url":"https://norcanto.com/"},"featureList":["Estimation des revenus YouTube","Calculateur de taux d'engagement","Analyseur de pays de chaîne","Calculateur de régime","Score de potentiel commercial"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Norlytics","url":"https://norcanto.com/","description":"Norlytics est une application gratuite d'analyse YouTube et d'informations de niche pour les performances des chaînes, les estimations de revenus, l'engagement et les opportunités de contenu.","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"fr","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"creator":{"@type":"Organization","name":"Norcanto","url":"https://norcanto.com/"},"featureList":["Estimation des revenus YouTube","Calculateur de taux d'engagement","Analyseur de pays de chaîne","Calculateur de régime","Score de potentiel commercial"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://norcanto.com/#website","url":"https://norcanto.com/","name":"Norlytics","inLanguage":["en","fr"],"publisher":{"@id":"https://norcanto.com/#organization"}},{"@type":"Organization","@id":"https://norcanto.com/#organization","name":"Norcanto","url":"https://norcanto.com/","brand":{"@type":"Brand","name":"Norlytics"}}],"inLanguage":"fr"}</script>
 
   <!-- ══ PERFORMANCE: Critical CSS first, fonts non-blocking ══ -->
   <!-- 1. Preconnect to Google Fonts origins so DNS+TLS is ready -->
@@ -29,6 +30,7 @@
 
   <!-- 2. Main stylesheet — render-critical, loaded normally -->
   <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/creator-dashboard.css" />
 
   <!-- 3. Google Fonts — non-blocking via media="print" swap trick -->
   <link rel="stylesheet"
@@ -45,7 +47,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862"
      crossorigin="anonymous"></script>
      
-                                            <link rel="canonical" href="https://norcanto.com/fr" />
+                                                  <link rel="canonical" href="https://norcanto.com/fr" />
   <link rel="alternate" hreflang="en" href="https://norcanto.com/" />
   <link rel="alternate" hreflang="fr" href="https://norcanto.com/fr" />
   <link rel="alternate" hreflang="x-default" href="https://norcanto.com/" />
@@ -71,8 +73,8 @@
   <div class="container">
     <div class="header-inner">
       <a href="/fr" class="header-logo">
-        <img src="/images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
-        Analyseur YouTube <span>par Norcanto</span>
+        <img src="/images/norcanto-logo.png" alt="Norlytics" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
+        Norlytics
       </a>
 
       <nav class="header-nav">
@@ -252,6 +254,43 @@
         <div class="stat-card-label" id="stat-label-created">Chaîne créée</div>
       </div>
     </div>
+
+    <!-- Creator Dashboard -->
+    <section class="creator-dashboard" id="creator-dashboard" aria-labelledby="creator-dashboard-title">
+      <div class="creator-dashboard-heading">
+        <div>
+          <p class="creator-eyebrow" data-cd="eyebrow">Données publiques YouTube</p>
+          <h2 id="creator-dashboard-title" data-cd="title">Tableau de bord du créateur</h2>
+          <p data-cd="subtitle">Modèles de téléchargement récents, signaux de performances et idées de contenu basés sur les données des chaînes publiques.</p>
+        </div>
+        <span class="badge badge-gray" id="creator-confidence"></span>
+      </div>
+      <div class="creator-source-notice" id="creator-source-notice" role="status" aria-live="polite"></div>
+      <div class="creator-loading" id="creator-loading" role="status"><div class="spinner"></div><span data-cd="loading">Création du tableau de bord du créateur à partir de vidéos publiques récentes...</span></div>
+      <div class="creator-error" id="creator-error" role="alert"></div>
+      <div class="creator-content" id="creator-content" hidden>
+        <div class="creator-tabs" role="tablist" aria-label="Sections du tableau de bord du créateur">
+          <button type="button" role="tab" aria-selected="true" aria-controls="creator-panel-overview" id="creator-tab-overview" data-tab="overview" data-cd="tab_overview">Aperçu</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="creator-panel-videos" id="creator-tab-videos" data-tab="videos" data-cd="tab_videos">Vidéos</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="creator-panel-ideas" id="creator-tab-ideas" data-tab="ideas" data-cd="tab_ideas">Idées</button>
+        </div>
+        <div class="creator-panel" id="creator-panel-overview" role="tabpanel" aria-labelledby="creator-tab-overview">
+          <div class="creator-metric-grid" id="creator-metrics"></div>
+          <div class="creator-overview-grid">
+            <article class="creator-card"><h3 data-cd="views_recent">Vues sur les mises en ligne récentes</h3><div class="creator-video-chart" id="creator-video-chart"></div></article>
+            <article class="creator-card"><h3 data-cd="upload_pattern">Modèle de téléchargement</h3><div id="creator-upload-pattern"></div></article>
+          </div>
+          <article class="creator-card"><h3 data-cd="growth_velocity">Vitesse de croissance</h3><div id="creator-growth"></div></article>
+        </div>
+        <div class="creator-panel" id="creator-panel-videos" role="tabpanel" aria-labelledby="creator-tab-videos" hidden>
+          <div class="creator-video-list" id="creator-top-videos"></div>
+        </div>
+        <div class="creator-panel" id="creator-panel-ideas" role="tabpanel" aria-labelledby="creator-tab-ideas" hidden>
+          <div class="creator-ai-notice" data-cd="ai_notice">Les idées et les recommandations sont des interprétations générées par Gemini des mesures publiques ci-dessus.</div>
+          <div class="creator-ai-content" id="creator-ai-content"></div>
+        </div>
+      </div>
+    </section>
 
     <!-- Revenue Cards -->
     <div class="revenue-section reveal reveal-delay-1">
@@ -649,8 +688,8 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-logo">
-          <img src="/images/norcanto-logo.png" alt="Norcanto" class="site-logo-img" loading="lazy" decoding="async" />
-          <div class="footer-logo-text">Analyseur YouTube</div>
+          <img src="/images/norcanto-logo.png" alt="Norlytics" class="site-logo-img" loading="lazy" decoding="async" />
+          <div class="footer-logo-text">Norlytics</div>
         </div>
         <p class="footer-desc">Analyse gratuite des revenus de la chaîne YouTube et informations sur les performances. Propulsé par Norcanto.</p>
       </div>
@@ -682,7 +721,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2026 Analyseur YouTube par Norcanto. Tous droits réservés.</div>
+      <div class="footer-copy">© 2026 Norlytics. Tous droits réservés.</div>
       <div class="footer-legal">
         <a href="/fr/privacy">Confidentialité</a>
         <a href="/fr/terms">Termes</a>
@@ -705,5 +744,6 @@
 
 <script src="/js/logo.js" defer></script>
 <script src="/js/app.js" defer></script>
+<script src="/js/creator-dashboard.js" defer></script>
 </body>
 </html>

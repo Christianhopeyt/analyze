@@ -1,4 +1,4 @@
-# YouTube Analyzer by Norcanto
+# Norlytics
 
 A premium SaaS web application for analyzing YouTube channel revenue, performance, and growth potential.
 

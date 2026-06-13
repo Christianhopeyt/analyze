@@ -1,7 +1,7 @@
 {
   "name": "youtube-analyzer-api",
   "version": "1.0.0",
-  "description": "YouTube Analyzer API Proxy",
+  "description": "Norlytics API Proxy",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

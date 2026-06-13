@@ -82,6 +82,7 @@ exports.handler = async event => {
     const channel = data.items?.[0];
     if (!channel) return json(404, { code: 'CHANNEL_NOT_FOUND', error: 'Channel not found.' });
 
+    const hiddenSubscriberCount = Boolean(channel.statistics?.hiddenSubscriberCount);
     const result = {
       id: channel.id,
       title: channel.snippet?.title || '',
@@ -91,7 +92,8 @@ exports.handler = async event => {
       country: channel.snippet?.country || null,
       avatar: channel.snippet?.thumbnails?.high?.url || channel.snippet?.thumbnails?.default?.url || null,
       banner: channel.brandingSettings?.image?.bannerExternalUrl || null,
-      subscriberCount: channel.statistics?.subscriberCount || 0,
+      subscriberCount: hiddenSubscriberCount ? null : Number(channel.statistics?.subscriberCount) || 0,
+      hiddenSubscriberCount,
       viewCount: channel.statistics?.viewCount || 0,
       videoCount: channel.statistics?.videoCount || 0
     };
