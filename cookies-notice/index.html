@@ -30,15 +30,6 @@
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#ff0000" />
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5BCXGE5L5G"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5BCXGE5L5G');
-</script>
 <body>
 <header id="header"><div class="container"><div class="header-inner">
   <a href="/cookies" class="header-logo"><img src="/images/norlytics-logo.png" alt="Norlytics" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />Norlytics</a>
@@ -68,12 +59,12 @@
             <tr style="border-bottom:1px solid var(--border-light);"><td style="padding:10px 12px;">yta-lang</td><td style="padding:10px 12px;"><span class="badge badge-green">Essential</span></td><td style="padding:10px 12px;">Stores language preference</td><td style="padding:10px 12px;">Persistent</td></tr>
             <tr style="border-bottom:1px solid var(--border-light);"><td style="padding:10px 12px;">yta-cookies</td><td style="padding:10px 12px;"><span class="badge badge-green">Essential</span></td><td style="padding:10px 12px;">Stores cookie consent</td><td style="padding:10px 12px;">1 year</td></tr>
             <tr style="border-bottom:1px solid var(--border-light);"><td style="padding:10px 12px;">yta-cache-*</td><td style="padding:10px 12px;"><span class="badge badge-gray">Functional</span></td><td style="padding:10px 12px;">Caches channel analysis results</td><td style="padding:10px 12px;">24 hours</td></tr>
-            <tr><td style="padding:10px 12px;">Google AdSense</td><td style="padding:10px 12px;"><span class="badge badge-red">Advertising</span></td><td style="padding:10px 12px;">Serves personalized ads</td><td style="padding:10px 12px;">Varies</td></tr>
+            <tr style="border-bottom:1px solid var(--border-light);"><td style="padding:10px 12px;">Google Analytics</td><td style="padding:10px 12px;"><span class="badge badge-red">Analytics</span></td><td style="padding:10px 12px;">Loads only after Accept to measure site usage</td><td style="padding:10px 12px;">Varies</td></tr><tr><td style="padding:10px 12px;">Google AdSense</td><td style="padding:10px 12px;"><span class="badge badge-red">Advertising</span></td><td style="padding:10px 12px;">Loads only after Accept; advertising availability may vary</td><td style="padding:10px 12px;">Varies</td></tr>
           </tbody>
         </table>
       </div>
       <h2 style="font-size:1.2rem;color:var(--text);margin:28px 0 10px;" id="cookies-manage-h">Managing Cookies</h2>
-      <p style="margin-bottom:16px;" id="cookies-manage-p">You can manage or delete cookies through your browser settings. Note that disabling certain cookies may affect the functionality of this site. You can also opt out of personalized advertising via <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener" style="color:var(--yt-red);">Google's ad settings</a>.</p>
+      <p style="margin-bottom:16px;" id="cookies-manage-p">Selecting Reject in our consent banner keeps Google Analytics and Google AdSense scripts disabled. You can also clear the saved consent choice through your browser storage settings and opt out of personalized advertising via <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener" style="color:var(--yt-red);">Google's ad settings</a>.</p>
     </div>
   </div></section>
 </main>

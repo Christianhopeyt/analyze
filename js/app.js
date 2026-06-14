@@ -87,7 +87,7 @@ const LangManager = {
       about_score_h:     'The Business Potential Score',
       about_norcanto_h:  'The Company Behind Norlytics',
       about_cta_h:       'Ready to Analyze a YouTube Channel?',
-      about_cta_p:       'Paste any channel URL and get a full revenue breakdown in under 2 seconds — free, no login required.',
+      about_cta_p:       'Paste any channel URL and get a public-data revenue estimate with a clear methodology — free, no login required.',
       about_cta_btn:     'Analyze a Channel Free',
       privacy_title:     'Privacy Policy',
       privacy_updated:   'Last updated: January 1, 2026',
@@ -126,7 +126,7 @@ const LangManager = {
       blog_cta_btn:      'Analyze a Channel Free',
       footer_copy:       '\u00a9 2026 Norlytics. All rights reserved.',
       footer_desc:       'Free YouTube channel revenue analysis and performance insights. Powered by Norcanto.',
-      cookie_text:       'We use cookies to improve your experience and analyze traffic. By clicking \u201cAccept\u201d, you agree to our Cookie Policy.',
+      cookie_text:       'With your permission, we use Google Analytics and may load Google AdSense. Rejecting keeps non-essential Google scripts disabled. See our Cookie Policy.',
       cookie_accept:     'Accept',
       cookie_reject:     'Reject',
       nav_analysis:      'Channel Analysis',
@@ -192,7 +192,7 @@ const LangManager = {
       about_score_h:     'Le Score de Potentiel Commercial',
       about_norcanto_h:  "L'entreprise derri\u00e8re Norlytics",
       about_cta_h:       'Pr\u00eat \u00e0 Analyser une Cha\u00eene YouTube\u00a0?',
-      about_cta_p:       "Collez n'importe quelle URL de cha\u00eene et obtenez une analyse compl\u00e8te des revenus en moins de 2 secondes \u2014 gratuit, sans compte requis.",
+      about_cta_p:       "Collez n'importe quelle URL de cha\u00eene et obtenez une estimation des revenus fond\u00e9e sur des donn\u00e9es publiques et une m\u00e9thode transparente \u2014 gratuit, sans compte requis.",
       about_cta_btn:     'Analyser une Cha\u00eene Gratuitement',
       privacy_title:     'Politique de Confidentialit\u00e9',
       privacy_updated:   'Derni\u00e8re mise \u00e0 jour\u00a0: 1er janvier 2026',
@@ -231,7 +231,7 @@ const LangManager = {
       blog_cta_btn:      'Analyser une Cha\u00eene Gratuitement',
       footer_copy:       '\u00a9 2026 Norlytics. Tous droits r\u00e9serv\u00e9s.',
       footer_desc:       'Analyse gratuite des revenus et performances de cha\u00eenes YouTube. Propuls\u00e9 par Norcanto.',
-      cookie_text:       'Nous utilisons des cookies pour am\u00e9liorer votre exp\u00e9rience et analyser le trafic. En cliquant sur \u00ab\u00a0Accepter\u00a0\u00bb, vous acceptez notre Politique des Cookies.',
+      cookie_text:       'Avec votre autorisation, nous utilisons Google Analytics et pouvons charger Google AdSense. Refuser maintient les scripts Google non essentiels d\u00e9sactiv\u00e9s. Consultez notre Politique des Cookies.',
       cookie_accept:     'Accepter',
       cookie_reject:     'Refuser',
       nav_analysis:      'Analyse de Cha\u00eene',
@@ -528,6 +528,47 @@ const ScrollReveal = {
 /* ========================
    COOKIE BANNER
    ======================== */
+const ConsentManager = {
+  choice: localStorage.getItem('yta-cookies'),
+  scriptLoaded(id) {
+    return Boolean(document.getElementById(id));
+  },
+  loadScript(id, src, attributes = {}) {
+    if (this.scriptLoaded(id)) return;
+    const script = document.createElement('script');
+    script.id = id;
+    script.async = true;
+    script.src = src;
+    Object.entries(attributes).forEach(([name, value]) => script.setAttribute(name, value));
+    document.head.appendChild(script);
+  },
+  loadGoogleServices() {
+    if (this.choice !== 'accepted') return;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', 'G-5BCXGE5L5G');
+    this.loadScript('norlytics-google-analytics', 'https://www.googletagmanager.com/gtag/js?id=G-5BCXGE5L5G');
+    this.loadScript(
+      'norlytics-google-adsense',
+      'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862',
+      { crossorigin: 'anonymous' }
+    );
+  },
+  accept() {
+    this.choice = 'accepted';
+    localStorage.setItem('yta-cookies', this.choice);
+    this.loadGoogleServices();
+  },
+  reject() {
+    this.choice = 'rejected';
+    localStorage.setItem('yta-cookies', this.choice);
+  },
+  init() {
+    this.loadGoogleServices();
+  }
+};
+
 const CookieBanner = {
   init() {
     const banner = document.getElementById('cookie-banner');
@@ -535,10 +576,10 @@ const CookieBanner = {
     if (localStorage.getItem('yta-cookies')) { banner.classList.add('hidden'); return; }
     banner.classList.remove('hidden');
     document.getElementById('cookie-accept')?.addEventListener('click', () => {
-      localStorage.setItem('yta-cookies', 'accepted'); banner.classList.add('hidden');
+      ConsentManager.accept(); banner.classList.add('hidden');
     });
     document.getElementById('cookie-reject')?.addEventListener('click', () => {
-      localStorage.setItem('yta-cookies', 'rejected'); banner.classList.add('hidden');
+      ConsentManager.reject(); banner.classList.add('hidden');
     });
   }
 };
@@ -1126,6 +1167,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccessibility();
   MobileMenu.init();
   ScrollReveal.init();
+  ConsentManager.init();
   CookieBanner.init();
   initForm();
   Calc.init();

@@ -80,7 +80,11 @@ test('sitemap includes every French canonical URL', () => {
     const html = fs.readFileSync(file, 'utf8');
     const canonical = html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
     assert.ok(canonical, path.relative(root, file));
-    assert.ok(sitemap.includes(`<loc>${canonical}</loc>`), canonical);
+    if (/noindex,\s*follow/i.test(html)) {
+      assert.ok(!sitemap.includes(`<loc>${canonical}</loc>`), canonical);
+    } else {
+      assert.ok(sitemap.includes(`<loc>${canonical}</loc>`), canonical);
+    }
   });
 });
 
