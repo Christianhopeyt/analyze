@@ -23,8 +23,8 @@ The repository now has a substantially safer AdSense-review posture, but the liv
 - Removed unsupported `500K+ Channels Analyzed` and `98% Estimation Accuracy` claims from EN/FR home and About pages.
 - Replaced those claims with honest product facts.
 - Removed direct Google Analytics and AdSense script tags from public HTML.
-- Google Analytics and AdSense now load through `ConsentManager` only after an explicit `accepted` choice.
-- Rejecting consent keeps non-essential Google scripts disabled.
+- CookieYes is installed globally before Google Analytics and AdSense.
+- Google Analytics and AdSense are marked as CookieYes-controlled analytics and advertisement categories.
 - Updated EN/FR privacy and cookie disclosures to describe the implemented behavior.
 - Added founder/contact credibility to EN/FR About pages.
 - Temporarily marked thin duplicate articles `noindex, follow`.

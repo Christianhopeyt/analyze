@@ -526,65 +526,6 @@ const ScrollReveal = {
 };
 
 /* ========================
-   COOKIE BANNER
-   ======================== */
-const ConsentManager = {
-  choice: localStorage.getItem('yta-cookies'),
-  scriptLoaded(id) {
-    return Boolean(document.getElementById(id));
-  },
-  loadScript(id, src, attributes = {}) {
-    if (this.scriptLoaded(id)) return;
-    const script = document.createElement('script');
-    script.id = id;
-    script.async = true;
-    script.src = src;
-    Object.entries(attributes).forEach(([name, value]) => script.setAttribute(name, value));
-    document.head.appendChild(script);
-  },
-  loadGoogleServices() {
-    if (this.choice !== 'accepted') return;
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
-    window.gtag('js', new Date());
-    window.gtag('config', 'G-5BCXGE5L5G');
-    this.loadScript('norlytics-google-analytics', 'https://www.googletagmanager.com/gtag/js?id=G-5BCXGE5L5G');
-    this.loadScript(
-      'norlytics-google-adsense',
-      'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862',
-      { crossorigin: 'anonymous' }
-    );
-  },
-  accept() {
-    this.choice = 'accepted';
-    localStorage.setItem('yta-cookies', this.choice);
-    this.loadGoogleServices();
-  },
-  reject() {
-    this.choice = 'rejected';
-    localStorage.setItem('yta-cookies', this.choice);
-  },
-  init() {
-    this.loadGoogleServices();
-  }
-};
-
-const CookieBanner = {
-  init() {
-    const banner = document.getElementById('cookie-banner');
-    if (!banner) return;
-    if (localStorage.getItem('yta-cookies')) { banner.classList.add('hidden'); return; }
-    banner.classList.remove('hidden');
-    document.getElementById('cookie-accept')?.addEventListener('click', () => {
-      ConsentManager.accept(); banner.classList.add('hidden');
-    });
-    document.getElementById('cookie-reject')?.addEventListener('click', () => {
-      ConsentManager.reject(); banner.classList.add('hidden');
-    });
-  }
-};
-
-/* ========================
    TOAST
    ======================== */
 function showToast(msg, type = 'success') {
@@ -1167,8 +1108,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccessibility();
   MobileMenu.init();
   ScrollReveal.init();
-  ConsentManager.init();
-  CookieBanner.init();
   initForm();
   Calc.init();
   FAQ.init();

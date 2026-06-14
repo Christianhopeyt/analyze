@@ -23,17 +23,24 @@ function htmlFiles(directory) {
   });
 }
 
-test('public HTML does not load Google ads or analytics before consent', () => {
+test('CookieYes loads once in every public head before controlled Google scripts', () => {
   htmlFiles(root).forEach(file => {
     if (file.endsWith('googlece3ace88da98e238.html')) return;
     const html = fs.readFileSync(file, 'utf8');
-    assert.doesNotMatch(html, /pagead2\.googlesyndication\.com|googletagmanager\.com\/gtag/, path.relative(root, file));
+    const relative = path.relative(root, file);
+    assert.equal((html.match(/id="cookieyes"/g) || []).length, 1, relative);
+    assert.equal((html.match(/cdn-cookieyes\.com\/client_data\/bb75bdf1ed45084387a6477e5939d0a1\/script\.js/g) || []).length, 1, relative);
+    const head = html.match(/<head>[\s\S]*?<\/head>/i)?.[0] || '';
+    assert.match(head, /id="cookieyes"/, relative);
+    assert.ok(head.indexOf('id="cookieyes"') < head.indexOf('googletagmanager.com/gtag'), relative);
+    assert.ok(head.indexOf('id="cookieyes"') < head.indexOf('pagead2.googlesyndication.com'), relative);
+    assert.match(head, /type="text\/plain" data-cookieyes="analytics"/, relative);
+    assert.match(head, /type="text\/plain" data-cookieyes="advertisement"/, relative);
+    assert.doesNotMatch(html, /id="cookie-banner"|id="cookie-accept"|id="cookie-reject"/, relative);
   });
 
   const app = fs.readFileSync(path.join(root, 'js', 'app.js'), 'utf8');
-  assert.match(app, /if \(this\.choice !== 'accepted'\) return;/);
-  assert.match(app, /ConsentManager\.reject\(\)/);
-  assert.match(app, /ConsentManager\.accept\(\)/);
+  assert.doesNotMatch(app, /ConsentManager|CookieBanner|yta-cookies/);
 });
 
 test('unsupported trust claims are absent from public pages', () => {

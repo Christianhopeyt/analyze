@@ -10,6 +10,18 @@ const quarantinedSlugs = new Set([
   'youtube-shorts-monetization',
   'youtube-sponsorship-guide'
 ]);
+const cookieYesBlock = `  <!-- Start cookieyes banner -->
+  <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/bb75bdf1ed45084387a6477e5939d0a1/script.js"></script>
+  <!-- End cookieyes banner -->
+  <script type="text/plain" data-cookieyes="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-5BCXGE5L5G"></script>
+  <script type="text/plain" data-cookieyes="analytics">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5BCXGE5L5G');
+  </script>
+  <script type="text/plain" data-cookieyes="advertisement" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862" crossorigin="anonymous"></script>
+`;
 
 function walk(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
@@ -23,6 +35,19 @@ function removeImmediateGoogleScripts(html) {
   return html
     .replace(/\s*<script async src="https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-8121112277976862"\s*crossorigin="anonymous"><\/script>\s*/gi, '\n')
     .replace(/\s*<!-- Google tag \(gtag\.js\) -->\s*<script async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-5BCXGE5L5G"><\/script>\s*<script>\s*window\.dataLayer = window\.dataLayer \|\| \[\];\s*function gtag\(\)\{dataLayer\.push\(arguments\);\}\s*gtag\('js', new Date\(\)\);\s*gtag\('config', 'G-5BCXGE5L5G'\);\s*<\/script>\s*/gi, '\n');
+}
+
+function installCookieYes(html) {
+  html = html
+    .replace(/\s*<!-- Start cookieyes banner -->[\s\S]*?<!-- End cookieyes banner -->\s*/gi, '\n')
+    .replace(/\s*<script type="text\/plain" data-cookieyes="analytics" async src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-5BCXGE5L5G"><\/script>\s*/gi, '\n')
+    .replace(/\s*<script type="text\/plain" data-cookieyes="analytics">[\s\S]*?<\/script>\s*/gi, '\n')
+    .replace(/\s*<script type="text\/plain" data-cookieyes="advertisement" async src="https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-8121112277976862" crossorigin="anonymous"><\/script>\s*/gi, '\n');
+  return html.replace(/(<head>\s*)/i, `$1${cookieYesBlock}`);
+}
+
+function removeCustomCookieBanner(html) {
+  return html.replace(/\s*<div id="cookie-banner"[\s\S]*?<\/div>\s*<\/div>\s*(?=<script src="(?:\/)?js\/app\.js" defer><\/script>)/gi, '\n');
 }
 
 function replaceUnsupportedClaims(html) {
@@ -73,13 +98,17 @@ function addTrustBlock(html, french) {
 function updateLegalCopy(html, relative) {
   if (relative === 'privacy/index.html') {
     return html
+      .replace('We use local storage for theme, language, consent preferences, and short-lived channel analysis caching. Google Analytics and Google AdSense scripts load only after you select Accept in the consent banner. Selecting Reject keeps those non-essential Google scripts disabled.',
+        'We use local storage for theme, language, and short-lived channel analysis caching. CookieYes manages consent preferences and controls whether Google Analytics and Google AdSense scripts may run.')
       .replace('We use cookies to remember your theme and language preferences, cache channel analysis results for 24 hours, and serve advertising. You may opt out of non-essential cookies via our cookie consent banner.',
-        'We use local storage for theme, language, consent preferences, and short-lived channel analysis caching. Google Analytics and Google AdSense scripts load only after you select Accept in the consent banner. Selecting Reject keeps those non-essential Google scripts disabled.')
+        'We use local storage for theme, language, and short-lived channel analysis caching. CookieYes manages consent preferences and controls whether Google Analytics and Google AdSense scripts may run.')
       .replace('We use the YouTube Data API v3 (subject to Google\'s Privacy Policy), Google AdSense for advertising, and may use analytics services. These services have their own privacy policies which we encourage you to review.',
         'We use the YouTube Data API v3 to retrieve public channel statistics. With your consent, we also use Google Analytics to understand site usage and may use Google AdSense to serve advertising. These Google services are subject to Google\'s own terms and privacy policies.');
   }
   if (relative === 'fr/privacy/index.html') {
     return html
+      .replace(/Nous utilisons le stockage local pour le th[^<]*d[^<]*sactiv[^<]*\./i,
+        'Nous utilisons le stockage local pour le th\u00e8me, la langue et la mise en cache temporaire des analyses. CookieYes g\u00e8re les pr\u00e9f\u00e9rences de consentement et contr\u00f4le si les scripts Google Analytics et Google AdSense peuvent s\u2019ex\u00e9cuter.')
       .replace(/Nous utilisons des cookies[^<]*banni[^<]*\./i,
         'Nous utilisons le stockage local pour le th\u00e8me, la langue, le choix de consentement et la mise en cache temporaire des analyses. Les scripts Google Analytics et Google AdSense ne se chargent qu\u2019apr\u00e8s avoir choisi Accepter. Choisir Refuser maintient ces scripts Google non essentiels d\u00e9sactiv\u00e9s.')
       .replace(/Nous utilisons l[^<]*YouTube Data API v3[^<]*\./i,
@@ -87,6 +116,8 @@ function updateLegalCopy(html, relative) {
   }
   if (relative === 'cookies-notice/index.html') {
     return html
+      .replace('Selecting Reject in our consent banner keeps Google Analytics and Google AdSense scripts disabled. You can also clear the saved consent choice through your browser storage settings and opt out of personalized advertising via',
+        'CookieYes lets you accept, reject, or change non-essential cookie categories. Google Analytics and Google AdSense are configured as consent-controlled categories. You can also opt out of personalized advertising via')
       .replace('<tr><td style="padding:10px 12px;">Google AdSense</td><td style="padding:10px 12px;"><span class="badge badge-red">Advertising</span></td><td style="padding:10px 12px;">Serves personalized ads</td><td style="padding:10px 12px;">Varies</td></tr>',
         '<tr style="border-bottom:1px solid var(--border-light);"><td style="padding:10px 12px;">Google Analytics</td><td style="padding:10px 12px;"><span class="badge badge-red">Analytics</span></td><td style="padding:10px 12px;">Loads only after Accept to measure site usage</td><td style="padding:10px 12px;">Varies</td></tr><tr><td style="padding:10px 12px;">Google AdSense</td><td style="padding:10px 12px;"><span class="badge badge-red">Advertising</span></td><td style="padding:10px 12px;">Loads only after Accept; advertising availability may vary</td><td style="padding:10px 12px;">Varies</td></tr>')
       .replace('You can manage or delete cookies through your browser settings. Note that disabling certain cookies may affect the functionality of this site. You can also opt out of personalized advertising via',
@@ -94,6 +125,8 @@ function updateLegalCopy(html, relative) {
   }
   if (relative === 'fr/cookies-notice/index.html') {
     return html
+      .replace(/Choisir Refuser dans notre banni[^<]*navigateur\. /i,
+        'CookieYes vous permet d\u2019accepter, de refuser ou de modifier les cat\u00e9gories de cookies non essentiels. Google Analytics et Google AdSense sont configur\u00e9s comme cat\u00e9gories soumises au consentement. ')
       .replace(/<tr><td style="padding:10px 12px;">Google AdSense<\/td>[\s\S]*?<\/tr>/i,
         '<tr style="border-bottom:1px solid var(--border-light);"><td style="padding:10px 12px;">Google Analytics</td><td style="padding:10px 12px;"><span class="badge badge-red">Analyse</span></td><td style="padding:10px 12px;">Se charge uniquement apr\u00e8s Accepter pour mesurer l\u2019utilisation du site</td><td style="padding:10px 12px;">Variable</td></tr><tr><td style="padding:10px 12px;">Google AdSense</td><td style="padding:10px 12px;"><span class="badge badge-red">Publicit\u00e9</span></td><td style="padding:10px 12px;">Se charge uniquement apr\u00e8s Accepter; la disponibilit\u00e9 publicitaire peut varier</td><td style="padding:10px 12px;">Variable</td></tr>')
       .replace(/Vous pouvez g[^<]*param[^<]*navigateur\.[^<]*/i,
@@ -117,6 +150,8 @@ for (const file of walk(root).filter(file => file.endsWith('.html') && !file.end
   const relative = path.relative(root, file).replaceAll('\\', '/');
   let html = fs.readFileSync(file, 'utf8');
   html = removeImmediateGoogleScripts(html);
+  html = installCookieYes(html);
+  html = removeCustomCookieBanner(html);
   html = replaceUnsupportedClaims(html);
   html = updateLegalCopy(html, relative);
   html = removeQuarantinedDiscoveryCards(html, relative);
