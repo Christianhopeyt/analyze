@@ -23,7 +23,7 @@ function localFileForUrl(url) {
 
 test('French pages have reciprocal SEO metadata and valid internal routes', () => {
   const files = htmlFiles(path.join(root, 'fr'));
-  assert.equal(files.length, 21);
+  assert.equal(files.length, 23);
 
   files.forEach(file => {
     const html = fs.readFileSync(file, 'utf8');

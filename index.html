@@ -26,12 +26,13 @@
     "@type": "WebApplication",
     "name": "Norlytics",
     "url": "https://norcanto.com/",
+    "image": "https://norcanto.com/images/norlytics-logo.png",
     "description": "Norlytics is a free YouTube analytics and niche insights application for channel performance, revenue estimates, engagement, and content opportunities.",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web",
     "inLanguage": ["en","fr"],
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "creator": { "@type": "Organization", "name": "Norcanto", "url": "https://norcanto.com/" },
+    "creator": { "@type": "Organization", "name": "Norcanto", "url": "https://norcanto.com/","logo":"https://norcanto.com/images/norlytics-logo.png" },
     "featureList": ["YouTube revenue estimation","Engagement rate calculator","Channel country analyzer","RPM calculator","Business potential score"]
   }
   </script>
@@ -44,6 +45,7 @@
         "@id": "https://norcanto.com/#website",
         "url": "https://norcanto.com/",
         "name": "Norlytics",
+        "image": "https://norcanto.com/images/norlytics-logo.png",
         "inLanguage": ["en", "fr"],
         "publisher": { "@id": "https://norcanto.com/#organization" }
       },
@@ -52,6 +54,7 @@
         "@id": "https://norcanto.com/#organization",
         "name": "Norcanto",
         "url": "https://norcanto.com/",
+        "logo": "https://norcanto.com/images/norlytics-logo.png",
         "brand": { "@type": "Brand", "name": "Norlytics" }
       }
     ]
@@ -65,7 +68,6 @@
 
   <!-- 2. Main stylesheet — render-critical, loaded normally -->
   <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="css/creator-dashboard.css" />
 
   <!-- 3. Google Fonts — non-blocking via media="print" swap trick -->
   <link rel="stylesheet"
@@ -76,8 +78,6 @@
   </noscript>
 
   <!-- 4. Favicon -->
-  <link rel="icon" type="image/png" href="images/norcanto-logo.png" />
-  <link rel="icon" href="/favicon.ico" sizes="any">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862"
      crossorigin="anonymous"></script>
@@ -89,6 +89,14 @@
   <meta property="og:url" content="https://norcanto.com/" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
+  <!-- Norlytics icons and install metadata -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/images/favicon-48x48.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#ff0000" />
 </head>
   
   <!-- Google tag (gtag.js) -->
@@ -108,7 +116,7 @@
   <div class="container">
     <div class="header-inner">
       <a href="/" class="header-logo">
-        <img src="images/norcanto-logo.png" alt="Norlytics" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
+        <img src="/images/norlytics-logo.png" alt="Norlytics" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
         Norlytics
       </a>
 
@@ -290,42 +298,10 @@
       </div>
     </div>
 
-    <!-- Creator Dashboard -->
-    <section class="creator-dashboard" id="creator-dashboard" aria-labelledby="creator-dashboard-title">
-      <div class="creator-dashboard-heading">
-        <div>
-          <p class="creator-eyebrow" data-cd="eyebrow">Public YouTube data</p>
-          <h2 id="creator-dashboard-title" data-cd="title">Creator Dashboard</h2>
-          <p data-cd="subtitle">Recent upload patterns, performance signals, and content ideas based on public channel data.</p>
-        </div>
-        <span class="badge badge-gray" id="creator-confidence"></span>
-      </div>
-      <div class="creator-source-notice" id="creator-source-notice" role="status" aria-live="polite"></div>
-      <div class="creator-loading" id="creator-loading" role="status"><div class="spinner"></div><span data-cd="loading">Building the Creator Dashboard from recent public videos...</span></div>
-      <div class="creator-error" id="creator-error" role="alert"></div>
-      <div class="creator-content" id="creator-content" hidden>
-        <div class="creator-tabs" role="tablist" aria-label="Creator Dashboard sections">
-          <button type="button" role="tab" aria-selected="true" aria-controls="creator-panel-overview" id="creator-tab-overview" data-tab="overview" data-cd="tab_overview">Overview</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="creator-panel-videos" id="creator-tab-videos" data-tab="videos" data-cd="tab_videos">Videos</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="creator-panel-ideas" id="creator-tab-ideas" data-tab="ideas" data-cd="tab_ideas">Ideas</button>
-        </div>
-        <div class="creator-panel" id="creator-panel-overview" role="tabpanel" aria-labelledby="creator-tab-overview">
-          <div class="creator-metric-grid" id="creator-metrics"></div>
-          <div class="creator-overview-grid">
-            <article class="creator-card"><h3 data-cd="views_recent">Views across recent uploads</h3><div class="creator-video-chart" id="creator-video-chart"></div></article>
-            <article class="creator-card"><h3 data-cd="upload_pattern">Upload pattern</h3><div id="creator-upload-pattern"></div></article>
-          </div>
-          <article class="creator-card"><h3 data-cd="growth_velocity">Growth velocity</h3><div id="creator-growth"></div></article>
-        </div>
-        <div class="creator-panel" id="creator-panel-videos" role="tabpanel" aria-labelledby="creator-tab-videos" hidden>
-          <div class="creator-video-list" id="creator-top-videos"></div>
-        </div>
-        <div class="creator-panel" id="creator-panel-ideas" role="tabpanel" aria-labelledby="creator-tab-ideas" hidden>
-          <div class="creator-ai-notice" data-cd="ai_notice">Ideas and recommendations are Gemini-generated interpretations of the public metrics above.</div>
-          <div class="creator-ai-content" id="creator-ai-content"></div>
-        </div>
-      </div>
-    </section>
+    <aside class="creator-dashboard-cta">
+      <div><h3 data-i18n="creator_cta_title">Want deeper channel insights?</h3><p data-i18n="creator_cta_text">Open Creator Dashboard for upload patterns, growth velocity, top videos, and AI content ideas.</p></div>
+      <a class="btn btn-secondary" href="/creator-dashboard" data-i18n="creator_cta_button">Open Creator Dashboard</a>
+    </aside>
 
     <!-- Revenue Cards -->
     <div class="revenue-section reveal reveal-delay-1">
@@ -735,7 +711,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-logo">
-          <img src="images/norcanto-logo.png" alt="Norlytics" class="site-logo-img" loading="lazy" decoding="async" />
+          <img src="/images/norlytics-logo.png" alt="Norlytics" class="site-logo-img" loading="lazy" decoding="async" />
           <div class="footer-logo-text">Norlytics</div>
         </div>
         <p class="footer-desc">Free YouTube channel revenue analysis and performance insights. Powered by Norcanto.</p>
@@ -788,9 +764,6 @@
     <button class="cookie-accept" id="cookie-accept"><span id="cookie-accept-label">Accept</span></button>
   </div>
 </div>
-
-<script src="js/logo.js" defer></script>
 <script src="js/app.js" defer></script>
-<script src="js/creator-dashboard.js" defer></script>
 </body>
 </html>

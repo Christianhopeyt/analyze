@@ -12,7 +12,7 @@ const CD_STRINGS = {
     decline:'Recent uploads are gaining views more slowly than the older comparison group.', stable:'Recent and older uploads are performing at a similar pace.', unavailable:'Not enough public uploads for a comparison.',
     top_videos_empty:'No recent public videos were available.', views:'views', likes:'likes', comments:'comments', published:'Published', compared:'sample pace',
     ai_notice:'Ideas and recommendations are Gemini-generated interpretations of the public metrics above.', ai_loading:'Generating recommendations and content ideas from the verified metrics...',
-    ai_error:'AI ideas are temporarily unavailable. Public dashboard analytics remain valid.', chart_label:'Bar chart of views across recent public uploads.', summary:'Dashboard summary', recommendations:'Recommendations', video_ideas:'Video ideas', title_ideas:'Title ideas', angles:'Topic angles', tags:'Tags'
+    ai_error:'AI ideas are temporarily unavailable. Public statistics are still valid.', chart_label:'Bar chart of views across recent public uploads.', summary:'Dashboard summary', recommendations:'Recommendations', video_ideas:'Video ideas', title_ideas:'Title ideas', angles:'Topic angles', tags:'Tags'
   },
   FR: {
     eyebrow:'Données YouTube publiques', title:'Creator Dashboard', subtitle:'Tendances de publication, signaux de performance et idées de contenu basés sur les données publiques de la chaîne.',
@@ -32,7 +32,10 @@ const CD_STRINGS = {
 const CreatorDashboard = {
   report: null,
   parsed: null,
-  ideasRequested: false,
+  ideasKey: null,
+  ideasStatus: 'idle',
+  ideasRequestToken: 0,
+  isDedicatedPage() { return Boolean(document.querySelector('.creator-page #creator-dashboard')); },
   lang() { return location.pathname === '/fr' || location.pathname.startsWith('/fr/') ? 'FR' : 'EN'; },
   text(key) { return CD_STRINGS[this.lang()]?.[key] || CD_STRINGS.EN[key] || key; },
   escape(value) { const div = document.createElement('div'); div.textContent = String(value ?? ''); return div.innerHTML; },
@@ -42,6 +45,7 @@ const CreatorDashboard = {
   },
   percent(value) { return Number.isFinite(Number(value)) ? `${this.number(value, 1)}%` : '—'; },
   init() {
+    if (!this.isDedicatedPage()) return;
     document.querySelectorAll('[data-cd]').forEach(element => {
       const value = this.text(element.dataset.cd);
       if (value) element.textContent = value;
@@ -65,13 +69,13 @@ const CreatorDashboard = {
       button.tabIndex = active ? 0 : -1;
     });
     document.querySelectorAll('.creator-panel').forEach(panel => { panel.hidden = panel.id !== `creator-panel-${tab}`; });
-    if (tab === 'ideas' && this.report && !this.ideasRequested) {
-      this.ideasRequested = true;
-      this.loadIdeas(this.report.channel.id);
+    if (tab === 'ideas' && this.report && this.ideasStatus === 'idle') {
+      this.ideasStatus = 'pending';
+      this.loadIdeas(this.report.channel.id, this.ideasKey);
     }
   },
   async load(parsed) {
-    if (!document.getElementById('creator-dashboard')) return;
+    if (!this.isDedicatedPage()) return;
     this.parsed = parsed;
     this.report = null;
     document.getElementById('creator-loading').style.display = 'flex';
@@ -92,12 +96,18 @@ const CreatorDashboard = {
     }
   },
   accept(report) {
-    if (!document.getElementById('creator-dashboard')) return;
+    if (!this.isDedicatedPage()) return;
+    const nextIdeasKey = `${report.channel.id}:${report.dashboard.sampledAt}:${this.lang()}`;
+    const ideasChanged = this.ideasKey !== nextIdeasKey;
+    if (ideasChanged) {
+      this.ideasKey = nextIdeasKey;
+      this.ideasStatus = 'idle';
+      this.ideasRequestToken += 1;
+    }
     this.report = report;
-    this.ideasRequested = false;
     document.getElementById('creator-loading').style.display = 'none';
     document.getElementById('creator-error').classList.remove('visible');
-    document.getElementById('creator-ai-content').innerHTML = '';
+    if (ideasChanged) document.getElementById('creator-ai-content').innerHTML = '';
     this.showTab('overview');
     this.render(report);
   },
@@ -159,9 +169,13 @@ const CreatorDashboard = {
       return `<a class="creator-video-item" href="${this.escape(video.url)}" target="_blank" rel="noopener"><img src="${this.escape(video.thumbnail)}" alt="" loading="lazy"><div><div class="creator-video-title">${this.escape(video.title)}</div><div class="creator-video-meta"><span>${this.number(video.views)} ${this.text('views')}</span><span>${this.number(video.likes)} ${this.text('likes')}</span><span>${this.number(video.comments)} ${this.text('comments')}</span><span>${this.text('published')} ${this.escape(date)}</span></div><span class="creator-performance">${this.escape(ratio)}</span></div></a>`;
     }).join('') : `<div class="creator-card">${this.text('top_videos_empty')}</div>`;
   },
-  async loadIdeas(channelId) {
+  async loadIdeas(channelId, requestKey) {
     const container = document.getElementById('creator-ai-content');
-    container.innerHTML = `<div class="creator-card">${this.escape(this.text('ai_loading'))}</div>`;
+    if (!this.isDedicatedPage() || !container || requestKey !== this.ideasKey) return;
+    const requestToken = ++this.ideasRequestToken;
+    container.classList.remove('is-error');
+    container.classList.add('is-loading');
+    container.innerHTML = `<div class="creator-card creator-ai-state"><span class="ui-state-mark" aria-hidden="true"></span><span>${this.escape(this.text('ai_loading'))}</span></div>`;
     try {
       const response = await fetch('/api/creator-dashboard-ai', {
         method:'POST',
@@ -170,12 +184,20 @@ const CreatorDashboard = {
       });
       const data = await response.json();
       if (!response.ok || !data.suggestions) throw new Error();
+      if (requestToken !== this.ideasRequestToken || requestKey !== this.ideasKey) return;
+      this.ideasStatus = 'success';
+      container.classList.remove('is-loading', 'is-error');
       this.renderIdeas(data.suggestions);
     } catch (_) {
-      container.innerHTML = `<div class="creator-card">${this.escape(this.text('ai_error'))}</div>`;
+      if (requestToken !== this.ideasRequestToken || requestKey !== this.ideasKey) return;
+      this.ideasStatus = 'error';
+      container.classList.remove('is-loading');
+      container.classList.add('is-error');
+      container.innerHTML = `<div class="creator-card creator-ai-state is-error"><span class="ui-state-mark" aria-hidden="true"></span><span>${this.escape(this.text('ai_error'))}</span></div>`;
     }
   },
   renderIdeas(ai) {
+    document.getElementById('creator-ai-content').classList.remove('is-loading', 'is-error');
     const list = (key, items) => `<section class="creator-ai-group"><h3>${this.escape(this.text(key))}</h3>${items.map(item => `<div class="creator-ai-item">${this.escape(item)}</div>`).join('')}</section>`;
     document.getElementById('creator-ai-content').innerHTML =
       `<section class="creator-ai-group"><h3>${this.escape(this.text('summary'))}</h3><p>${this.escape(ai.summary)}</p></section>` +

@@ -27,8 +27,9 @@ A premium SaaS web application for analyzing YouTube channel revenue, performanc
 ├── index.html              # Main page (analyzer, calculator, FAQ, blog preview)
 ├── css/main.css            # All styles
 ├── js/app.js               # All application logic
-├── js/logo.js              # Base64-encoded logo
-├── images/norcanto-logo.png
+├── images/norlytics-logo.png
+├── images/favicon-*.png
+├── site.webmanifest
 ├── blog/
 │   ├── index.html
 │   ├── how-much-youtube-pays-per-view.html

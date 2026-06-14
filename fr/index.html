@@ -20,8 +20,8 @@
   <meta name="twitter:image" content="https://norcanto.com/images/og-image.png" />
 
   <!-- Schema.org -->
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Norlytics","url":"https://norcanto.com/","description":"Norlytics est une application gratuite d'analyse YouTube et d'informations de niche pour les performances des chaînes, les estimations de revenus, l'engagement et les opportunités de contenu.","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"fr","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"creator":{"@type":"Organization","name":"Norcanto","url":"https://norcanto.com/"},"featureList":["Estimation des revenus YouTube","Calculateur de taux d'engagement","Analyseur de pays de chaîne","Calculateur de régime","Score de potentiel commercial"]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://norcanto.com/#website","url":"https://norcanto.com/","name":"Norlytics","inLanguage":["en","fr"],"publisher":{"@id":"https://norcanto.com/#organization"}},{"@type":"Organization","@id":"https://norcanto.com/#organization","name":"Norcanto","url":"https://norcanto.com/","brand":{"@type":"Brand","name":"Norlytics"}}],"inLanguage":"fr"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Norlytics","url":"https://norcanto.com/","image":"https://norcanto.com/images/norlytics-logo.png","description":"Norlytics est une application gratuite d'analyse YouTube et d'informations de niche pour les performances des chaînes, les estimations de revenus, l'engagement et les opportunités de contenu.","applicationCategory":"BusinessApplication","operatingSystem":"Web","inLanguage":"fr","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"creator":{"@type":"Organization","name":"Norcanto","url":"https://norcanto.com/","logo":"https://norcanto.com/images/norlytics-logo.png"},"featureList":["Estimation des revenus YouTube","Calculateur de taux d'engagement","Analyseur de pays de chaîne","Calculateur de régime","Score de potentiel commercial"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://norcanto.com/#website","url":"https://norcanto.com/","name":"Norlytics","image":"https://norcanto.com/images/norlytics-logo.png","inLanguage":["en","fr"],"publisher":{"@id":"https://norcanto.com/#organization"}},{"@type":"Organization","@id":"https://norcanto.com/#organization","name":"Norcanto","url":"https://norcanto.com/","logo":"https://norcanto.com/images/norlytics-logo.png","brand":{"@type":"Brand","name":"Norlytics"}}],"inLanguage":"fr"}</script>
 
   <!-- ══ PERFORMANCE: Critical CSS first, fonts non-blocking ══ -->
   <!-- 1. Preconnect to Google Fonts origins so DNS+TLS is ready -->
@@ -30,7 +30,6 @@
 
   <!-- 2. Main stylesheet — render-critical, loaded normally -->
   <link rel="stylesheet" href="/css/main.css" />
-  <link rel="stylesheet" href="/css/creator-dashboard.css" />
 
   <!-- 3. Google Fonts — non-blocking via media="print" swap trick -->
   <link rel="stylesheet"
@@ -41,8 +40,6 @@
   </noscript>
 
   <!-- 4. Favicon -->
-  <link rel="icon" type="image/png" href="/images/norcanto-logo.png" />
-  <link rel="icon" href="/favicon.ico" sizes="any">
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8121112277976862"
      crossorigin="anonymous"></script>
@@ -54,6 +51,14 @@
   <meta property="og:url" content="https://norcanto.com/fr" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:locale:alternate" content="en_US" />
+  <!-- Norlytics icons and install metadata -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/images/favicon-48x48.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#ff0000" />
 </head>
   
   <!-- Google tag (gtag.js) -->
@@ -73,12 +78,12 @@
   <div class="container">
     <div class="header-inner">
       <a href="/fr" class="header-logo">
-        <img src="/images/norcanto-logo.png" alt="Norlytics" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
+        <img src="/images/norlytics-logo.png" alt="Norlytics" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
         Norlytics
       </a>
 
       <nav class="header-nav">
-        <a href="#analyzer" class="active">Analyse des canaux</a>
+        <a href="#analyzer" class="active">Analyse des chaîne</a>
         <a href="#calculator">Calculatrice</a>
         <a href="/fr/blog">Blog</a>
         <a href="/fr/privacy">Confidentialité</a>
@@ -105,7 +110,7 @@
 
 <!-- Mobile Menu -->
 <nav class="mobile-menu" id="mobile-menu" aria-label="Navigation mobile" aria-hidden="true">
-  <a href="#analyzer">Analyse des canaux</a>
+  <a href="#analyzer">Analyse des chaîne</a>
   <a href="#calculator">Calculateur de revenus</a>
   <a href="/fr/blog">Blog</a>
   <a href="/fr/privacy">politique de confidentialité</a>
@@ -137,8 +142,8 @@
       </p>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="hero-stat-num">500 000+</div>
-          <div class="hero-stat-label">Canaux analysés</div>
+          <div class="hero-stat-num">500k+</div>
+          <div class="hero-stat-label">chaîne analysés</div>
         </div>
         <div class="hero-stat-divider"></div>
         <div class="hero-stat">
@@ -255,42 +260,10 @@
       </div>
     </div>
 
-    <!-- Creator Dashboard -->
-    <section class="creator-dashboard" id="creator-dashboard" aria-labelledby="creator-dashboard-title">
-      <div class="creator-dashboard-heading">
-        <div>
-          <p class="creator-eyebrow" data-cd="eyebrow">Données publiques YouTube</p>
-          <h2 id="creator-dashboard-title" data-cd="title">Tableau de bord du créateur</h2>
-          <p data-cd="subtitle">Modèles de téléchargement récents, signaux de performances et idées de contenu basés sur les données des chaînes publiques.</p>
-        </div>
-        <span class="badge badge-gray" id="creator-confidence"></span>
-      </div>
-      <div class="creator-source-notice" id="creator-source-notice" role="status" aria-live="polite"></div>
-      <div class="creator-loading" id="creator-loading" role="status"><div class="spinner"></div><span data-cd="loading">Création du tableau de bord du créateur à partir de vidéos publiques récentes...</span></div>
-      <div class="creator-error" id="creator-error" role="alert"></div>
-      <div class="creator-content" id="creator-content" hidden>
-        <div class="creator-tabs" role="tablist" aria-label="Sections du tableau de bord du créateur">
-          <button type="button" role="tab" aria-selected="true" aria-controls="creator-panel-overview" id="creator-tab-overview" data-tab="overview" data-cd="tab_overview">Aperçu</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="creator-panel-videos" id="creator-tab-videos" data-tab="videos" data-cd="tab_videos">Vidéos</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="creator-panel-ideas" id="creator-tab-ideas" data-tab="ideas" data-cd="tab_ideas">Idées</button>
-        </div>
-        <div class="creator-panel" id="creator-panel-overview" role="tabpanel" aria-labelledby="creator-tab-overview">
-          <div class="creator-metric-grid" id="creator-metrics"></div>
-          <div class="creator-overview-grid">
-            <article class="creator-card"><h3 data-cd="views_recent">Vues sur les mises en ligne récentes</h3><div class="creator-video-chart" id="creator-video-chart"></div></article>
-            <article class="creator-card"><h3 data-cd="upload_pattern">Modèle de téléchargement</h3><div id="creator-upload-pattern"></div></article>
-          </div>
-          <article class="creator-card"><h3 data-cd="growth_velocity">Vitesse de croissance</h3><div id="creator-growth"></div></article>
-        </div>
-        <div class="creator-panel" id="creator-panel-videos" role="tabpanel" aria-labelledby="creator-tab-videos" hidden>
-          <div class="creator-video-list" id="creator-top-videos"></div>
-        </div>
-        <div class="creator-panel" id="creator-panel-ideas" role="tabpanel" aria-labelledby="creator-tab-ideas" hidden>
-          <div class="creator-ai-notice" data-cd="ai_notice">Les idées et les recommandations sont des interprétations générées par Gemini des mesures publiques ci-dessus.</div>
-          <div class="creator-ai-content" id="creator-ai-content"></div>
-        </div>
-      </div>
-    </section>
+    <aside class="creator-dashboard-cta">
+      <div><h3 data-i18n="creator_cta_title">Vous souhaitez des analyses plus approfondies ?</h3><p data-i18n="creator_cta_text">Ouvrez le Tableau Créateur pour analyser le rythme de publication, la croissance, les meilleures vidéos et les idées IA.</p></div>
+      <a class="btn btn-secondary" href="/fr/creator-dashboard" data-i18n="creator_cta_button">Ouvrir le Tableau Créateur</a>
+    </aside>
 
     <!-- Revenue Cards -->
     <div class="revenue-section reveal reveal-delay-1">
@@ -688,7 +661,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-logo">
-          <img src="/images/norcanto-logo.png" alt="Norlytics" class="site-logo-img" loading="lazy" decoding="async" />
+          <img src="/images/norlytics-logo.png" alt="Norlytics" class="site-logo-img" loading="lazy" decoding="async" />
           <div class="footer-logo-text">Norlytics</div>
         </div>
         <p class="footer-desc">Analyse gratuite des revenus de la chaîne YouTube et informations sur les performances. Propulsé par Norcanto.</p>
@@ -696,7 +669,7 @@
       <div>
         <div class="footer-col-title">Outils</div>
         <div class="footer-links">
-          <a href="#analyzer">Analyseur de canaux</a>
+          <a href="#analyzer">Analyseur de chaîne</a>
           <a href="#calculator">Calculateur de revenus</a>
           <a href="/fr/niche-insights">Perspectives de niche</a>
           <a href="/fr/blog">Blog</a>
@@ -741,9 +714,6 @@
     <button class="cookie-accept" id="cookie-accept"><span id="cookie-accept-label">Accepter</span></button>
   </div>
 </div>
-
-<script src="/js/logo.js" defer></script>
 <script src="/js/app.js" defer></script>
-<script src="/js/creator-dashboard.js" defer></script>
 </body>
 </html>

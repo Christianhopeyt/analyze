@@ -9,6 +9,7 @@ const publicPages = [
   'blog/index.html',
   'blog/ai-tools-for-youtube-creators.html',
   'blog/compare-youtube-channels.html',
+  'blog/find-profitable-youtube-niches.html',
   'blog/grow-youtube-channel-fast.html',
   'blog/how-much-youtube-pays-per-view.html',
   'blog/youtube-channel-country-analyzer.html',

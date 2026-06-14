@@ -15,7 +15,6 @@
         href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
         media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" /></noscript>
-  <link rel="icon" type="image/png" href="../images/norcanto-logo.png" />
   <style>
     .about-hero { padding: clamp(88px,14vw,130px) 0 clamp(40px,6vw,64px); background: var(--bg-2); border-bottom: 1px solid var(--border); }
     .about-hero-content { max-width: 720px; margin: 0 auto; text-align: center; }
@@ -57,6 +56,14 @@
   <meta property="og:url" content="https://norcanto.com/about" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
+  <!-- Norlytics icons and install metadata -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/images/favicon-48x48.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#ff0000" />
 </head>
 
 <!-- Google tag (gtag.js) -->
@@ -75,7 +82,7 @@
   <div class="container">
     <div class="header-inner">
       <a href="/about" class="header-logo">
-        <img src="../images/norcanto-logo.png" alt="Norlytics" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
+        <img src="/images/norlytics-logo.png" alt="Norlytics" class="site-logo-img" fetchpriority="high" loading="eager" decoding="async" />
         Norlytics
       </a>
       <nav class="header-nav">
@@ -204,7 +211,7 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="footer-logo"><img src="../images/norcanto-logo.png" alt="Norlytics" class="site-logo-img"  loading="lazy" decoding="async" /><div class="footer-logo-text">Norlytics</div></div>
+        <div class="footer-logo"><img src="/images/norlytics-logo.png" alt="Norlytics" class="site-logo-img"  loading="lazy" decoding="async" /><div class="footer-logo-text">Norlytics</div></div>
         <p class="footer-desc">Free YouTube channel revenue analysis and performance insights. Powered by Norcanto.</p>
       </div>
       <div><div class="footer-col-title">Tools</div><div class="footer-links"><a href="/about#analyzer">Channel Analyzer</a><a href="/about#calculator">Revenue Calculator</a><a href="/blog">Blog</a></div></div>
@@ -217,8 +224,6 @@
     </div>
   </div>
 </footer>
-
-<script src="../js/logo.js" defer></script>
 <script src="../js/app.js" defer></script>
 </body>
 </html>

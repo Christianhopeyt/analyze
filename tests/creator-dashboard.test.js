@@ -51,8 +51,6 @@ test('Creator Dashboard ideas require a valid server-cached channel report', asy
 
 test('English and French dashboards expose only Overview, Videos, and Ideas tabs', () => {
   for (const file of [
-    'index.html',
-    path.join('fr', 'index.html'),
     path.join('creator-dashboard', 'index.html'),
     path.join('fr', 'creator-dashboard', 'index.html')
   ]) {
@@ -63,6 +61,27 @@ test('English and French dashboards expose only Overview, Videos, and Ideas tabs
     assert.equal((html.match(/role="tab"/g) || []).length, 3, file);
     assert.doesNotMatch(html, /data-tab="comments"|Comments tab|Onglet commentaires/i, file);
   }
+});
+
+test('homepage channel analysis does not embed or load Creator Dashboard', () => {
+  for (const file of ['index.html', path.join('fr', 'index.html')]) {
+    const html = fs.readFileSync(path.join(root, file), 'utf8');
+    assert.doesNotMatch(html, /id="creator-dashboard"|creator-dashboard\.js|creator-dashboard\.css/, file);
+    assert.match(html, /class="creator-dashboard-cta"/, file);
+  }
+
+  const app = fs.readFileSync(path.join(root, 'js', 'app.js'), 'utf8');
+  assert.doesNotMatch(app, /CreatorDashboard\?\.(?:load|accept)|fetch\(`\/api\/creator-dashboard\?/);
+  assert.match(app, /fetch\(`\/api\/channel-analyzer\?/);
+});
+
+test('AI fallback is dedicated-page-only and single-shot per report', () => {
+  const source = fs.readFileSync(path.join(root, 'js', 'creator-dashboard.js'), 'utf8');
+  assert.match(source, /isDedicatedPage\(\)/);
+  assert.match(source, /ideasStatus === 'idle'/);
+  assert.match(source, /this\.ideasStatus = 'error'/);
+  assert.match(source, /AI ideas are temporarily unavailable\. Public statistics are still valid\./);
+  assert.match(source, /Les idées IA sont temporairement indisponibles\. Les statistiques publiques restent valides\./);
 });
 
 test('standalone Creator Dashboard pages have reciprocal clean URLs and page controller', () => {

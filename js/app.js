@@ -136,6 +136,9 @@ const LangManager = {
       nav_blog:          'Blog',
       nav_privacy:       'Privacy',
       nav_about:         'About',
+      creator_cta_title: 'Want deeper channel insights?',
+      creator_cta_text:  'Open Creator Dashboard for upload patterns, growth velocity, top videos, and AI content ideas.',
+      creator_cta_button:'Open Creator Dashboard',
       loading:           'Analyzing channel data...',
       invalid_channel:   'Enter a valid YouTube channel URL or @handle.',
       empty_channel:     'Please enter a YouTube channel URL or @handle.',
@@ -238,6 +241,9 @@ const LangManager = {
       nav_blog:          'Blog',
       nav_privacy:       'Confidentialit\u00e9',
       nav_about:         '\u00c0 Propos',
+      creator_cta_title: 'Vous souhaitez des analyses plus approfondies\u00a0?',
+      creator_cta_text:  'Ouvrez le Tableau Cr\u00e9ateur pour analyser le rythme de publication, la croissance, les meilleures vid\u00e9os et les id\u00e9es IA.',
+      creator_cta_button:'Ouvrir le Tableau Cr\u00e9ateur',
       loading:           'Analyse des donn\u00e9es de la cha\u00eene...',
       invalid_channel:   'Saisissez une URL YouTube ou un @pseudo valide.',
       empty_channel:     'Saisissez une URL YouTube ou un @pseudo.',
@@ -711,7 +717,7 @@ const Analyzer = {
     const ck = 'yta-c-'+parsed.value.toLowerCase().replace(/[^a-z0-9]/g,'-');
     try {
       const hit = localStorage.getItem(ck);
-      if (hit) { const {d,t}=JSON.parse(hit); if (Date.now()-t<86400000) { this.render(d); window.CreatorDashboard?.load(parsed); return; } }
+      if (hit) { const {d,t}=JSON.parse(hit); if (Date.now()-t<86400000) { this.render(d); return; } }
     } catch(_){}
 
     this.setLoading(true);
@@ -722,13 +728,8 @@ const Analyzer = {
       const data = await this.ytFetch(parsed);
 
       if (!data) { showToast('Channel not found. Check the URL.','error'); return; }
-      const creatorReport = data.creatorReport;
-      const cacheData = { ...data };
-      delete cacheData.creatorReport;
-      try { localStorage.setItem(ck, JSON.stringify({d:cacheData,t:Date.now()})); } catch(_){}
+      try { localStorage.setItem(ck, JSON.stringify({d:data,t:Date.now()})); } catch(_){}
       this.render(data);
-      if (creatorReport) window.CreatorDashboard?.accept(creatorReport);
-      else window.CreatorDashboard?.load(parsed);
     } catch(err) {
       console.error('[YTA]', err);
       this.showError(this.text('analysis_failed'));
@@ -739,17 +740,9 @@ const Analyzer = {
 
   async ytFetch(parsed) {
     const query = `type=${encodeURIComponent(parsed.type)}&value=${encodeURIComponent(parsed.value)}`;
-    let response = await fetch(`/api/creator-dashboard?${query}`);
-    let creatorReport = null;
-    let ch;
-    if (response.ok) {
-      creatorReport = await response.json();
-      ch = creatorReport.channel;
-    } else {
-      response = await fetch(`/api/channel-analyzer?${query}`);
-      if (!response.ok) throw new Error(`Channel API HTTP ${response.status}`);
-      ch = await response.json();
-    }
+    const response = await fetch(`/api/channel-analyzer?${query}`);
+    if (!response.ok) throw new Error(`Channel API HTTP ${response.status}`);
+    const ch = await response.json();
     const sn = ch;
     const st = ch;
     const ageMo = Math.max(1,Math.round((Date.now()-new Date(sn.publishedAt))/(1000*60*60*24*30)));
@@ -765,7 +758,7 @@ const Analyzer = {
       viewCount:st.viewCount||0, videoCount:st.videoCount||0,
       publishedAt:sn.publishedAt, ageMonths:ageMo,
       niche:detectNiche(sn.title,sn.description), language:lang,
-      country:sn.country||detectCountry(lang), source:'live', creatorReport,
+      country:sn.country||detectCountry(lang), source:'live',
     };
   },
 
@@ -1126,11 +1119,6 @@ function initForm() {
    BOOT
    ======================== */
 document.addEventListener('DOMContentLoaded', () => {
-  // Inject logo
-  if (typeof LOGO_B64 !== 'undefined') {
-    document.querySelectorAll('.site-logo-img').forEach(img => { img.src = LOGO_B64; });
-  }
-
   ThemeManager.init();
   ensureHeaderControls();
   normalizeNavigation();

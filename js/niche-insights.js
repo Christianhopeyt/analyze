@@ -79,17 +79,18 @@ const NicheInsights = {
     });
     document.getElementById('niche-language').value = this.lang === 'FR' ? 'fr' : 'en';
   },
-  setStatus(message, error = false) {
+  setStatus(message, error = false, loading = false) {
     const status = document.getElementById('niche-status');
     status.textContent = message;
     status.classList.toggle('error', error);
+    status.classList.toggle('loading', loading);
   },
   async run() {
     const query = document.getElementById('niche-query').value.trim();
     if (query.length < 2) { this.setStatus(this.text('invalid'), true); document.getElementById('niche-query').focus(); return; }
     const button = document.getElementById('niche-submit');
     button.disabled = true;
-    this.setStatus(this.text('loading'));
+    this.setStatus(this.text('loading'), false, true);
     try {
       const response = await fetch('/api/niche-insights', {
         method: 'POST',
