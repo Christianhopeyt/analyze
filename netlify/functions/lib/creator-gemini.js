@@ -13,19 +13,19 @@ const RESPONSE_SCHEMA = {
   required: ['summary', 'recommendations', 'videoIdeas', 'titleIdeas', 'topicAngles', 'tags']
 };
 
-async function generateCreatorIdeas({ report, language, apiKey }) {
+async function generateCreatorIdeas({ metrics, language, apiKey }) {
   if (!apiKey) return null;
   const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
   const evidence = {
     responseLanguage: language === 'fr' ? 'French' : 'English',
-    channel: { title: report.channel.title, description: report.channel.description },
+    channel: { title: metrics.channel.title, description: metrics.channel.description },
     verifiedPublicAnalytics: {
-      sampleSize: report.dashboard.sampleSize,
-      score: report.dashboard.score,
-      uploadPattern: report.dashboard.uploadPattern,
-      performance: report.dashboard.performance,
-      commonKeywords: report.dashboard.commonKeywords,
-      topVideos: report.dashboard.topVideos.slice(0, 6).map(video => ({
+      sampleSize: metrics.dashboard.sampleSize,
+      score: metrics.dashboard.score,
+      uploadPattern: metrics.dashboard.uploadPattern,
+      performance: metrics.dashboard.performance,
+      commonKeywords: metrics.dashboard.commonKeywords,
+      topVideos: metrics.dashboard.topVideos.slice(0, 6).map(video => ({
         title: video.title,
         views: video.views,
         viewsPerDay: video.viewsPerDay,

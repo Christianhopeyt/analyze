@@ -2,6 +2,11 @@
   publish = "."
   functions = "netlify/functions"
 
+[[redirects]]
+  from = "/api/creator-dashboard-ai"
+  to = "/.netlify/functions/creator-dashboard-ai"
+  status = 200
+
 # Security & cache headers
 [[headers]]
   for = "/*"

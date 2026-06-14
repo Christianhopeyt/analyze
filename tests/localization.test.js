@@ -106,5 +106,5 @@ test('Netlify page routing uses one-way redirects and clean rewrites without loo
     '/fr/cookies  /fr/cookies-notice/index.html  200'
   ].forEach(rule => assert.ok(redirects.includes(rule), rule));
   assert.doesNotMatch(redirects, /301!|^\/[^ ]+\/\s+\/[^ ]+\s+301$/m);
-  assert.doesNotMatch(netlifyConfig, /\[\[redirects\]\]/);
+  assert.match(netlifyConfig, /\[\[redirects\]\][\s\S]*from = "\/api\/creator-dashboard-ai"[\s\S]*to = "\/\.netlify\/functions\/creator-dashboard-ai"[\s\S]*status = 200/);
 });

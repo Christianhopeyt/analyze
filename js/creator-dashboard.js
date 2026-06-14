@@ -35,6 +35,7 @@ const CreatorDashboard = {
   ideasKey: null,
   ideasStatus: 'idle',
   ideasRequestToken: 0,
+  ideasErrorKey: null,
   isDedicatedPage() { return Boolean(document.querySelector('.creator-page #creator-dashboard')); },
   lang() { return location.pathname === '/fr' || location.pathname.startsWith('/fr/') ? 'FR' : 'EN'; },
   text(key) { return CD_STRINGS[this.lang()]?.[key] || CD_STRINGS.EN[key] || key; },
@@ -102,6 +103,7 @@ const CreatorDashboard = {
     if (ideasChanged) {
       this.ideasKey = nextIdeasKey;
       this.ideasStatus = 'idle';
+      this.ideasErrorKey = null;
       this.ideasRequestToken += 1;
     }
     this.report = report;
@@ -169,6 +171,40 @@ const CreatorDashboard = {
       return `<a class="creator-video-item" href="${this.escape(video.url)}" target="_blank" rel="noopener"><img src="${this.escape(video.thumbnail)}" alt="" loading="lazy"><div><div class="creator-video-title">${this.escape(video.title)}</div><div class="creator-video-meta"><span>${this.number(video.views)} ${this.text('views')}</span><span>${this.number(video.likes)} ${this.text('likes')}</span><span>${this.number(video.comments)} ${this.text('comments')}</span><span>${this.text('published')} ${this.escape(date)}</span></div><span class="creator-performance">${this.escape(ratio)}</span></div></a>`;
     }).join('') : `<div class="creator-card">${this.text('top_videos_empty')}</div>`;
   },
+  ideasMetrics(report) {
+    const dashboard = report.dashboard;
+    const compactVideo = video => ({
+      title: video.title,
+      views: video.views,
+      viewsPerDay: video.viewsPerDay,
+      engagementRate: video.engagementRate,
+      publishedAt: video.publishedAt
+    });
+    return {
+      channel: {
+        id: report.channel.id,
+        title: report.channel.title,
+        description: report.channel.description
+      },
+      dashboard: {
+        sampledAt: dashboard.sampledAt,
+        sampleSize: dashboard.sampleSize,
+        score: dashboard.score,
+        uploadPattern: dashboard.uploadPattern,
+        performance: dashboard.performance,
+        commonKeywords: dashboard.commonKeywords,
+        topVideos: dashboard.topVideos.slice(0, 6).map(compactVideo)
+      }
+    };
+  },
+  showIdeasError(container, requestKey) {
+    if (this.ideasErrorKey === requestKey) return;
+    this.ideasErrorKey = requestKey;
+    this.ideasStatus = 'error';
+    container.classList.remove('is-loading');
+    container.classList.add('is-error');
+    container.innerHTML = `<div class="creator-card creator-ai-state is-error"><span class="ui-state-mark" aria-hidden="true"></span><span>${this.escape(this.text('ai_error'))}</span></div>`;
+  },
   async loadIdeas(channelId, requestKey) {
     const container = document.getElementById('creator-ai-content');
     if (!this.isDedicatedPage() || !container || requestKey !== this.ideasKey) return;
@@ -180,9 +216,13 @@ const CreatorDashboard = {
       const response = await fetch('/api/creator-dashboard-ai', {
         method:'POST',
         headers:{ 'content-type':'application/json' },
-        body:JSON.stringify({ channelId, language:this.lang() === 'FR' ? 'fr' : 'en' })
+        body:JSON.stringify({
+          channelId,
+          language:this.lang() === 'FR' ? 'fr' : 'en',
+          metrics:this.ideasMetrics(this.report)
+        })
       });
-      const data = await response.json();
+      const data = response.headers.get('content-type')?.includes('application/json') ? await response.json() : {};
       if (!response.ok || !data.suggestions) throw new Error();
       if (requestToken !== this.ideasRequestToken || requestKey !== this.ideasKey) return;
       this.ideasStatus = 'success';
@@ -190,10 +230,7 @@ const CreatorDashboard = {
       this.renderIdeas(data.suggestions);
     } catch (_) {
       if (requestToken !== this.ideasRequestToken || requestKey !== this.ideasKey) return;
-      this.ideasStatus = 'error';
-      container.classList.remove('is-loading');
-      container.classList.add('is-error');
-      container.innerHTML = `<div class="creator-card creator-ai-state is-error"><span class="ui-state-mark" aria-hidden="true"></span><span>${this.escape(this.text('ai_error'))}</span></div>`;
+      this.showIdeasError(container, requestKey);
     }
   },
   renderIdeas(ai) {
