@@ -13,10 +13,13 @@ const publicPages = [
   'blog/grow-youtube-channel-fast.html',
   'blog/how-much-youtube-pays-per-view.html',
   'blog/youtube-channel-country-analyzer.html',
+  'blog/youtube-channel-audit-checklist.html',
   'blog/youtube-cpm-countries.html',
   'blog/youtube-engagement-rate-calculator.html',
   'blog/youtube-monetization-requirements-2026.html',
+  'blog/youtube-niche-validation-framework.html',
   'blog/youtube-revenue-affiliate-memberships.html',
+  'blog/youtube-rpm-vs-cpm.html',
   'blog/youtube-rpm-by-niche.html',
   'blog/youtube-shorts-monetization.html',
   'blog/youtube-sponsorship-guide.html',
@@ -30,6 +33,14 @@ const publicPages = [
 const skipTags = new Set(['script', 'style', 'svg', 'path', 'line', 'polyline', 'polygon', 'circle', 'rect']);
 const preservedTerms = ['YouTube', 'Norlytics', 'Norcanto', 'AdSense', 'Gemini', 'RPM', 'CPM', 'API', 'QuickDocs'];
 const untranslatedTokens = new Set(['EN', 'FR', 'Blog', 'Contact', 'Cookies', 'FAQ', 'USD']);
+const quarantinedSlugs = new Set([
+  'ai-tools-for-youtube-creators',
+  'grow-youtube-channel-fast',
+  'youtube-cpm-countries',
+  'youtube-rpm-by-niche',
+  'youtube-shorts-monetization',
+  'youtube-sponsorship-guide'
+]);
 const cachePath = path.join(root, '.translation-cache.json');
 let cache = {};
 
@@ -127,7 +138,7 @@ async function translateAttributes(html) {
 function localizedInternalHref(file, href) {
   if (/^(?:https?:|mailto:|#|\/fr\/|\/api\/)/.test(href)) return href;
   const [pathname, suffix = ''] = href.split(/(?=[?#])/);
-  if (!pathname || /\.(?:css|js|png|jpg|jpeg|webp|svg|ico|xml)$/i.test(pathname)) return href;
+  if (!pathname || /\.(?:css|js|png|jpg|jpeg|webp|svg|ico|xml|webmanifest)$/i.test(pathname)) return href;
   const resolved = pathname.startsWith('/')
     ? path.posix.normalize(pathname)
     : path.posix.normalize(path.posix.join('/', path.posix.dirname(file), pathname));
@@ -159,7 +170,7 @@ function cleanPublicLinks(html, file) {
   return html.replace(/href="([^"]+)"/g, (_, href) => {
     if (/^(?:https?:|mailto:|#|\/api\/|\/fr(?:\/|$))/.test(href)) return `href="${href}"`;
     const [pathname, suffix = ''] = href.split(/(?=[?#])/);
-    if (!pathname || /\.(?:css|js|png|jpg|jpeg|webp|svg|ico|xml)$/i.test(pathname)) return `href="${href}"`;
+    if (!pathname || /\.(?:css|js|png|jpg|jpeg|webp|svg|ico|xml|webmanifest)$/i.test(pathname)) return `href="${href}"`;
     const resolved = pathname.startsWith('/')
       ? path.posix.normalize(pathname)
       : path.posix.normalize(path.posix.join('/', path.posix.dirname(file), pathname));
@@ -290,7 +301,10 @@ async function updateSitemap() {
   let sitemap = await fs.readFile(sitemapPath, 'utf8');
   sitemap = cleanAbsolutePublicUrls(sitemap);
   sitemap = sitemap.replace(/\s*<url>\s*<loc>https:\/\/norcanto\.com\/fr(?:\/[^<]*)?<\/loc>[\s\S]*?<\/url>/g, '');
-  const frenchEntries = publicPages.map(file => [
+  const frenchEntries = publicPages.filter(file => {
+    const match = file.match(/^blog\/(.+)\.html$/);
+    return !match || !quarantinedSlugs.has(match[1]);
+  }).map(file => [
     '  <url>',
     `    <loc>${pageUrl(file, 'fr')}</loc>`,
     '    <lastmod>2026-06-11</lastmod>',
