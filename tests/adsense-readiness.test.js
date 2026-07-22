@@ -6,7 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
-const quarantinedSlugs = [
+const restoredSlugs = [
   'ai-tools-for-youtube-creators',
   'grow-youtube-channel-fast',
   'youtube-cpm-countries',
@@ -14,6 +14,18 @@ const quarantinedSlugs = [
   'youtube-shorts-monetization',
   'youtube-sponsorship-guide'
 ];
+
+function visibleWordCount(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&[a-z0-9#]+;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+}
 
 function htmlFiles(directory) {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
@@ -52,7 +64,7 @@ test('unsupported trust claims are absent from public pages', () => {
   assert.doesNotMatch(content, /98%\s*<\/div>\s*<div class="hero-stat-label">Estimation Accuracy/i);
 });
 
-test('thin duplicate articles are noindex and excluded from sitemap', () => {
+test('formerly thin articles are improved, indexable, and discoverable', () => {
   const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
   const discoveryPages = [
     fs.readFileSync(path.join(root, 'index.html'), 'utf8'),
@@ -60,22 +72,26 @@ test('thin duplicate articles are noindex and excluded from sitemap', () => {
     fs.readFileSync(path.join(root, 'fr', 'index.html'), 'utf8'),
     fs.readFileSync(path.join(root, 'fr', 'blog', 'index.html'), 'utf8')
   ].join('\n');
-  quarantinedSlugs.forEach(slug => {
+  restoredSlugs.forEach(slug => {
     const english = fs.readFileSync(path.join(root, 'blog', `${slug}.html`), 'utf8');
     const french = fs.readFileSync(path.join(root, 'fr', 'blog', slug, 'index.html'), 'utf8');
-    assert.match(english, /<meta name="robots" content="noindex, follow"/, slug);
-    assert.match(french, /<meta name="robots" content="noindex, follow"/, `fr/${slug}`);
-    assert.ok(!sitemap.includes(`/blog/${slug}</loc>`), slug);
-    assert.ok(!sitemap.includes(`/fr/blog/${slug}</loc>`), `fr/${slug}`);
-    assert.ok(!discoveryPages.includes(`/blog/${slug}"`), `discovery/${slug}`);
-    assert.ok(!discoveryPages.includes(`/fr/blog/${slug}"`), `discovery/fr/${slug}`);
+    assert.doesNotMatch(english, /noindex,\s*follow/i, slug);
+    assert.doesNotMatch(french, /noindex,\s*follow/i, `fr/${slug}`);
+    assert.ok(sitemap.includes(`/blog/${slug}</loc>`), slug);
+    assert.ok(sitemap.includes(`/fr/blog/${slug}</loc>`), `fr/${slug}`);
+    assert.ok(discoveryPages.includes(`/blog/${slug}"`), `discovery/${slug}`);
+    assert.ok(discoveryPages.includes(`/fr/blog/${slug}"`), `discovery/fr/${slug}`);
+    assert.ok(visibleWordCount(english) >= 1000, `english depth/${slug}`);
+    assert.ok(visibleWordCount(french) >= 500, `french depth/${slug}`);
+    assert.match(english, /class="article-trust-note"/, slug);
+    assert.match(english, /Sources and Methodology/, slug);
+    assert.match(english, /FAQPage/, slug);
   });
 });
 
 test('retained articles include author and methodology trust notes', () => {
   for (const file of fs.readdirSync(path.join(root, 'blog')).filter(name => name.endsWith('.html') && name !== 'index.html')) {
     const slug = file.replace(/\.html$/, '');
-    if (quarantinedSlugs.includes(slug)) continue;
     const html = fs.readFileSync(path.join(root, 'blog', file), 'utf8');
     assert.match(html, /class="article-trust-note"/, file);
     assert.match(html, /Written by Christian Hope/, file);

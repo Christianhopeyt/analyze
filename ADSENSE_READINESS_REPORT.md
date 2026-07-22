@@ -2,6 +2,8 @@
 
 Audit date: June 14, 2026
 
+Update note: This report has been superseded by the July 22, 2026 weak-page upgrade in `ADSENSE_CONTENT_UPGRADE_REPORT.md`. The articles listed below as temporarily quarantined were later rewritten, made indexable, restored to discovery surfaces, and re-added to the sitemap.
+
 ## Readiness After Repository Fixes
 
 Estimated readiness: **moderate, pending DNS repair and content expansion**.
@@ -27,15 +29,15 @@ The repository now has a substantially safer AdSense-review posture, but the liv
 - Google Analytics and AdSense are marked as CookieYes-controlled analytics and advertisement categories.
 - Updated EN/FR privacy and cookie disclosures to describe the implemented behavior.
 - Added founder/contact credibility to EN/FR About pages.
-- Temporarily marked thin duplicate articles `noindex, follow`.
-- Removed quarantined articles from `sitemap.xml`.
-- Removed quarantined articles from homepage and blog discovery surfaces.
+- Temporarily marked thin duplicate articles `noindex, follow` during the June remediation. Superseded July 22, 2026: those pages were rewritten and restored as indexable resources.
+- Removed quarantined articles from `sitemap.xml` during the June remediation. Superseded July 22, 2026: rewritten pages were re-added to the sitemap.
+- Removed quarantined articles from homepage and blog discovery surfaces during the June remediation. Superseded July 22, 2026: rewritten pages were restored to blog discovery surfaces.
 - Corrected the contact-form success redirect from the stale `analyzer.norcanto.com` host.
 - Added automated AdSense-readiness regression tests.
 
 ## Quarantined Articles
 
-These pages remain accessible but should not be submitted or indexed until they are substantially rewritten:
+These pages were quarantined in June, but were substantially rewritten on July 22, 2026 and are no longer recommended for `noindex`:
 
 - `/blog/ai-tools-for-youtube-creators`
 - `/blog/grow-youtube-channel-fast`
